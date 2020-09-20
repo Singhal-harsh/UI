@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "arbitrage-ui-project"
+    }
+  },
+  "defaultProject": "arbitrage-ui-project",
+  "cli": {
+    "analytics": "3462ffe1-ec06-495f-b25a-92ba9f705436"
+  }
 }
