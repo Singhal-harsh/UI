@@ -9,7 +9,7 @@ import { userTestComponent } from './components/userTest.component';
 
 @NgModule({
   declarations: [
-    AppComponent,RandomComponent, userTestComponent
+    AppComponent , RandomComponent, userTestComponent
   ],
   imports: [
     BrowserModule,
