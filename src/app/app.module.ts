@@ -5,10 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { importType } from '@angular/compiler/src/output/output_ast';
 import {RandomComponent} from './components/random.component';
+import { userTestComponent } from './components/userTest.component';
 
 @NgModule({
   declarations: [
-    AppComponent,RandomComponent
+    AppComponent,RandomComponent, userTestComponent
   ],
   imports: [
     BrowserModule,
