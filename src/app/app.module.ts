@@ -10,11 +10,7 @@ import { Page2RandomComponent } from "./components/page2random.component";
 
 @NgModule({
   declarations: [
-<<<<<<< HEAD
-    AppComponent , RandomComponent, userTestComponent
-=======
     AppComponent,RandomComponent, userTestComponent,Page2RandomComponent
->>>>>>> hrithik
   ],
   imports: [
     BrowserModule,
