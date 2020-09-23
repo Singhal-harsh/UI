@@ -10,6 +10,8 @@ export class RandomComponent {
   closeAlert() : void {
     this.alertShow = false;
   }
+
+  public dateTime = new Date()
  
   // showAlert() : void {
   //   if (this.alertShow) { // if the alert is visible return
