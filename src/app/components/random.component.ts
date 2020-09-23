@@ -7,16 +7,10 @@ import { Component } from '@angular/core';
 export class RandomComponent {
 
   public alertShow: boolean = true;
-  // public str : any = document.getElementById("Arbopp").innerHTML;
-  // str.addListener(new FieldEvents.TextChangeListener() {
-
-  //   @Override
-  //   public void textChange(TextChangeEvent event) {
-
-  //       doSomething(event.getText());
-  //   }
-// });
-
+  closeAlert() : void {
+    this.alertShow = false;
+  }
+ 
   // showAlert() : void {
   //   if (this.alertShow) { // if the alert is visible return
   //     return;
