@@ -7,6 +7,7 @@ import { importType } from '@angular/compiler/src/output/output_ast';
 import {RandomComponent} from './components/random.component';
 import { userTestComponent } from './components/userTest.component';
 import {RouterModule, Router, Routes} from'@angular/router';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import {RouterModule, Router, Routes} from'@angular/router';
       { path: 'random', component : RandomComponent}
   ])
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent,]
 })
 export class AppModule { }
