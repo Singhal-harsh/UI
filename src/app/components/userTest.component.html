@@ -103,7 +103,7 @@
     
     <div class="form-group">        
       <div class="col-sm-offset-2 col-sm-10">
-        <button type="submit" class="btn btn-default">Check Arbitrage</button>
+        <button type="submit" class="btn btn-default" (click) = "handleClickTrial()">Check Arbitrage</button>
       </div>
     </div>
   </form>
@@ -111,6 +111,8 @@
 <br>
 <div class="container-table" align="center">
   <h2 >Output Box</h2>
+  <br>
+  {{dataTrial}}
   <br>
   <p> Arbitrage Opportunity is present or not</p>  
   <br>
