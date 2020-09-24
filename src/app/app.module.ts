@@ -21,7 +21,7 @@ import { DatePipe } from '@angular/common';
     FormsModule,
     RouterModule.forRoot([
       { path: 'userInput', component : userTestComponent},
-      { path: 'random', component : RandomComponent}
+      { path: 'random', component : RandomComponent}, {path: 'trade',component:TradeComponent}
   ])
   ],
   providers: [DatePipe],
