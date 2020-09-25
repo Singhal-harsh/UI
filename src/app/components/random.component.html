@@ -6,7 +6,7 @@
   
 </head>
 
-<nav>
+<nav class="navbar navbar-dark bg-primary nav justify-content-center">
   <a class="navbar-brand" routerLink="/userInput" routerLinkActive="active" >Check for Arbitrage</a>&nbsp;&nbsp;&nbsp;
   <a class="navbar-brand" routerLink="/random" routerLinkActive="active" >Random Arbitrage Opportunities</a>
 </nav>
@@ -29,16 +29,16 @@
   </thead>
   <tbody>
     <tr>
-      <th scope="row">1</th>
-      <td>105.38</td>
-      <td>105.42</td>
-      <td>105.75</td>
-      <td>105.84</td>
-      <td>4.95</td>
-      <td>5.28</td>
-      <td>0.31</td>
-      <td>0.42</td>
-      <td>20</td>
+      <th scope="row">{{id}}</th>
+      <td>{{spot_bid}}</td>
+      <td>{{spot_ask}}</td>
+      <td>{{fwd_bid}}</td>
+      <td>{{fwd_ask}}</td>
+      <td>{{ifirst_bid}}</td>
+      <td>{{ifirst_ask}}</td>
+      <td>{{isecond_bid}}</td>
+      <td>{{isecond_ask}}</td>
+      <td>{{trans}}</td>
       <td id="Arbopp">Yes</td>
     </tr>
     <!-- <tr>
@@ -83,9 +83,9 @@
       </thead>
       <tbody>
         <tr>
-          <th scope="row">1</th>
-          <td>100</td>
-          <td>5.42</td>
+          <th scope="row">{{id}}</th>
+          <td>{{quantity}}</td>
+          <td>{{profit}}</td>
           <td>{{dateTime}}</td>
           <td><button type="button" class="btn btn-success">More Info</button></td>
       </tbody>
