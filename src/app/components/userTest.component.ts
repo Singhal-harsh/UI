@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+
 import { formData } from './formData';
 
 @Component({
@@ -12,7 +13,8 @@ export class userTestComponent{
     public dataTrial = 0;
 
     
-    formDataModel = new formData(105.38, 105.42, 105.75, 105.84, 4.95, 5.28, 0.31, 0.42);
+    
+    formDataModel = new formData();
 
     onSubmit(){
 
@@ -24,5 +26,6 @@ export class userTestComponent{
         this.dataTrial = this.formDataModel.currencyOneAskRate;
 
     }
+
 
  }
