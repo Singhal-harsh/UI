@@ -9,7 +9,8 @@ import { formData } from './formData';
 })
 export class userTestComponent{
 
-    public currencies= ['USD','JPY','EUR','INR', 'GBP'];
+    public currencies1= ['EUR','GBP','AUD'];
+    public currencies2= ['USD','JPY','CHF'];
     public dataTrial = 0;
 
     
