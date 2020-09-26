@@ -9,14 +9,16 @@ import {ActivatedRoute , NavigationExtras, Router} from '@angular/router';
 @Component({
     selector : 'userTest',
     templateUrl: './userTest.component.html',
+    providers: [ UserService ]
+    
 
 })
 export class userTestComponent{
 
-    public currencies= ['USD','JPY','EUR','INR', 'GBP'];
+    public currencies1= ['EUR','GBP','AUD'];
+    public currencies2= ['USD','JPY','CHF'];
     public dataTrial = 0;
     public userService : UserService;
-    public editprod = {"id":1,"name":"Chairs","quantity":30,"price":1500.0};
     public activatedRoute: ActivatedRoute;
     public router: Router;
     
@@ -28,21 +30,21 @@ export class userTestComponent{
         this.activatedRoute = activatedRoute;
         this.userService = userService;
         this.router = router;
-       // let observable:Observable<Object> = productService.getProducts();
-       // observable.subscribe((response:any)=>this.products = response);
     }
 
     onSubmit(){
 
         console.log(this.formDataModel);
-        //this.userService.send(this.formDataModel).subscribe(prodob => this.products.push(prodob));
+        this.userService.sendInput(this.formDataModel).subscribe(data => console.log(data), error => console.log(error));
+        let observable:Observable<Object> = this.userService.getOutput();
+        observable.subscribe((response:any)=>this.outputobj= response);
     }
 
-    handleClickTrial(){
+    // handleClickTrial(){
 
-        this.dataTrial = this.formDataModel.interest_rate_curr1_ask;
+    //     this.dataTrial = this.formDataModel.interest_rate_curr1_ask;
 
-    }
+    // }
 
 
  }

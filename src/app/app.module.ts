@@ -25,7 +25,7 @@ import { HttpClientModule} from '@angular/common/http';
     RouterModule.forRoot([
       { path: 'userInput', component : userTestComponent},
       { path: 'random', component : RandomComponent},
-      { path: '', component : HomeComponent} 
+      { path: '', component : HomeComponent}
   ])
   ],
   providers: [DatePipe],

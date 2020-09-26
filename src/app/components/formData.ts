@@ -12,7 +12,7 @@ export class formData{
 	public interest_rate_curr2_ask : number;
 	public transaction_cost : number;
 	public fwd_arb_quantity : number;
-	public time_months : number;
+	public time_months : number = 6;
 
     
 }

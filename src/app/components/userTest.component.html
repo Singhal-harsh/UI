@@ -2,7 +2,11 @@
 <html lang="en">
 <head>
   <title>Arb User Test</title>
-  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 
 <nav class="navbar navbar-dark bg-primary nav justify-content-center">
@@ -12,115 +16,120 @@
 
 <body>
 
-<div class="container-form">
-  <h2>Check for Arbitrage</h2>
-  <br>
-  <form class="form-horizontal" action="/action_page.php" #userform="ngForm" novalidate (ngSubmit)="onSubmit()">
-  
-   <div class="form-group">
-      <label class="control-label col-sm-2" for="first-currency">First currency</label>
-      <div class="col-sm-4">
-        <select #first class="form-control" id="first-currency">
-          <option *ngFor="let currency of currencies"> {{currency}} </option>
+  <div style="background-color: dimgray;">
+  <div class="card text-white form-center bg-dark mb-3" style="width: 1000px; height: 550px; margin-left: auto; margin-right: auto;margin-top: 20px;">
+    <div class="card-header"><b>Arbitrage Calculator</b></div>
+    <div class="card-body text-center" style="margin: auto;">
+
+      
+  <form class="form-row" action="/action_page.php" #userform="ngForm" novalidate (ngSubmit)="onSubmit()">
+
+    <div class="form-group row col-sm-6 " style="margin-left: auto;">
+      <label class="control-label col-sm-4" for="first-currency">First currency</label>
+      <div class="col-sm-6">
+        <select class="form-control" id="first-currency">
+          <option *ngFor="let currency of currencies1"> {{currency}} </option>
           
         </select>
       </div>
+     
     </div>
-    
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="second-currency">Second currency</label>
-      <div class="col-sm-4">
-        <select #second class="form-control" id="second-currency">
-          <option *ngFor="let currency of currencies"> {{currency}} </option>
+
+    <div class="form-group row col-md-6" style="margin-left: auto;">
+      <label class="control-label col-sm-4" for="second-currency">Second currency</label>
+      <div class="col-sm-6">
+        <select class="form-control" id="second-currency">
+          <option *ngFor="let currency of currencies2"> {{currency}} </option>
           
         </select>
       </div>
+     
     </div>
+
+    <div class="form-group row col-md-6" style="margin-left: auto;">
+      <label class="control-label col-sm-4" for="spot-bid">USD/JPY Spot Bid</label>
+      <div class="col-sm-6">
+        <input type="number" class="form-control" id="spot-bid" placeholder="Enter USD/JPY Spot Bid"  name="spot-bid"  [(ngModel)]="formDataModel.spot_bid">
+      </div>
+    </div>
+    <div class="form-group row col-md-6" style="margin-left: auto;">
+      <label class="control-label col-sm-4" for="spot-ask">USD/JPY Spot Ask</label>
+      <div class="col-sm-6">          
+        <input type="number" class="form-control" id="spot-ask" [(ngModel)]="formDataModel.spot_ask" placeholder="Enter USD/JPY Spot Ask" name="spot-ask">
+      </div>
+    </div>
+
+    <div class="form-group row col-md-6" style="margin-left: auto;">
+      <label class="control-label col-sm-4" for="forward-bid">USD/JPY Forward 6M Bid</label>
+      <div class="col-sm-6">
+        <input type="number" class="form-control" id="forward-bid" [(ngModel)]="formDataModel.forward_bid" placeholder="Enter USD/JPY Forward 6M Bid" name="forward-bid">
+      </div>
+    </div>
+    <div class="form-group row col-md-6" style="margin-left: auto;">
+      <label class="control-label col-sm-4" for="forward-ask">USD/JPY Forward 6M Ask</label>
+      <div class="col-sm-6">          
+        <input type="number" class="form-control" id="forward-ask" [(ngModel)]="formDataModel.forward_ask" placeholder="Enter USD/JPY Forward 6M Ask" name="forward-ask">
+      </div>
+    </div>
+
+    
+    <div class="form-group row col-md-6" style="margin-left: auto;">
+      <label class="control-label col-sm-4" for="interest-rate-bid1">Interest Rate USD Bid</label>
+      <div class="col-sm-6">
+        <input type="number" class="form-control" id="interest-rate-bid1" [(ngModel)]="formDataModel.interest_rate_curr1_bid" placeholder="Enter Interest Rate USD Bid" name="interest-rate-bid1">
+      </div>
+    </div>
+    <div class="form-group row col-md-6" style="margin-left: auto;">
+      <label class="control-label col-sm-4" for="interest-rate-ask1">Interest Rate USD Ask</label>
+      <div class="col-sm-6">          
+        <input type="number" class="form-control" id="interest-rate-ask1" [(ngModel)]="formDataModel.interest_rate_curr1_ask" placeholder="Enter Interest Rate USD Ask"  name="interest-rate-ask1">
+      </div>
+    </div>
+    
+        <div class="form-group row col-md-6" style="margin-left: auto;">
+      <label class="control-label col-sm-4" for="interest-rate-bid2">Interest Rate JPY Bid</label>
+      <div class="col-sm-6" >
+        <input type="number" class="form-control" id="interest-rate-bid2" [(ngModel)]="formDataModel.interest_rate_curr2_bid" placeholder="Enter Interest Rate JPY Bid" name="interest-rate-bid2">
+      </div>
+    </div>
+    <div class="form-group row col-md-6" style="margin-left: auto;">
+      <label class="control-label col-sm-4" for="interest-rate-ask2">Interest Rate JPY Ask</label>
+      <div class="col-sm-6">          
+        <input type="number" class="form-control" id="interest-rate-ask2" [(ngModel)]="formDataModel.interest_rate_curr2_ask" placeholder="Enter Interest Rate JPY Ask" name="interest-rate-ask2">
+      </div>
+    </div>
+    
+     <div class="form-group row col-md-6" style="margin-left: auto;">
+      <label class="control-label col-sm-4" for="quantity">Quantity</label>
+      <div class="col-sm-6">
+        <input type="number" class="form-control" id="quantity" placeholder="Enter Quantity" [(ngModel)]="formDataModel.fwd_arb_quantity" name="quantity" >
+      </div>
+    </div>
+    
+    <div class="form-group row col-md-6" style="margin-left: auto;">
+      <label class="control-label col-sm-4" for="transaction-cost">Transaction Cost</label>
+      <div class="col-sm-6">          
+        <input type="number" class="form-control" id="transaction-cost" placeholder="Enter Transaction Cost" [(ngModel)]="formDataModel.transaction_cost" name="transaction-cost">
+      </div>
+    </div>
+
+    <div class="form-group  col-md-10 " style="margin-left: auto; margin-right: auto; margin-top:30px;">        
+      <div class="col-sm-offset-6 col-md-14">
+        <button type="submit" class="btn btn-light">Check Arbitrage</button>
+      </div>
+    </div>
+
+</form>
+    
   
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="spot-bid">{{first.value}}/{{second.value}} Spot Bid</label>
-      <div class="col-sm-4">
-        <input type="number" class="form-control" id="spot-bid" placeholder="Enter USD/JPY Spot Bid"  name="spot-bid"  [(ngModel)]="formDataModel.spotBid">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="spot-ask">{{first.value}}/{{second.value}} Spot Ask</label>
-      <div class="col-sm-4">            
-        <input type="number" class="form-control" id="spot-ask" [(ngModel)]="formDataModel.spotAsk" placeholder="Enter USD/JPY Spot Ask" name="spot-ask">
-      </div>
-    </div>
+       
+        
+
     
-     <div class="form-group">
-      <label class="control-label col-sm-2" for="forward-bid">{{first.value}}/{{second.value}} Forward 6M Bid</label>
-      <div class="col-sm-4">
-        <input type="number" class="form-control" id="forward-bid" [(ngModel)]="formDataModel.forwardBid" placeholder="Enter USD/JPY Forward 6M Bid" name="forward-bid">
-      </div>
     </div>
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="forward-ask">{{first.value}}/{{second.value}} Forward 6M Ask</label>
-      <div class="col-sm-4">          
-        <input type="number" class="form-control" id="forward-ask" [(ngModel)]="formDataModel.forwardAsk" placeholder="Enter USD/JPY Forward 6M Ask" name="forward-ask">
-      </div>
-    </div>
-    
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="interest-rate-bid1">Interest Rate {{first.value}} Bid</label>
-      <div class="col-sm-4">
-        <input type="number" class="form-control" id="interest-rate-bid1" [(ngModel)]="formDataModel.currencyOneBidRate" placeholder="Enter Interest Rate USD Bid" name="interest-rate-bid1">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="interest-rate-ask1">Interest Rate {{first.value}} Ask</label>
-      <div class="col-sm-4">         
-        <input type="number" class="form-control" id="interest-rate-ask1" [(ngModel)]="formDataModel.currencyOneAskRate" placeholder="Enter Interest Rate USD Ask"  name="interest-rate-ask1">
-      </div>
-    </div>
-    
-        <div class="form-group">
-          <label class="control-label col-sm-2" for="interest-rate-bid2">Interest Rate {{second.value}} Bid</label>
-          <div class="col-sm-4">
-        <input type="number" class="form-control" id="interest-rate-bid2" [(ngModel)]="formDataModel.currencyTwoBidRate" placeholder="Enter Interest Rate JPY Bid" name="interest-rate-bid2">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="interest-rate-ask2">Interest Rate {{second.value}} Ask</label>
-      <div class="col-sm-4">          
-        <input type="number" class="form-control" id="interest-rate-ask2" [(ngModel)]="formDataModel.currencyTwoAskRate" placeholder="Enter Interest Rate JPY Ask" name="interest-rate-ask2">
-      </div>
-    </div>
-    
-     <div class="form-group">
-      <label class="control-label col-sm-2" for="quantity">Quantity</label>
-      <div class="col-sm-4">
-        <input type="number" class="form-control" id="quantity" value="whateverWeDecide" name="quantity" readonly>
-      </div>
-    </div>
-    
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="transaction-cost">Transaction Cost</label>
-      <div class="col-sm-4">          
-        <input type="number" class="form-control" id="transaction-cost" placeholder="Enter Transaction Cost" name="transaction-cost">
-      </div>
-    </div>
-    
-    <div class="form-group">        
-      <div class="col-sm-offset-2 col-sm-10">
-        <button type="submit" class="btn btn-primary" (click) = "handleClickTrial()">Check Arbitrage</button>
-      </div>
-    </div>
-  </form>
-</div>
-<br>
-<div class="container-table" align="center">
-  <h2 >Output Box</h2>
-  <br>
-  {{dataTrial}}
-  <br>
-  <p> Arbitrage Opportunity is present or not</p>  
-  <br>
-  <p> How much Arbitrage?</p>
-  <br>
- 
+  </div>
+
+
 </div>
 
 </body>
