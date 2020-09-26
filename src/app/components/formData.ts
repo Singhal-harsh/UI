@@ -9,7 +9,9 @@ export class formData{
         public currencyOneBidRate: number;
         public currencyOneAskRate: number;
         public currencyTwoBidRate: number;
-        public currencyTwoAskRate: number
+        public currencyTwoAskRate: number;
+        public quantity: number;
+
 
 
     
