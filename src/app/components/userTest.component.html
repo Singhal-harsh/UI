@@ -119,9 +119,10 @@
       </div>
     </div>
 
-    <!-- <div class="form-group  col-md-10 " style="margin-left: auto; margin-right: auto; margin-top:30px;">        
+    <!-- <div *ngIf="outputobj.isFwdArbitrage" class="form-group  col-md-10 " style="margin-left: auto; margin-right: auto; margin-top:30px;">        
       <div class="col-sm-offset-6 col-md-14">
-        {{outputobj.isFwdArbitrage}}
+        <h3>Checking..</h3>
+        {{outputobj | json}}
       </div>
     </div> -->
 

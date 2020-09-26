@@ -4,7 +4,7 @@ export class outputData{
 
     
  
-        public fwd_arb_amount : number;
+    public fwd_arb_amount : number;
 	public fwd_arb_invest_amount : number;
 	public fwd_arb_invest_amount_Curr1 : number;
 	public profit_loss_fwd : number;

@@ -9,7 +9,8 @@ import {ActivatedRoute , NavigationExtras, Router} from '@angular/router';
 @Component({
     selector : 'userTest',
     templateUrl: './userTest.component.html',
-    providers: [ UserService ]
+    providers: [ UserService ],
+    styleUrls: ['./userTest.component.css']
     
 
 })
@@ -24,7 +25,7 @@ export class userTestComponent{
     
     
     public formDataModel = new formData();
-    public outputobj = new outputData();
+    public outputobj: any;
 
     constructor(userService : UserService, activatedRoute: ActivatedRoute , router: Router) {
         this.activatedRoute = activatedRoute;
@@ -35,10 +36,11 @@ export class userTestComponent{
     onSubmit(){
 
         console.log(this.formDataModel);
-        this.userService.sendInput(this.formDataModel).subscribe(data => console.log(data), error => console.log(error));
+        this.userService.sendInput(this.formDataModel).subscribe( data => {console.log(data);this.outputobj=data})
         // let observable:Observable<Object> = this.userService.getOutput();
         // observable.subscribe((response:any)=>this.outputobj= response);
-        // console.log(this.outputobj.isFwdArbitrage);
+        //console.log(this.outputobj);
+        console.log(this.outputobj.isFwdArbitrage);
     }
 
     // handleClickTrial(){

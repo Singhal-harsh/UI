@@ -10,7 +10,7 @@ import {outputData} from '../components/outputData';
   })
 export class UserService {
 
-    public baseurl : string = "http://localhost:8084/api";
+    public baseurl : string = "http://localhost:8084";
 
     public httpClient :  HttpClient;
     constructor (httpClient : HttpClient)
@@ -25,13 +25,14 @@ export class UserService {
     sendInput(inputobj : any): Observable<Object> {
         console.log('sendInput called');
         return this.httpClient.post(`${this.baseurl}`+'/userArbitrage', inputobj, {headers: 
-            {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } });
+            {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }});
     }
 
-    // getOutput() {
-    //     console.log("Get Output called");
-    //     return this.httpClient.get(`${this.baseurl}` + '/userArbitrage');
-    // }
+    getOutput() {
+        console.log("Get Output called");
+        return this.httpClient.get(`${this.baseurl}` + '/userArbitrage', {headers: 
+            {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }});
+    }
 
     // updateProduct(id:number,value:any): Observable<Object> {
     //     console.log('!!!!!' + id);

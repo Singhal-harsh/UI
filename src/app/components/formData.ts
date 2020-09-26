@@ -2,7 +2,7 @@ export class formData{
 
     
  
-        public spot_bid : number;
+	public spot_bid : number;
 	public spot_ask : number;
 	public forward_bid : number;
 	public forward_ask : number;
