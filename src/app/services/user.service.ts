@@ -5,10 +5,12 @@ import {Observable} from 'rxjs';
 import {formData} from '../components/formData';
 import {outputData} from '../components/outputData';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root',
+  })
 export class UserService {
 
-    public baseurl : string = "http://localhost:8084";
+    public baseurl : string = "http://localhost:8084/api";
 
     public httpClient :  HttpClient;
     constructor (httpClient : HttpClient)
@@ -20,15 +22,16 @@ export class UserService {
     //     console.log('Product pushed into an array: ');
     // }
 
-    sendInput(inputobj : formData): Observable<Object> {
+    sendInput(inputobj : any): Observable<Object> {
         console.log('sendInput called');
-        return this.httpClient.post(this.baseurl+'/userArbitrage', inputobj);
+        return this.httpClient.post(`${this.baseurl}`+'/userArbitrage', inputobj, {headers: 
+            {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } });
     }
 
-    getOutput() {
-        console.log("Get Output called");
-        return this.httpClient.get(this.baseurl + '/userArbitrage');
-    }
+    // getOutput() {
+    //     console.log("Get Output called");
+    //     return this.httpClient.get(`${this.baseurl}` + '/userArbitrage');
+    // }
 
     // updateProduct(id:number,value:any): Observable<Object> {
     //     console.log('!!!!!' + id);
