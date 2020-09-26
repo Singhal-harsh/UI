@@ -5,6 +5,7 @@ import { formData } from './formData';
 @Component({
     selector : 'userTest',
     templateUrl: './userTest.component.html',
+    
 
 })
 export class userTestComponent{
