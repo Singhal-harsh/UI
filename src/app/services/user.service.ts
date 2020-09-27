@@ -22,7 +22,8 @@ export class UserService {
 
     sendInput(inputobj : formData): Observable<Object> {
         console.log('sendInput called');
-        return this.httpClient.post(this.baseurl+'/userArbitrage', inputobj);
+        return this.httpClient.post(this.baseurl+'/userArbitrage', inputobj,{headers: 
+            {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } });
     }
 
     getOutput() {

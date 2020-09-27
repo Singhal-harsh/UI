@@ -35,9 +35,10 @@ export class userTestComponent{
     onSubmit(){
 
         console.log(this.formDataModel);
-        this.userService.sendInput(this.formDataModel).subscribe(data => console.log(data), error => console.log(error));
-        let observable:Observable<Object> = this.userService.getOutput();
-        observable.subscribe((response:any)=>this.outputobj= response);
+         this.userService.sendInput(this.formDataModel).subscribe(data => console.log(data), error => console.log(error));
+        //  let observable:Observable<Object> = this.userService.getOutput();
+        //  observable.subscribe((response:any)=>this.outputobj= response);
+        //  console.log(this.outputobj);
     }
 
     // handleClickTrial(){
