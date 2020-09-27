@@ -24,8 +24,8 @@ export class UserService {
 
     sendInput(inputobj : any): Observable<Object> {
         console.log('sendInput called');
-        return this.httpClient.post(`${this.baseurl}`+'/userArbitrage', inputobj, {headers: 
-            {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }});
+        return this.httpClient.post(this.baseurl+'/userArbitrage', inputobj,{headers: 
+            {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } });
     }
 
     getOutput() {
