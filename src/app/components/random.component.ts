@@ -1,6 +1,8 @@
 import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
-
+import { ActivatedRoute, Router } from '@angular/router';
+import { UserService } from '../services/user.service';
+import { interval, Subscription } from 'rxjs';
 @Component({
   selector: 'random',
   templateUrl: './random.component.html',
@@ -10,32 +12,67 @@ import { Component } from '@angular/core';
 export class RandomComponent {
   
   public alertShow: boolean = true;
-  public id: any = 1;
-  public  spot_bid: any = 105.38;
-  public  spot_ask: any = 105.42;
-  public  fwd_bid: any = 105.75;
-  public  fwd_ask: any = 105.84;
-  public  ifirst_bid: any = 4.95;
-  public  ifirst_ask: any = 5.28;
-  public  isecond_bid: any = 0.31;
-  public  isecond_ask: any = 0.42;
-  public  trans: any = 20;
-  public  quantity: any = 1000;
-  public profit: any = 5.42;
+  public id: number = 0;
+  public quantity: number = 1000;
+  public profit: number = 5.42;
+  public subscription: Subscription;
+
   
+  public userService : UserService;
+  public activatedRoute: ActivatedRoute;
+  public router: Router;
+
+  public dateTime:String = this.datepipe.transform(new Date().toString(),'MMM d, y, h:mm:ss a');
+
+public displayDetails: boolean=false;
+
+  public randomobj: any;
+  public randoms = [];
+
+  public displayObj:any;
   
+  constructor(userService : UserService, activatedRoute: ActivatedRoute , router: Router, public datepipe: DatePipe) {
+      this.activatedRoute = activatedRoute;
+      this.userService = userService;
+      this.router = router;
+  }
+
+  ngOnInit(){
+      const source = interval(10000);
+      this.subscription = source.subscribe(val => this.getValues());
+      console.log("Get values should have been called");
+    }
+
+  getValues(){
+
+    console.log("Get Values called")
+    this.id = this.id + 1;
+    this.userService.getRandom().subscribe(data =>{  
+      //console.log(data);
+      this.randomobj = data;  
+      console.log(this.randomobj.arbitrage.fwd_arb_quantity);
+      this.randoms.push(this.randomobj);
+      console.log(this.randomobj.arbitrage);
+      console.log(this.randoms);
+      });
+
+    }
+
   closeAlert() : void {
     this.alertShow = false;
   }
-  
-  constructor(public datepipe: DatePipe){}
-  public dateTime:String = this.datepipe.transform(new Date().toString(),'MMM d, y, h:mm:ss a');
-  
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
+  display(robj:any){
+    this.displayDetails=true;
+    this.displayObj=robj;
+  }
+
 
   
-
-
-
 
   // showAlert() : void {
   //   if (this.alertShow) { // if the alert is visible return
