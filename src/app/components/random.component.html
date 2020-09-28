@@ -79,6 +79,7 @@
           <th scope="col">Trade Id</th>
           <th scope="col">Quantity</th>
           <th scope="col">Profit Earned</th>
+          <th scope="col">Profit Earned Reverse</th>
           <th scope="col">Time of the trade</th>
           <th scope="col">Action</th>
         </tr>
@@ -95,8 +96,9 @@
           <th scope="row">{{id}}</th>
           <td>{{robj.arbitrage.fwd_arb_quantity}}</td>
           <td>{{robj.profit_loss_fwd | number:'1.2-2'}}</td>
+          <td>{{robj.profit_loss_rev | number:'1.2-2'}}</td>
           <td>{{dateTime}}</td>
-          <td><button type="button" class="btn btn-success">More Info</button></td>
+          <td><button type="button" class="btn btn-success" (click)="moreClicked(robj)">More Info</button></td>
       </tbody>
     </table>
 </div>
