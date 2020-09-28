@@ -5,11 +5,13 @@ import { formData } from './formData';
 @Component({
     selector : 'userTest',
     templateUrl: './userTest.component.html',
+    
 
 })
 export class userTestComponent{
 
-    public currencies= ['USD','JPY','EUR','INR', 'GBP'];
+    public currencies1= ['EUR','GBP','AUD'];
+    public currencies2= ['USD','JPY','CHF'];
     public dataTrial = 0;
 
     
