@@ -24,22 +24,24 @@
       <th scope="col">Interest Rate JPY Bid</th>
       <th scope="col">Interest Rate JPY Ask</th>
       <th scope="col">Transaction Cost</th>
-      <th scope="col">Arbitrage Opportunity</th>
+      <th scope="col">Forward Arbitrage Opportunity</th>
+      <th scope="col">Reverse Arbitrage Opportunity</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th scope="row">{{id}}</th>
-      <td>{{spot_bid}}</td>
-      <td>{{spot_ask}}</td>
-      <td>{{fwd_bid}}</td>
-      <td>{{fwd_ask}}</td>
-      <td>{{ifirst_bid}}</td>
-      <td>{{ifirst_ask}}</td>
-      <td>{{isecond_bid}}</td>
-      <td>{{isecond_ask}}</td>
-      <td>{{trans}}</td>
-      <td id="Arbopp">Yes</td>
+      <td>{{randomobj.arbitrage.spot_bid | number:'1.2-2'}}</td>
+      <td>{{randomobj.arbitrage.spot_ask | number:'1.2-2'}}</td>
+      <td>{{randomobj.arbitrage.forward_bid | number:'1.2-2'}}</td>
+      <td>{{randomobj.arbitrage.forward_ask | number:'1.2-2'}}</td>
+      <td>{{randomobj.arbitrage.interest_rate_curr1_bid | number:'1.2-2'}}</td>
+      <td>{{randomobj.arbitrage.interest_rate_curr1_ask | number:'1.2-2'}}</td>
+      <td>{{randomobj.arbitrage.interest_rate_curr2_bid | number:'1.2-2'}}</td>
+      <td>{{randomobj.arbitrage.interest_rate_curr2_ask | number:'1.2-2'}}</td>
+      <td>{{randomobj.arbitrage.transaction_cost | number:'1.2-2'}}</td>
+      <td>{{randomobj.fwdArbitrage}}</td>
+      <td>{{randomobj.revArbitrage}}</td>
     </tr>
     <!-- <tr>
       <th scope="row">2</th>
@@ -82,10 +84,17 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <!-- <tr *ngFor = "let product of products">
+          <td>{{product.id}}</td>
+          <td>{{product.name}}</td>
+          <td>{{product.quantity}}</td>
+          <td>{{product.price}}</td>
+          <td><button type="button" (click) = onEdit(product)>EDIT</button>&nbsp;&nbsp;<button type="button" (click) = onDelete(product.id)>DELETE</button>
+      </tr> -->
+        <tr *ngFor = "let robj of randoms">
           <th scope="row">{{id}}</th>
-          <td>{{quantity}}</td>
-          <td>{{profit}}</td>
+          <td>{{robj.arbitrage.fwd_arb_quantity}}</td>
+          <td>{{robj.profit_loss_fwd | number:'1.2-2'}}</td>
           <td>{{dateTime}}</td>
           <td><button type="button" class="btn btn-success">More Info</button></td>
       </tbody>

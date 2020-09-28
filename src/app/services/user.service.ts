@@ -28,9 +28,9 @@ export class UserService {
             {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } });
     }
 
-    getOutput() {
-        console.log("Get Output called");
-        return this.httpClient.get(`${this.baseurl}` + '/userArbitrage', {headers: 
+    getRandom(): Observable<any> {
+        console.log("Get Random called");
+        return this.httpClient.get(`${this.baseurl}` + '/randomArbitrage', {headers: 
             {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }});
     }
 
