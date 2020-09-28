@@ -3,15 +3,28 @@
 <head>
   <title>Random Data Arbitrage</title>
   <meta charset="utf-8">
-  
+  <style>
+  .rightdiv{
+   float: right;  padding : 1%; 
+    color:black; 
+    background-color:lightcyan; 
+    width: 50%; height:1000px;
+    border: solid black;  
+    background-size: cover;
+    position: relative;
+    }
+  </style>
 </head>
 
-
+<nav class="navbar navbar-dark bg-primary nav justify-content-center">
+  <a class="navbar-brand" routerLink="/userInput" routerLinkActive="active" >Check for Arbitrage</a>&nbsp;&nbsp;&nbsp;
+  <a class="navbar-brand" routerLink="/random" routerLinkActive="active" >Random Arbitrage Opportunities</a>
+</nav>
 
 <table class="table table-hover table-dark">
   <thead>
     <tr>
-      <th scope="col">#</th>
+      <th scope="col">TRADE ID</th>
       <th scope="col">USD/JPY Spot Bid</th>
       <th scope="col">USD/JPY Spot Ask</th>
       <th scope="col">USD/JPY Forward 6M Bid</th>
@@ -21,43 +34,51 @@
       <th scope="col">Interest Rate JPY Bid</th>
       <th scope="col">Interest Rate JPY Ask</th>
       <th scope="col">Transaction Cost</th>
-      <th scope="col">Arbitrage Opportunity</th>
+      <th scope="col">Forward Arbitrage Opportunity</th>
+      <th scope="col">Reverse Arbitrage Opportunity</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>105.38</td>
-      <td>105.42</td>
-      <td>105.75</td>
-      <td>105.84</td>
-      <td>4.95</td>
-      <td>5.28</td>
-      <td>0.31</td>
-      <td>0.42</td>
-      <td>20</td>
-      <td id="Arbopp">Yes</td>
+    <tr *ngIf="!randomobj.fwdArbitrage && !randomobj.revArbitrage" style="background-color: red;">
+      <th scope="row">{{id}}</th>
+      <td>{{randomobj.arbitrage.spot_bid | number:'1.2-2'}}</td>
+      <td>{{randomobj.arbitrage.spot_ask | number:'1.2-2'}}</td>
+      <td>{{randomobj.arbitrage.forward_bid | number:'1.2-2'}}</td>
+      <td>{{randomobj.arbitrage.forward_ask | number:'1.2-2'}}</td>
+      <td>{{randomobj.arbitrage.interest_rate_curr1_bid | number:'1.2-2'}}</td>
+      <td>{{randomobj.arbitrage.interest_rate_curr1_ask | number:'1.2-2'}}</td>
+      <td>{{randomobj.arbitrage.interest_rate_curr2_bid | number:'1.2-2'}}</td>
+      <td>{{randomobj.arbitrage.interest_rate_curr2_ask | number:'1.2-2'}}</td>
+      <td>{{randomobj.arbitrage.transaction_cost | number:'1.2-2'}}</td>
+      <td>{{randomobj.fwdArbitrage}}</td>
+      <td>{{randomobj.revArbitrage}}</td>
     </tr>
-    <!-- <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
+    <tr *ngIf="randomobj.fwdArbitrage || randomobj.revArbitrage" style="background-color:rgb(57, 221, 57);">
+      <th scope="row">{{id}}</th>
+      <td>{{randomobj.arbitrage.spot_bid | number:'1.2-2'}}</td>
+      <td>{{randomobj.arbitrage.spot_ask | number:'1.2-2'}}</td>
+      <td>{{randomobj.arbitrage.forward_bid | number:'1.2-2'}}</td>
+      <td>{{randomobj.arbitrage.forward_ask | number:'1.2-2'}}</td>
+      <td>{{randomobj.arbitrage.interest_rate_curr1_bid | number:'1.2-2'}}</td>
+      <td>{{randomobj.arbitrage.interest_rate_curr1_ask | number:'1.2-2'}}</td>
+      <td>{{randomobj.arbitrage.interest_rate_curr2_bid | number:'1.2-2'}}</td>
+      <td>{{randomobj.arbitrage.interest_rate_curr2_ask | number:'1.2-2'}}</td>
+      <td>{{randomobj.arbitrage.transaction_cost | number:'1.2-2'}}</td>
+      <td>{{randomobj.fwdArbitrage}}</td>
+      <td>{{randomobj.revArbitrage}}</td>
     </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr> -->
   </tbody>
 </table>
 
 <!-- <button (click)="showAlert()">show alert</button> -->
 
-<div *ngIf="alertShow" class="alert alert-success" role="alert">
+<div *ngIf="randomobj.fwdArbitrage || randomobj.revArbitrage" class="alert alert-success text-center" role="alert">
   <h4 class="alert-heading">Arbitrage opportunity found!</h4>
   <h5>Executing the beneficial trade...</h5>
-  <button class="btn btn-primary" (click)="closeAlert()">Close alert</button>
+</div>
+
+<div *ngIf="!randomobj.fwdArbitrage && !randomobj.revArbitrage" class="alert alert-danger text-center" role="alert">
+  <h4 class="alert-heading">Arbitrage opportunity not found!</h4>
 </div>
 
 
@@ -66,36 +87,77 @@
     background-color: lightcyan ; 
     width: 50%; height:1000px;
     border: solid black; ">
-    
-    <h3>Successful Arbitrage trades </h3>
+        <h3>Successful Arbitrage trades </h3>
     <table class="table table-hover table-dark">
       <thead>
         <tr>
           <th scope="col">Trade Id</th>
           <th scope="col">Quantity</th>
           <th scope="col">Profit Earned</th>
+          <th scope="col">Profit Earned Reverse</th>
           <th scope="col">Time of the trade</th>
           <th scope="col">Action</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>100</td>
-          <td>5.42</td>
+        <!-- <tr *ngFor = "let product of products">
+          <td>{{product.id}}</td>
+          <td>{{product.name}}</td>
+          <td>{{product.quantity}}</td>
+          <td>{{product.price}}</td>
+          <td><button type="button" (click) = onEdit(product)>EDIT</button>&nbsp;&nbsp;<button type="button" (click) = onDelete(product.id)>DELETE</button>
+      </tr> -->
+        <tr *ngFor = "let robj of randoms">
+          <th scope="row">{{id}}</th>
+          <td>{{robj.arbitrage.fwd_arb_quantity}}</td>
+          <td>{{robj.profit_loss_fwd | number:'1.2-2'}}</td>
+          <td>{{robj.profit_loss_rev | number:'1.2-2'}}</td>
           <td>{{dateTime}}</td>
-          <td><button type="button" class="btn btn-success">More Info</button></td>
+          <td><button type="button" class="btn btn-success" (click)="display(robj)">More Info</button></td>
       </tbody>
     </table>
 </div>
 
-<div class="rightdiv" style="float: right;  padding : 1%; 
-    color:black; 
-    background-color: lightcyan; 
-    width: 50%; height:1000px;
-    border: solid black; ">
+<div class="rightdiv" >
     
   <h3>Details of the trade</h3>
+  <div class="container" *ngIf="displayDetails">
+    <table class="responsive-table table table-dark table-hover table-bordered">
+      <caption>Arbitrage Details</caption>
+      <thead>
+        <tr>
+          <th scope="col">Field</th>
+          <th scope="col">Forward Arbitrage</th>
+          <th>Reverse Arbitrage</th>
+        </tr>
+      </thead>
+          <tbody>
+        <tr>
+          <th scope="row">Quantity</th>
+          <td>{{displayObj.arbitrage.fwd_arb_quantity}}</td>
+          <td>{{displayObj.arbitrage.fwd_arb_quantity}}</td>
+        </tr>
+         <tr>
+          <th scope="row">Arbitrage Amount</th>
+          <td>{{displayObj.fwd_arb_amount |  number:'1.2-2'}}</td>
+          <td>{{displayObj.rev_arb_amount |  number:'1.2-2'}}</td>
+        </tr>
+        <tr>
+          <th>Amount Invested</th>
+          <td>{{displayObj.fwd_arb_invest_amount |  number:'1.2-2'}}</td>
+          <td>{{displayObj.rev_arb_invest_amount |  number:'1.2-2'}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Trade Verdict</th>
+          <td *ngIf="displayObj.profit_loss_fwd >= 0">Profit = {{displayObj.profit_loss_fwd|number:'1.2-2'}}</td>
+          <td *ngIf="displayObj.profit_loss_fwd < 0">Loss = {{displayObj.profit_loss_fwd| number:'1.2-2'}}</td>
+          
+          <td *ngIf="displayObj.profit_loss_rev >= 0">Profit = {{displayObj.profit_loss_rev| number:'1.2-2'}}</td>
+          <td *ngIf="displayObj.profit_loss_rev < 0">Loss = {{displayObj.profit_loss_rev|number:'1.2-2'}}</td>
+                </tr>
+             </tbody>
+    </table>
+  </div>
 </div>
 
 
