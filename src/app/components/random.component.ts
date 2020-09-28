@@ -23,10 +23,13 @@ export class RandomComponent {
 
   public dateTime:String = this.datepipe.transform(new Date().toString(),'MMM d, y, h:mm:ss a');
 
+public displayDetails: boolean=false;
 
   public randomobj: any;
   public randoms = [];
 
+  public displayObj:any;
+  
   constructor(userService : UserService, activatedRoute: ActivatedRoute , router: Router, public datepipe: DatePipe) {
       this.activatedRoute = activatedRoute;
       this.userService = userService;
@@ -60,6 +63,12 @@ export class RandomComponent {
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
+
+  display(robj:any){
+    this.displayDetails=true;
+    this.displayObj=robj;
+  }
+
 
   
 

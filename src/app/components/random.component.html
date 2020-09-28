@@ -3,7 +3,17 @@
 <head>
   <title>Random Data Arbitrage</title>
   <meta charset="utf-8">
-  
+  <style>
+  .rightdiv{
+   float: right;  padding : 1%; 
+    color:black; 
+    background-color:lightcyan; 
+    width: 50%; height:1000px;
+    border: solid black;  
+    background-size: cover;
+    position: relative;
+    }
+  </style>
 </head>
 
 <nav class="navbar navbar-dark bg-primary nav justify-content-center">
@@ -77,8 +87,7 @@
     background-color: lightcyan ; 
     width: 50%; height:1000px;
     border: solid black; ">
-    
-    <h3>Successful Arbitrage trades </h3>
+        <h3>Successful Arbitrage trades </h3>
     <table class="table table-hover table-dark">
       <thead>
         <tr>
@@ -104,18 +113,51 @@
           <td>{{robj.profit_loss_fwd | number:'1.2-2'}}</td>
           <td>{{robj.profit_loss_rev | number:'1.2-2'}}</td>
           <td>{{dateTime}}</td>
-          <td><button type="button" class="btn btn-success" (click)="moreClicked(robj)">More Info</button></td>
+          <td><button type="button" class="btn btn-success" (click)="display(robj)">More Info</button></td>
       </tbody>
     </table>
 </div>
 
-<div class="rightdiv" style="float: right;  padding : 1%; 
-    color:black; 
-    background-color: lightcyan; 
-    width: 50%; height:1000px;
-    border: solid black; ">
+<div class="rightdiv" >
     
   <h3>Details of the trade</h3>
+  <div class="container" *ngIf="displayDetails">
+    <table class="responsive-table table table-dark table-hover table-bordered">
+      <caption>Arbitrage Details</caption>
+      <thead>
+        <tr>
+          <th scope="col">Field</th>
+          <th scope="col">Forward Arbitrage</th>
+          <th>Reverse Arbitrage</th>
+        </tr>
+      </thead>
+          <tbody>
+        <tr>
+          <th scope="row">Quantity</th>
+          <td>{{displayObj.arbitrage.fwd_arb_quantity}}</td>
+          <td>{{displayObj.arbitrage.fwd_arb_quantity}}</td>
+        </tr>
+         <tr>
+          <th scope="row">Arbitrage Amount</th>
+          <td>{{displayObj.fwd_arb_amount |  number:'1.2-2'}}</td>
+          <td>{{displayObj.rev_arb_amount |  number:'1.2-2'}}</td>
+        </tr>
+        <tr>
+          <th>Amount Invested</th>
+          <td>{{displayObj.fwd_arb_invest_amount |  number:'1.2-2'}}</td>
+          <td>{{displayObj.rev_arb_invest_amount |  number:'1.2-2'}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Trade Verdict</th>
+          <td *ngIf="displayObj.profit_loss_fwd >= 0">Profit = {{displayObj.profit_loss_fwd|number:'1.2-2'}</td>
+          <td *ngIf="displayObj.profit_loss_fwd < 0">Loss = {{displayObj.profit_loss_fwd| number:'1.2-2'}}</td>
+          
+          <td *ngIf="displayObj.profit_loss_rev >= 0">Profit = {{displayObj.profit_loss_rev| number:'1.2-2'}</td>
+          <td *ngIf="displayObj.profit_loss_rev < 0">Loss = {{displayObj.profit_loss_rev|number:'1.2-2'}}</td>
+                </tr>
+             </tbody>
+    </table>
+  </div>
 </div>
 
 
