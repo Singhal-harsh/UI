@@ -129,7 +129,7 @@
             </div>
           </div>
 
-          <div class="form-group  col-md-10 " style="margin-left: auto; margin-right: auto; margin-top:30px;">
+          <div class="form-group  col-md-10 " data-toggle="modal" data-target="#arbModal" style="margin-left: auto; margin-right: auto; margin-top:30px;">
             <div class="col-sm-offset-6 col-md-14">
               <button type="submit" class="btn btn-light">Check Arbitrage</button>
             </div>
@@ -137,12 +137,7 @@
 
 
 
-          <!-- <div *ngIf="outputobj.isFwdArbitrage" class="form-group  col-md-10 " style="margin-left: auto; margin-right: auto; margin-top:30px;">        
-      <div class="col-sm-offset-6 col-md-14">
-        <h3>Checking..</h3>
-        {{outputobj | json}}
-      </div>
-    </div> -->
+      
 
 
         </form>
@@ -158,14 +153,100 @@
 
     </div>
 
+    <div *ngIf="outputobj.fwdArbitrage" class="modal fade" id="arbModal" tabindex="-1" role="dialog" 
+    aria-labelledby="arbModalLabel" aria-hidden="true" style="margin-top: 100px;">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header" style="background-color: #17fc6f;">
+            <h5 class="modal-title" id="arbModalLabel">Arbitrage Sucess</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <br>
+           Forward Arbitrage opportunity found! Profit is {{outputobj.profit_loss_fwd}}
+            <br>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+    <div *ngIf="outputobj.fwdArbitrage==false" class="modal fade" id="arbModal" 
+    tabindex="-1" role="dialog" aria-labelledby="arbModalLabel" aria-hidden="true"  >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header" style="background-color: #f82056;">
+            <h5 class="modal-title" id="arbModalLabel">Arbitrage Failure</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <br>
+            Arbitrage opportunity not found! Loss is {{outputobj.profit_loss_fwd}}
+            
+            <br>
+            <br>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="outputobj.revArbitrage" class="modal fade" id="arbModal" tabindex="-1" role="dialog" aria-labelledby="arbModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="arbModalLabel">Arbitrage Sucess</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+           Reverse Arbitrage opportunity found! Profit is {{outputobj.profit_loss_rev}}
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="outputobj.revArbitrage==false" class="modal fade" id="arbModal" tabindex="-1" role="dialog" aria-labelledby="arbModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="arbModalLabel">Arbitrage Sucess</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Arbitrage opportunity not found! Loss is {{outputobj.profit_loss_rev}}
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            
+          </div>
+        </div>
+      </div>
+    </div>
 
   </div>
 
-  <div *ngIf="outputobj.revArbitrage" class="alert alert-success" role="alert">
-    <h4 class="alert-heading">Arbitrage opportunity found!</h4>
-    <h5>Executing the beneficial trade...{{outputobj.profit_loss_rev}} </h5>
-    <!-- <button class="btn btn-primary" (click)="closeAlert()">Close alert</button> -->
-  </div>
+
+
+
 
 </body>
 

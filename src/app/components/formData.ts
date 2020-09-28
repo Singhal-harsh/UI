@@ -13,6 +13,7 @@ export class formData{
 	public transaction_cost : number;
 	public fwd_arb_quantity : number;
 	public time_months : number = 6;
+	public arb: boolean= true;
 
     
 }

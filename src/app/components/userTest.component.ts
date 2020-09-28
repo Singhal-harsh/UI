@@ -39,7 +39,7 @@ export class userTestComponent{
         this.userService.sendInput(this.formDataModel).subscribe(data => { 
             console.log(data);  
             this.outputobj=data;
-            console.log(this.outputobj);
+            console.log(this.outputobj.fwdArbitrage);
         });
         
         }
