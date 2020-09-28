@@ -39,7 +39,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngIf="!randomobj.fwdArbitrage && !randomobj.revArbitrage">
+    <tr *ngIf="!randomobj.fwdArbitrage && !randomobj.revArbitrage" style="background-color: red;">
       <th scope="row">{{id}}</th>
       <td>{{randomobj.arbitrage.spot_bid | number:'1.2-2'}}</td>
       <td>{{randomobj.arbitrage.spot_ask | number:'1.2-2'}}</td>
@@ -149,10 +149,10 @@
         </tr>
         <tr>
           <th scope="row">Trade Verdict</th>
-          <td *ngIf="displayObj.profit_loss_fwd >= 0">Profit = {{displayObj.profit_loss_fwd|number:'1.2-2'}</td>
+          <td *ngIf="displayObj.profit_loss_fwd >= 0">Profit = {{displayObj.profit_loss_fwd|number:'1.2-2'}}</td>
           <td *ngIf="displayObj.profit_loss_fwd < 0">Loss = {{displayObj.profit_loss_fwd| number:'1.2-2'}}</td>
           
-          <td *ngIf="displayObj.profit_loss_rev >= 0">Profit = {{displayObj.profit_loss_rev| number:'1.2-2'}</td>
+          <td *ngIf="displayObj.profit_loss_rev >= 0">Profit = {{displayObj.profit_loss_rev| number:'1.2-2'}}</td>
           <td *ngIf="displayObj.profit_loss_rev < 0">Loss = {{displayObj.profit_loss_rev|number:'1.2-2'}}</td>
                 </tr>
              </tbody>
