@@ -14,7 +14,7 @@
 <table class="table table-hover table-dark">
   <thead>
     <tr>
-      <th scope="col">#</th>
+      <th scope="col">TRADE ID</th>
       <th scope="col">USD/JPY Spot Bid</th>
       <th scope="col">USD/JPY Spot Ask</th>
       <th scope="col">USD/JPY Forward 6M Bid</th>
@@ -29,7 +29,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
+    <tr *ngIf="!randomobj.fwdArbitrage && !randomobj.revArbitrage">
       <th scope="row">{{id}}</th>
       <td>{{randomobj.arbitrage.spot_bid | number:'1.2-2'}}</td>
       <td>{{randomobj.arbitrage.spot_ask | number:'1.2-2'}}</td>
@@ -43,26 +43,32 @@
       <td>{{randomobj.fwdArbitrage}}</td>
       <td>{{randomobj.revArbitrage}}</td>
     </tr>
-    <!-- <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
+    <tr *ngIf="randomobj.fwdArbitrage || randomobj.revArbitrage" style="background-color:rgb(57, 221, 57);">
+      <th scope="row">{{id}}</th>
+      <td>{{randomobj.arbitrage.spot_bid | number:'1.2-2'}}</td>
+      <td>{{randomobj.arbitrage.spot_ask | number:'1.2-2'}}</td>
+      <td>{{randomobj.arbitrage.forward_bid | number:'1.2-2'}}</td>
+      <td>{{randomobj.arbitrage.forward_ask | number:'1.2-2'}}</td>
+      <td>{{randomobj.arbitrage.interest_rate_curr1_bid | number:'1.2-2'}}</td>
+      <td>{{randomobj.arbitrage.interest_rate_curr1_ask | number:'1.2-2'}}</td>
+      <td>{{randomobj.arbitrage.interest_rate_curr2_bid | number:'1.2-2'}}</td>
+      <td>{{randomobj.arbitrage.interest_rate_curr2_ask | number:'1.2-2'}}</td>
+      <td>{{randomobj.arbitrage.transaction_cost | number:'1.2-2'}}</td>
+      <td>{{randomobj.fwdArbitrage}}</td>
+      <td>{{randomobj.revArbitrage}}</td>
     </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr> -->
   </tbody>
 </table>
 
 <!-- <button (click)="showAlert()">show alert</button> -->
 
-<div *ngIf="alertShow" class="alert alert-success" role="alert">
+<div *ngIf="randomobj.fwdArbitrage || randomobj.revArbitrage" class="alert alert-success text-center" role="alert">
   <h4 class="alert-heading">Arbitrage opportunity found!</h4>
   <h5>Executing the beneficial trade...</h5>
-  <button class="btn btn-primary" (click)="closeAlert()">Close alert</button>
+</div>
+
+<div *ngIf="!randomobj.fwdArbitrage && !randomobj.revArbitrage" class="alert alert-danger text-center" role="alert">
+  <h4 class="alert-heading">Arbitrage opportunity not found!</h4>
 </div>
 
 

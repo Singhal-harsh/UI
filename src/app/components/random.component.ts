@@ -11,7 +11,6 @@ import { interval, Subscription } from 'rxjs';
 
 export class RandomComponent {
   
-  public alertShow: boolean = true;
   public id: number = 0;
   public quantity: number = 1000;
   public profit: number = 5.42;
@@ -48,16 +47,15 @@ export class RandomComponent {
       //console.log(data);
       this.randomobj = data;  
       console.log(this.randomobj.arbitrage.fwd_arb_quantity);
-      this.randoms.push(this.randomobj);
+      if(this.randomobj.fwdArbitrage || this.randomobj.revArbitrage){
+        this.randoms.push(this.randomobj);
+      }
       console.log(this.randomobj.arbitrage);
       console.log(this.randoms);
       });
 
     }
 
-  closeAlert() : void {
-    this.alertShow = false;
-  }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
