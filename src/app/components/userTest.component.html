@@ -62,7 +62,7 @@
           <div class="form-group row col-md-6" style="margin-left: auto;">
             <label class="control-label col-sm-4" for="spot-ask">{{first.value}}/{{second.value}} Spot Ask</label>
             <div class="col-sm-6" novalidate>
-              <input type="number" class="form-control" min =0 id="spot-ask" [(ngModel)]="formDataModel.spotAsk"
+              <input type="number" class="form-control" min ={{name.value}} id="spot-ask" [(ngModel)]="formDataModel.spotAsk"
                 placeholder="Enter {{first.value}}/{{second.value}} Spot Ask" name="spot-ask" #ask="ngModel" ngModel required>
                 <div *ngIf="ask.invalid && (ask.dirty || ask.touched)" class="alert alert-danger">
                   <div *ngIf="ask.errors.required">
