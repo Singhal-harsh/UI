@@ -3,7 +3,15 @@
 <head>
   <title>Random Data Arbitrage</title>
   <meta charset="utf-8">
-  
+  <style>
+  .rightdiv{
+   float: right;  padding : 1%; 
+    color:black; 
+    background-color:lightcyan; 
+    width: 50%; height:1000px;
+    border: solid black; 
+    }
+  </style>
 </head>
 
 <nav class="navbar navbar-dark bg-primary nav justify-content-center">
@@ -69,8 +77,7 @@
     background-color: lightcyan ; 
     width: 50%; height:1000px;
     border: solid black; ">
-    
-    <h3>Successful Arbitrage trades </h3>
+        <h3>Successful Arbitrage trades </h3>
     <table class="table table-hover table-dark">
       <thead>
         <tr>
@@ -82,23 +89,53 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr ngFor="let obj of objects">
           <th scope="row">{{id}}</th>
           <td>{{quantity}}</td>
           <td>{{profit}}</td>
           <td>{{dateTime}}</td>
-          <td><button type="button" class="btn btn-success">More Info</button></td>
+          <td><button type="button" class="btn btn-success" onclick="display(obj)">More Info</button></td>
       </tbody>
     </table>
 </div>
 
-<div class="rightdiv" style="float: right;  padding : 1%; 
-    color:black; 
-    background-color: lightcyan; 
-    width: 50%; height:1000px;
-    border: solid black; ">
+<div class="rightdiv" >
     
   <h3>Details of the trade</h3>
+  <div class="container">
+    <table class="responsive-table table table-dark table-hover table-bordered">
+      <caption>Arbitrage Details</caption>
+      <thead>
+        <tr>
+          <th scope="col">Field</th>
+          <th scope="col">Forward Arbitrage</th>
+          <th>Reverse Arbitrage</th>
+        </tr>
+      </thead>
+          <tbody>
+        <tr>
+          <th scope="row">Arbitrage Amount</th>
+          <td data-title="Released">2013</td>
+          <td data-title="Studio">Disney</td>
+        </tr>
+         <tr>
+          <th scope="row">Amount Invested</th>
+          <td data-title="Released">2018</td>
+          <td data-title="Studio">Disney Pixar</td>
+        </tr>
+        <tr>
+          <th scope="row">Currency</th>
+          <td data-title="Released">2015</td>
+          <td data-title="Studio">Universal</td>
+        </tr>
+        <tr>
+          <th scope="row">Trade Verdict</th>
+          <td data-title="Released">2010</td>
+          <td data-title="Studio">Disney Pixar</td>
+                </tr>
+             </tbody>
+    </table>
+  </div>
 </div>
 
 
