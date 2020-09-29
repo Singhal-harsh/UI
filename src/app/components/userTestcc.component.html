@@ -36,19 +36,21 @@
                         </div>
 
                     </div>
-
                     <div class="form-group row col-md-6" style="margin-left: auto;">
-                        <label class="control-label col-sm-4" for="quantity">Quantity</label>
+                        <label class="control-label col-sm-4" for="time_months">Time (in Months)</label>
                         <div class="col-sm-6" novalidate>
-                          <input type="number" class="form-control" id="quantity" placeholder="Enter Quantity"
-                            [(ngModel)]="formDataModel.fwd_arb_quantity" name="quantity" #quantity="ngModel" ngModel required min=0>
-                          <div *ngIf="quantity.invalid && (quantity.dirty || quantity.touched)" class="alert alert-danger">
-                            <div *ngIf="quantity.errors.required">
-                              Quantity is required.
+                            <input #time= "ngModel" ngModel type="number" class="form-control" id="quantity" placeholder="Enter Quantity"
+                                [(ngModel)]="formDataModel.fwd_arb_quantity" name="time_months" 
+                                required min=0 max=12>
+                            <div *ngIf="time.invalid && (time.dirty || time.touched)"
+                                class="alert alert-danger">
+                                <div *ngIf="time.errors.required">
+                                    Time (in months) is required.
+                                </div>
                             </div>
-                          </div>
                         </div>
-                      </div>
+                    </div>
+                    
 
                     <div class="form-group row col-md-6" style="margin-left: auto;">
                         <label class="control-label col-sm-4" for="spot-bid">{{stock.value}} Spot Bid</label>
@@ -86,29 +88,29 @@
                     </div>
 
                     <div class="form-group row col-md-6" style="margin-left: auto;">
-                        <label class="control-label col-sm-4" for="forward-bid"> {{stock.value}} Fututres Bid
+                        <label class="control-label col-sm-4" for="forward-bid"> {{stock.value}} Fututres Bid {{time.value}} months
                             Bid</label>
                         <div class="col-sm-6" novalidate>
                             <input type="number" class="form-control" id="forward-bid"
-                                [(ngModel)]="formDataModel.forward_bid" placeholder="Enter {{stock.value}} Futures Bid"
+                                [(ngModel)]="formDataModel.forward_bid" placeholder="Enter {{stock.value}} Futures Bid {{time.value}} months"
                                 name="forward-bid" #forB="ngModel" ngModel required min=0>
                             <div *ngIf="forB.invalid && (forB.dirty || forB.touched)" class="alert alert-danger">
                                 <div *ngIf="forB.errors.required">
-                                    {{stock.value}} Futures Bid is required.
+                                    {{stock.value}} Futures Bid {{time.value}} months is required.
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="form-group row col-md-6" style="margin-left: auto;">
-                        <label class="control-label col-sm-4" for="forward-ask"> {{stock.value}} Futures Ask
+                        <label class="control-label col-sm-4" for="forward-ask"> {{stock.value}} Futures Ask {{time.value}} months
                             Ask</label>
                         <div class="col-sm-6" novalidate>
                             <input type="number" class="form-control" id="forward-ask"
-                                [(ngModel)]="formDataModel.forward_ask" placeholder="{{stock.value}} Futures Ask" name="forward-ask"
+                                [(ngModel)]="formDataModel.forward_ask" placeholder="Enter {{stock.value}} Futures Ask {{time.value}} months" name="forward-ask"
                                 #forA="ngModel" ngModel required min=0>
                             <div *ngIf="forA.invalid && (forA.dirty || forA.touched)" class="alert alert-danger">
                                 <div *ngIf="forA.errors.required">
-                                    {{stock.value}} Futures Ask is required.
+                                    {{stock.value}} Futures Ask {{time.value}} months is required.
                                 </div>
                             </div>
                         </div>
@@ -144,22 +146,20 @@
                             </div>
                         </div>
                     </div>
-
-
                     <div class="form-group row col-md-6" style="margin-left: auto;">
-                        <label class="control-label col-sm-4" for="quantity">Time (in Months)</label>
+                        <label class="control-label col-sm-4" for="quantity">Quantity</label>
                         <div class="col-sm-6" novalidate>
-                            <input type="number" class="form-control" id="quantity" placeholder="Enter Quantity"
-                                [(ngModel)]="formDataModel.fwd_arb_quantity" name="quantity" #quantity="ngModel" ngModel
-                                required min=0>
-                            <div *ngIf="quantity.invalid && (quantity.dirty || quantity.touched)"
-                                class="alert alert-danger">
-                                <div *ngIf="quantity.errors.required">
-                                    Time (in months) is required.
-                                </div>
+                          <input type="number" class="form-control" id="quantity" placeholder="Enter Quantity"
+                            [(ngModel)]="formDataModel.fwd_arb_quantity" name="quantity" #quantity="ngModel" ngModel required min=0>
+                          <div *ngIf="quantity.invalid && (quantity.dirty || quantity.touched)" class="alert alert-danger">
+                            <div *ngIf="quantity.errors.required">
+                              Quantity is required.
                             </div>
+                          </div>
                         </div>
-                    </div>
+                      </div>
+
+                    
 
                     <div class="form-group row col-md-6" style="margin-left: auto;">
                         <label class="control-label col-sm-4" for="transaction-cost">Transaction Cost</label>
