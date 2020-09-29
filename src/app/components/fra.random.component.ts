@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { interval, Subscription } from 'rxjs';
+import { UserServiceFra } from '../services/user.service.fra';
 @Component({
   selector: 'fra-random',
   templateUrl: './fra.random.component.html',
@@ -16,7 +17,7 @@ export class FraRandomComponent {
   public profit: number = 5.42;
   public subscription: Subscription;
   
-  public userService : UserService;
+  public userService : UserServiceFra;
   public activatedRoute: ActivatedRoute;
   public router: Router;
 
@@ -31,7 +32,7 @@ public displayDetails: boolean=false;
 
   public displayObj:any;
   
-  constructor(userService : UserService, activatedRoute: ActivatedRoute , router: Router, public datepipe: DatePipe) {
+  constructor(userService : UserServiceFra, activatedRoute: ActivatedRoute , router: Router, public datepipe: DatePipe) {
       this.activatedRoute = activatedRoute;
       this.userService = userService;
       this.router = router;

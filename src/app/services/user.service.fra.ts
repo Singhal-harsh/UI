@@ -8,7 +8,7 @@ import {outputData} from '../components/outputData';
 @Injectable({
     providedIn: 'root',
   })
-export class UserService {
+export class UserServiceFra {
 
     public baseurl : string = "http://localhost:8084";
 

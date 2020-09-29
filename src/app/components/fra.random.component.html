@@ -18,7 +18,7 @@
 
 <nav class="navbar navbar-dark bg-primary nav justify-content-center">
   <a class="navbar-brand" routerLink="/userInput" routerLinkActive="active" >Check for Arbitrage</a>&nbsp;&nbsp;&nbsp;
-  <a class="navbar-brand" routerLink="/random" routerLinkActive="active" >Random Arbitrage Opportunities</a>
+  <a class="navbar-brand" routerLink="/fra-random" routerLinkActive="active" >Random Arbitrage Opportunities</a>
   <button type="button" class="btn btn-dark" (click)="getValues()">Start Random Generator</button>
 </nav>
 
@@ -26,14 +26,12 @@
   <thead>
     <tr>
       <th scope="col">TRADE ID</th>
-      <th scope="col">USD/JPY Spot Bid</th>
-      <th scope="col">USD/JPY Spot Ask</th>
-      <th scope="col">USD/JPY Forward 6M Bid</th>
-      <th scope="col">USD/JPY Forward 6M Ask</th>
-      <th scope="col">Interest Rate USD Bid</th>
-      <th scope="col">Interest Rate USD Ask</th>
-      <th scope="col">Interest Rate JPY Bid</th>
-      <th scope="col">Interest Rate JPY Ask</th>
+      <th scope="col">Interest Rate Bid(6 Months)</th>
+      <th scope="col">Interest Rate Ask(6 Months)</th>
+      <th scope="col">Interest Rate Bid(12 Months)</th>
+      <th scope="col">Interest Rate Ask(12 Months)</th>
+      <th scope="col">FRA Rate Bid</th>
+      <th scope="col">FRA Rate Ask</th>
       <th scope="col">Transaction Cost</th>
       <th scope="col">Forward Arbitrage Opportunity</th>
       <th scope="col">Reverse Arbitrage Opportunity</th>
@@ -42,29 +40,26 @@
   <tbody>
     <tr *ngIf="!randomobj.fwdArbitrage && !randomobj.revArbitrage" style="background-color: red;">
       <th scope="row">{{id}}</th>
-      <td>{{randomobj.arbitrage.spot_bid | number:'1.2-2'}}</td>
-      <td>{{randomobj.arbitrage.spot_ask | number:'1.2-2'}}</td>
-      <td>{{randomobj.arbitrage.forward_bid | number:'1.2-2'}}</td>
-      <td>{{randomobj.arbitrage.forward_ask | number:'1.2-2'}}</td>
-      <td>{{randomobj.arbitrage.interest_rate_curr1_bid | number:'1.2-2'}}</td>
-      <td>{{randomobj.arbitrage.interest_rate_curr1_ask | number:'1.2-2'}}</td>
-      <td>{{randomobj.arbitrage.interest_rate_curr2_bid | number:'1.2-2'}}</td>
-      <td>{{randomobj.arbitrage.interest_rate_curr2_ask | number:'1.2-2'}}</td>
-      <td>{{randomobj.arbitrage.transaction_cost | number:'1.2-2'}}</td>
+      <td>{{randomobj.arbitrage.interest_rate1_bid}}</td>
+      <td>{{randomobj.interest_rate1_ask|number:'1.2-2'}}</td>
+      <td>{{randomobj.interest_rate2_bid| number:'1.2-2'}}</td>
+      <td>{{randomobj.interest_rate2_ask| number:'1.2-2'}}</td>
+      <td>{{randomobj.fra_rate_bid}}</td>
+      <td>{{randomobj.fra_rate_ask}}</td>
+      <td>{{randomobj.transaction_cost}}</td>
       <td>{{randomobj.fwdArbitrage}}</td>
       <td>{{randomobj.revArbitrage}}</td>
     </tr>
+
     <tr *ngIf="randomobj.fwdArbitrage || randomobj.revArbitrage" style="background-color:rgb(57, 221, 57);">
       <th scope="row">{{id}}</th>
-      <td>{{randomobj.arbitrage.spot_bid | number:'1.2-2'}}</td>
-      <td>{{randomobj.arbitrage.spot_ask | number:'1.2-2'}}</td>
-      <td>{{randomobj.arbitrage.forward_bid | number:'1.2-2'}}</td>
-      <td>{{randomobj.arbitrage.forward_ask | number:'1.2-2'}}</td>
       <td>{{randomobj.arbitrage.interest_rate_curr1_bid | number:'1.2-2'}}</td>
-      <td>{{randomobj.arbitrage.interest_rate_curr1_ask | number:'1.2-2'}}</td>
-      <td>{{randomobj.arbitrage.interest_rate_curr2_bid | number:'1.2-2'}}</td>
-      <td>{{randomobj.arbitrage.interest_rate_curr2_ask | number:'1.2-2'}}</td>
-      <td>{{randomobj.arbitrage.transaction_cost | number:'1.2-2'}}</td>
+      <td>{{randomobj.interest_rate_curr1_ask|number:'1.2-2'}}</td>
+      <td>{{randomobj.interest_rate_curr2_bid| number:'1.2-2'}}</td>
+      <td>{{randomobj.interest_rate_curr2_ask| number:'1.2-2'}}</td>
+      <td>{{randomobj.fra_rate_bid}}</td>
+      <td>{{randomobj.fra_rate_ask}}</td>
+      <td>{{randomobj.transaction_cost}}</td>
       <td>{{randomobj.fwdArbitrage}}</td>
       <td>{{randomobj.revArbitrage}}</td>
     </tr>
@@ -109,7 +104,7 @@
       </tr> -->
         <tr *ngFor = "let robj of randoms">
           <th scope="row">{{id}}</th>
-          <td>{{robj.arbitrage.fwd_arb_quantity}}</td>
+          <td>{{robj.notional_amount}}</td>
           <td *ngIf = "robj.profit_loss_fwd >= robj.profit_loss_rev">{{robj.profit_loss_fwd | number:'1.2-2'}}</td>
           <td *ngIf = "robj.profit_loss_fwd < robj.profit_loss_rev">{{robj.profit_loss_rev | number:'1.2-2'}}</td>
           <td>{{dates}}</td>
@@ -129,26 +124,28 @@
         <tr>
           <th scope="col">Field</th>
           <th scope="col">Forward Arbitrage</th>
-          <th>Reverse Arbitrage</th>
+          <th scope="col">Reverse Arbitrage</th>
         </tr>
       </thead>
           <tbody>
         <tr>
           <th scope="row">Quantity</th>
-          <td>{{displayObj.arbitrage.fwd_arb_quantity}}</td>
-          <td>{{displayObj.arbitrage.fwd_arb_quantity}}</td>
+          <td>{{displayObj.notional_amount}}</td>
+          <td>{{displayObj.notional_amount}}</td>
         </tr>
          <tr>
-          <th scope="row">Arbitrage Amount</th>
-          <td>{{displayObj.fwd_arb_amount |  number:'1.2-2'}}</td>
-          <td>{{displayObj.rev_arb_amount |  number:'1.2-2'}}</td>
+          <th scope="row">Interest Rate Bid/Ask(6 Months)</th>
+          <td colspan="2">{{displayObj.interest_rate1_bid |  number:'1.2-2'}}/{{displayObj.interest_rate1_ask |  number:'1.2-2'}}</td>
         </tr>
         <tr>
-          <th>Amount Invested</th>
-          <td>{{displayObj.fwd_arb_invest_amount |  number:'1.2-2'}}</td>
-          <td>{{displayObj.rev_arb_invest_amount |  number:'1.2-2'}}</td>
+          <th>Interest Rate Bid/Ask(12 Months)</th>
+          <td colspan="2">{{displayObj.interest_rate_curr2_bid| number:'1.2-2'}}/{{displayObj.interest_rate_curr2_ask}}</td>
         </tr>
-        <tr>
+        <tr scope="row">
+            <th>FRA Rate Bid/Ask</th>
+            <td colspan="2">{{displayObj.fra_rate_bid | number:'1.2-2'}}/{{displayObj.fra_rate_ask}}</td>
+        </tr>
+              <tr>
           <th scope="row">Trade Verdict</th>
           <td *ngIf="displayObj.profit_loss_fwd >= 0">Profit = {{displayObj.profit_loss_fwd|number:'1.2-2'}}</td>
           <td *ngIf="displayObj.profit_loss_fwd < 0">Loss = {{displayObj.profit_loss_fwd| number:'1.2-2'}}</td>
