@@ -25,7 +25,7 @@ export class RandomComponent {
   public dates = []; 
   public index : number = 0;
 
-public displayDetails: boolean=false;
+  public displayDetails: boolean=false;
 
   public randomobj: any;
   public randoms = [];
@@ -42,12 +42,15 @@ public displayDetails: boolean=false;
       const source = interval(10000);
       this.subscription = source.subscribe(val => this.getValues());
       console.log("Get values should have been called");
+
     }
 
   getValues(){
 
     console.log("Get Values called")
     this.id = this.id + 1;
+    this.dateTime=this.datepipe.transform(new Date().toString(),'MMM d, y, h:mm:ss a');
+
     this.userService.getRandom().subscribe(data =>{  
       //console.log(data);
       this.randomobj = data;  

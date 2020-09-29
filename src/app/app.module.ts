@@ -17,12 +17,14 @@ import {RouterModule, Router, Routes} from'@angular/router';
 import { DatePipe } from '@angular/common';
 
 import { HttpClientModule} from '@angular/common/http';
+import { FirstComponent} from './components/firstpage.component';
+import { HomeComponentFra} from './components/FRA/homepageFra.component'
 
 
 @NgModule({
   declarations: [
     AppComponent, RandomComponent, userTestComponent, HomeComponent, userTestComponentCac, RandomComponentCac,
-     HomeComponentCac, FraRandomComponent, userTestComponentFra
+     HomeComponentCac, FraRandomComponent, userTestComponentFra, HomeComponentFra, FirstComponent
   ],
   imports: [
     BrowserModule,
@@ -33,12 +35,14 @@ import { HttpClientModule} from '@angular/common/http';
       { path: 'userInput', component : userTestComponent},
       { path: 'random', component : RandomComponent},
       { path: 'home', component : HomeComponent},
-      { path: 'userInputCac', component : userTestComponentCac},
+      { path: 'userTestCac', component : userTestComponentCac},
       { path: 'randomCac', component : RandomComponentCac},
       { path: 'homeCac', component : HomeComponentCac},
+      { path:'userTestFra',component: userTestComponentFra},
       { path:'fra-random',component:FraRandomComponent},
-      { path:'userTestFra',component: userTestComponentFra}
-     
+      { path:'homeFra',component: HomeComponentFra}, 
+      { path:'', component: FirstComponent},
+      { path:'firstpage', component:FirstComponent}
   ])
   ],
   providers: [DatePipe],

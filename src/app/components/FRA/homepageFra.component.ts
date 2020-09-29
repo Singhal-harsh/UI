@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
-    selector : 'homeCac',
-    templateUrl: './homepageCac.component.html',
-    styleUrls: ['./homepageCac.component.css']
+    selector : 'homeFra',
+    templateUrl: './homepageFra.component.html',
+    styleUrls: ['./homepageFra.component.css']
 
 })
-export class HomeComponentCac{
+export class HomeComponentFra{
     public activatedRoute: ActivatedRoute;
     public router: Router;
 
@@ -23,7 +23,7 @@ export class HomeComponentCac{
         // };
 
         console.log("Checking checkArb");
-        this.router.navigate(["userTestCac"]);
+        this.router.navigate(["userTestFra"]);
 
     }
 
@@ -34,7 +34,7 @@ export class HomeComponentCac{
         // };
 
         console.log("Checking randomArb");
-        this.router.navigate(["randomCac"]);
+        this.router.navigate(["fra-random"]);
 
     }
 }
