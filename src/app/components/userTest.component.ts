@@ -1,9 +1,8 @@
 import {Component} from '@angular/core';
 import {formData} from './formData';
-import {outputData} from './outputData';
 import {UserService} from '../services/user.service';
-import {Observable} from 'rxjs';
-import {ActivatedRoute , NavigationExtras, Router} from '@angular/router';
+import {ActivatedRoute , Router} from '@angular/router';
+import { outputData } from './outputData';
 
 
 @Component({
@@ -16,8 +15,8 @@ import {ActivatedRoute , NavigationExtras, Router} from '@angular/router';
 })
 export class userTestComponent{
 
-    public currencies1= ['EUR','GBP','AUD'];
-    public currencies2= ['USD','JPY','CHF'];
+    public currencies1= ['USD','GBP','AUD','EUR','JPY','CHF'];
+    public currencies2= ['EUR','GBP','AUD','USD','JPY','CHF'];
     public dataTrial = 0;
     public userService : UserService;
     public activatedRoute: ActivatedRoute;
@@ -26,6 +25,10 @@ export class userTestComponent{
     
     public formDataModel = new formData();
     public outputobj: any;
+
+    public flag : boolean = true;
+    public flag1 : boolean = false;
+
 
     constructor(userService : UserService, activatedRoute: ActivatedRoute , router: Router) {
         this.activatedRoute = activatedRoute;
@@ -42,7 +45,17 @@ export class userTestComponent{
             console.log(this.outputobj.fwdArbitrage);
         });
         
-        }
+        // this.flag1 = this.flag;
+        // this.flag = false;
+
+
+    }
+
+    // showPop(){
+    //     // setTimeout(() => {
+    //     this.flag = true;
+    //     //   }, 3000);
+    // }
         //  let observable:Observable<Object> = this.userService.getOutput();
         //  observable.subscribe((response:any)=>this.outputobj= response);
         //  console.log(this.outputobj);
