@@ -30,8 +30,8 @@
       <th scope="col">Interest Rate Ask(6 Months)</th>
       <th scope="col">Interest Rate Bid(12 Months)</th>
       <th scope="col">Interest Rate Ask(12 Months)</th>
-      <th scope="col">FRA Rate Bid</th>
-      <th scope="col">FRA Rate Ask</th>
+      <th scope="col">FRA Rate Bid (6/12)</th>
+      <th scope="col">FRA Rate Ask (6/12)</th>
       <th scope="col">Transaction Cost</th>
       <th scope="col">Forward Arbitrage Opportunity</th>
       <th scope="col">Reverse Arbitrage Opportunity</th>
@@ -130,7 +130,7 @@
           <tbody>
 
         <tr>
-          <th scope="row">Quantity</th>
+          <th scope="row">Amount</th>
           <td>{{displayObj.arbitrage.notional_amount}}</td>
           <td>{{displayObj.arbitrage.notional_amount}}</td>
         </tr>
@@ -146,7 +146,7 @@
         </tr>
 
         <tr scope="row">
-            <th>FRA Rate Bid/Ask</th>
+            <th>FRA Rate Bid/Ask (6/12)</th>
             <td colspan="2">{{displayObj.arbitrage.fra_rate_bid | number:'1.2-2'}}/{{displayObj.arbitrage.fra_rate_ask| number:'1.2-2'}}</td>
         </tr>
 
