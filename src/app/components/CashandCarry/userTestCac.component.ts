@@ -1,34 +1,28 @@
 import {Component} from '@angular/core';
-import {formData} from './formData';
-import {UserService} from '../services/user.service';
+import {UserService} from '../../services/user.service';
 import {ActivatedRoute , Router} from '@angular/router';
-import { outputData } from './outputData';
+import { formDataCac } from './formDataCac';
 
 
 @Component({
-    selector : 'userTest',
-    templateUrl: './userTest.component.html',
+    selector : 'userTestCac',
+    templateUrl: './userTestCac.component.html',
     providers: [ UserService ],
-    styleUrls: ['./userTest.component.css']
+    styleUrls: ['./userTestCac.component.css']
     
 
 })
-export class userTestComponent{
+export class userTestComponentCac{
 
-    public currencies1= ['USD','GBP','AUD','EUR','JPY','CHF'];
-    public currencies2= ['EUR','GBP','AUD','USD','JPY','CHF'];
+    public stocks= ['Amazon','Apple','Reliance'];
     public dataTrial = 0;
     public userService : UserService;
     public activatedRoute: ActivatedRoute;
     public router: Router;
     
     
-    public formDataModel = new formData();
+    public formDataModel = new formDataCac();
     public outputobj: any;
-
-    public flag : boolean = true;
-    public flag1 : boolean = false;
-
 
     constructor(userService : UserService, activatedRoute: ActivatedRoute , router: Router) {
         this.activatedRoute = activatedRoute;
@@ -39,7 +33,7 @@ export class userTestComponent{
     onSubmit(){
 
         console.log(this.formDataModel);
-        this.userService.sendInput(this.formDataModel).subscribe(data => { 
+        this.userService.sendInputCac(this.formDataModel).subscribe(data => { 
             console.log(data);  
             this.outputobj=data;
             console.log(this.outputobj.fwdArbitrage);

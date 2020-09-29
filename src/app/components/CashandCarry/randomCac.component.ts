@@ -1,15 +1,16 @@
 import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserService } from '../services/user.service';
+import { UserService } from '../../services/user.service';
 import { interval, Subscription } from 'rxjs';
+
 @Component({
-  selector: 'random',
-  templateUrl: './random.component.html',
+  selector: 'randomCac',
+  templateUrl: './randomCac.component.html',
   providers: [DatePipe]
 })
 
-export class RandomComponent {
+export class RandomComponentCac {
   
   public id: number = 0;
   public quantity: number = 1000;
@@ -47,7 +48,7 @@ public displayDetails: boolean=false;
 
     console.log("Get Values called")
     this.id = this.id + 1;
-    this.userService.getRandom().subscribe(data =>{  
+    this.userService.getRandomCac().subscribe(data =>{  
       //console.log(data);
       this.randomobj = data;  
       console.log(this.randomobj.arbitrage.fwd_arb_quantity);
