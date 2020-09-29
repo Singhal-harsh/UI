@@ -12,10 +12,11 @@ import {RouterModule, Router, Routes} from'@angular/router';
 import { DatePipe } from '@angular/common';
 
 import { HttpClientModule} from '@angular/common/http';
+import { FirstComponent } from './components/firstpage.component';
 
 @NgModule({
   declarations: [
-    AppComponent, RandomComponent, userTestComponent, HomeComponent
+    AppComponent, RandomComponent, userTestComponent, HomeComponent,FirstComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +26,8 @@ import { HttpClientModule} from '@angular/common/http';
     RouterModule.forRoot([
       { path: 'userInput', component : userTestComponent},
       { path: 'random', component : RandomComponent},
-      { path: '', component : HomeComponent}
+      { path: 'home', component : HomeComponent},
+      {path:'',component:FirstComponent}
   ])
   ],
   providers: [DatePipe],

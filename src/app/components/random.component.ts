@@ -21,7 +21,7 @@ export class RandomComponent {
   public activatedRoute: ActivatedRoute;
   public router: Router;
 
-  public dateTime:String = this.datepipe.transform(new Date().toString(),'MMM d, y, h:mm:ss a');
+  public dateTime:String;
 
 public displayDetails: boolean=false;
 
@@ -40,12 +40,15 @@ public displayDetails: boolean=false;
       const source = interval(10000);
       this.subscription = source.subscribe(val => this.getValues());
       console.log("Get values should have been called");
+
     }
 
   getValues(){
 
     console.log("Get Values called")
     this.id = this.id + 1;
+    this.dateTime=this.datepipe.transform(new Date().toString(),'MMM d, y, h:mm:ss a');
+
     this.userService.getRandom().subscribe(data =>{  
       //console.log(data);
       this.randomobj = data;  
