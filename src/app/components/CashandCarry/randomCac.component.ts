@@ -51,7 +51,7 @@ public displayDetails: boolean=false;
     this.userService.getRandomCac().subscribe(data =>{  
       //console.log(data);
       this.randomobj = data;  
-      console.log(this.randomobj.arbitrage.fwd_arb_quantity);
+      console.log(this.randomobj.arbitrage.quantity);
       if(this.randomobj.fwdArbitrage || this.randomobj.revArbitrage){
         this.randoms.push(this.randomobj);
         this.dateTime = this.datepipe.transform(new Date().toString(),'MMM d, y, h:mm:ss a');

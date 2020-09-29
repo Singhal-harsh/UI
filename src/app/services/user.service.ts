@@ -23,13 +23,13 @@ export class UserService {
 
     sendInput(inputobj : any): Observable<Object> {
         console.log('sendInput called');
-        return this.httpClient.post(this.baseurl+'/userArbitrage', inputobj,{headers: 
+        return this.httpClient.post(this.baseurl+'/userFxArbitrage', inputobj,{headers: 
             {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } });
     }
 
     getRandom(): Observable<any> {
         console.log("Get Random called");
-        return this.httpClient.get(`${this.baseurl}` + '/randomArbitrage', {headers: 
+        return this.httpClient.get(`${this.baseurl}` + '/randomFxArbitrage', {headers: 
             {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }});
     }
 

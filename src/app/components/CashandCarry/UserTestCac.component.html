@@ -58,9 +58,9 @@
                             <input type="number" class="form-control" id="spot-bid" placeholder="Enter {{stock.value}} Spot Bid"
                                 name="spot_bid" [(ngModel)]="formDataModel.spot_bid" #name="ngModel" ngModel required
                                 min="5" max="20">
-                            <div *ngIf="name.errors.min">
+                            <!-- <div *ngIf="name.errors.min">
                                 Please enter a number in correct range.
-                            </div>
+                            </div> -->
                             <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
 
                                 <div *ngIf="name.errors.required">
@@ -201,7 +201,7 @@
 
         </div>
 
-        <div *ngIf="outputobj.fwdArbitrage" class="modal fade" id="arbModal" tabindex="-1" role="dialog"
+        <div *ngIf="outputobj?.fwdArbitrage" class="modal fade" id="arbModal" tabindex="-1" role="dialog"
             aria-labelledby="arbModalLabel" aria-hidden="true" style="margin-top: 100px;">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -225,7 +225,7 @@
         </div>
 
 
-        <div *ngIf="outputobj.fwdArbitrage==false" class="modal fade" id="arbModal" tabindex="-1" role="dialog"
+        <div *ngIf="outputobj?.fwdArbitrage==false" class="modal fade" id="arbModal" tabindex="-1" role="dialog"
             aria-labelledby="arbModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -250,7 +250,7 @@
             </div>
         </div>
 
-        <div *ngIf="outputobj.revArbitrage" class="modal fade" id="arbModal" tabindex="-1" role="dialog"
+        <div *ngIf="outputobj?.revArbitrage" class="modal fade" id="arbModal" tabindex="-1" role="dialog"
             aria-labelledby="arbModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -271,7 +271,7 @@
             </div>
         </div>
 
-        <div *ngIf="outputobj.revArbitrage==false" class="modal fade" id="arbModal" tabindex="-1" role="dialog"
+        <div *ngIf="outputobj?.revArbitrage==false" class="modal fade" id="arbModal" tabindex="-1" role="dialog"
             aria-labelledby="arbModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
