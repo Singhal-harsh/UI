@@ -11,14 +11,18 @@ import { HomeComponent } from './components/FXArbitrage/homepage.component';
 import {RandomComponentCac} from './components/CashandCarry/randomCac.component';
 import {HomeComponentCac} from './components/CashandCarry/homepageCac.component';
 import {userTestComponentCac} from './components/CashandCarry/userTestCac.component';
+import { FraRandomComponent } from './components/FRA/fra.random.component';
+import {userTestComponentFra} from './components/FRA/userTestFra.component';
 import {RouterModule, Router, Routes} from'@angular/router';
 import { DatePipe } from '@angular/common';
 
 import { HttpClientModule} from '@angular/common/http';
 
+
 @NgModule({
   declarations: [
-    AppComponent, RandomComponent, userTestComponent, HomeComponent, userTestComponentCac, RandomComponentCac, HomeComponentCac
+    AppComponent, RandomComponent, userTestComponent, HomeComponent, userTestComponentCac, RandomComponentCac,
+     HomeComponentCac, FraRandomComponent, userTestComponentFra
   ],
   imports: [
     BrowserModule,
@@ -31,10 +35,13 @@ import { HttpClientModule} from '@angular/common/http';
       { path: 'home', component : HomeComponent},
       { path: 'userInputCac', component : userTestComponentCac},
       { path: 'randomCac', component : RandomComponentCac},
-      { path: '', component : HomeComponentCac}
+      { path: 'homeCac', component : HomeComponentCac},
+      { path:'fra-random',component:FraRandomComponent},
+      { path:'userTestFra',component: userTestComponentFra}
+     
   ])
   ],
   providers: [DatePipe],
-  bootstrap: [AppComponent, RandomComponent, userTestComponent, HomeComponent, userTestComponentCac, RandomComponentCac, HomeComponentCac]
+  bootstrap: [AppComponent, RandomComponent, userTestComponent, HomeComponent, userTestComponentCac, RandomComponentCac, HomeComponentCac, FraRandomComponent]
 })
 export class AppModule { }
