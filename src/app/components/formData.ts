@@ -14,6 +14,6 @@ export class formData{
 	public fwd_arb_quantity : number;
 	public time_months : number = 6;
 	public arb: boolean= true;
-
+	public mapping : boolean;
     
 }
