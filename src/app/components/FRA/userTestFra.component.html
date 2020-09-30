@@ -29,6 +29,7 @@
             <div class="col-sm-6" novalidate>
               <input type="number" class="form-control" id="interest_rate1_bid" placeholder="Enter Interest Rate 6M Bid"
                 name="interest_rate1_bid" [(ngModel)]="formDataModel.interest_rate1_bid" #name="ngModel" ngModel required>
+                <div *ngIf="formDataModel.int1_b()" class="alert alert-danger">Please enter a positive interest rate.</div>
                 <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
 
                   <div *ngIf="name.errors.required">
@@ -44,6 +45,7 @@
             <div class="col-sm-6" novalidate>
               <input type="number" class="form-control" id="interest_rate1_ask" [(ngModel)]="formDataModel.interest_rate1_ask"
                 placeholder="Enter Interest Rate 6M Ask" name="interest_rate1_ask" #ask="ngModel" ngModel required>
+                <div *ngIf="formDataModel.int1_a()" class="alert alert-danger">Ask Interest Rate shoud be greater than Bid Interest Rate.</div>
                 <div *ngIf="ask.invalid && (ask.dirty || ask.touched)" class="alert alert-danger">
                   <div *ngIf="ask.errors.required">
                     Interest Rate 6M Ask is required.
@@ -58,6 +60,7 @@
             <div class="col-sm-6" novalidate>
               <input type="number" class="form-control" id="interest_rate2_bid" [(ngModel)]="formDataModel.interest_rate2_bid"
                 placeholder="Enter Interest rate 12M Bid" name="interest_rate2_bid" #forB="ngModel" ngModel required min=0>
+                <div *ngIf="formDataModel.int2_b()" class="alert alert-danger">Please enter a positive interest rate.</div>
                 <div *ngIf="forB.invalid && (forB.dirty || forB.touched)" class="alert alert-danger">
                   <div *ngIf="forB.errors.required">
                     Interest rate 12M Bid is required.
@@ -70,6 +73,7 @@
             <div class="col-sm-6" novalidate>
               <input type="number" class="form-control" id="interest_rate2_ask" [(ngModel)]="formDataModel.interest_rate2_ask"
                 placeholder="Enter Interest rate 12M Ask" name="interest_rate2_ask" #forA="ngModel" ngModel required min=0>
+                <div *ngIf="formDataModel.int2_a()" class="alert alert-danger">Ask Interest Rate shoud be greater than Bid Interest Rate.</div>
                 <div *ngIf="forA.invalid && (forA.dirty || forA.touched)" class="alert alert-danger">
                   <div *ngIf="forA.errors.required">
                     Interest rate 12M Ask is required.
@@ -85,6 +89,7 @@
               <input type="number" class="form-control" id="fra_rate_bid"
                 [(ngModel)]="formDataModel.fra_rate_bid" placeholder="Enter FRA Rate Bid"
                 name="fra_rate_bid" #irfb="ngModel" ngModel required min=0>
+                <div *ngIf="formDataModel.fra_b()" class="alert alert-danger">Please enter a positive FRA bid.</div>
                 <div *ngIf="irfb.invalid && (irfb.dirty || irfb.touched)" class="alert alert-danger">
                   <div *ngIf="irfb.errors.required">
                     FRA Rate Bid is required.
@@ -98,6 +103,7 @@
               <input type="number" class="form-control" id="fra_rate_ask"
                 [(ngModel)]="formDataModel.fra_rate_ask" placeholder="Enter FRA Rate Ask"
                 name="fra_rate_ask" #irfa="ngModel" ngModel required min=0>
+                <div *ngIf="formDataModel.fra_a()" class="alert alert-danger">Ask FRA Rate shoud be greater than Bid FRA Rate.</div>
                 <div *ngIf="irfa.invalid && (irfa.dirty || irfa.touched)" class="alert alert-danger">
                   <div *ngIf="irfa.errors.required">
                     FRA Rate Ask is required.
@@ -111,6 +117,7 @@
             <div class="col-sm-6" novalidate>
               <input type="number" class="form-control" id="transaction-cost" placeholder="Enter Transaction Cost"
                 [(ngModel)]="formDataModel.transaction_cost" name="transaction-cost" #tc="ngModel" ngModel required min=0>
+                <div *ngIf="formDataModel.tc()" class="alert alert-danger">Please enter a positive Transaction Cost.</div>
                 <div *ngIf="tc.invalid && (tc.dirty || tc.touched)" class="alert alert-danger">
                   <div *ngIf="tc.errors.required">
                     Transaction Cost is required.
@@ -124,6 +131,7 @@
             <div class="col-sm-6" novalidate>
               <input type="number" class="form-control" id="notional_amount" placeholder="Enter Notional Amount"
                 [(ngModel)]="formDataModel.notional_amount" name="notional_amount" #quantity="ngModel" ngModel required min=0>
+                <div *ngIf="formDataModel.notion()" class="alert alert-danger">Please enter a positive Notional Amount.</div>
                 <div *ngIf="quantity.invalid && (quantity.dirty || quantity.touched)" class="alert alert-danger">
                   <div *ngIf="quantity.errors.required">
                     Notional Amount is required.
