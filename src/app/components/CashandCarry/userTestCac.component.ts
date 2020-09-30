@@ -1,30 +1,27 @@
 import {Component} from '@angular/core';
-import {formData} from './formData';
-import {outputData} from './outputData';
-import {UserService} from '../services/user.service';
-import {Observable} from 'rxjs';
-import {ActivatedRoute , NavigationExtras, Router} from '@angular/router';
+import {UserService} from '../../services/user.service';
+import {ActivatedRoute , Router} from '@angular/router';
+import { formDataCac } from './formDataCac';
 
 
 @Component({
-    selector : 'userTest',
-    templateUrl: './userTest.component.html',
+    selector : 'userTestCac',
+    templateUrl: './userTestCac.component.html',
     providers: [ UserService ],
-    styleUrls: ['./userTest.component.css']
+    styleUrls: ['./userTestCac.component.css']
     
 
 })
-export class userTestComponent{
+export class userTestComponentCac{
 
-    public currencies1= ['EUR','GBP','AUD'];
-    public currencies2= ['USD','JPY','CHF'];
+    public stocks= ['Amazon','Apple','Reliance'];
     public dataTrial = 0;
     public userService : UserService;
     public activatedRoute: ActivatedRoute;
     public router: Router;
     
     
-    public formDataModel = new formData();
+    public formDataModel = new formDataCac();
     public outputobj: any;
 
     constructor(userService : UserService, activatedRoute: ActivatedRoute , router: Router) {
@@ -36,13 +33,23 @@ export class userTestComponent{
     onSubmit(){
 
         console.log(this.formDataModel);
-        this.userService.sendInput(this.formDataModel).subscribe(data => { 
+        this.userService.sendInputCac(this.formDataModel).subscribe(data => { 
             console.log(data);  
             this.outputobj=data;
             console.log(this.outputobj.fwdArbitrage);
         });
         
-        }
+        // this.flag1 = this.flag;
+        // this.flag = false;
+
+
+    }
+
+    // showPop(){
+    //     // setTimeout(() => {
+    //     this.flag = true;
+    //     //   }, 3000);
+    // }
         //  let observable:Observable<Object> = this.userService.getOutput();
         //  observable.subscribe((response:any)=>this.outputobj= response);
         //  console.log(this.outputobj);

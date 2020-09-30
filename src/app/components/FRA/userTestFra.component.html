@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Arb User Test</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+
+<nav class="navbar navbar-dark bg-primary nav justify-content-center">
+  <a class="navbar-brand" routerLink="/userTestFra" routerLinkActive="active">Check for Arbitrage</a>&nbsp;&nbsp;&nbsp;
+  <a class="navbar-brand" routerLink="/fra-random" routerLinkActive="active">Random Arbitrage Opportunities</a>
+</nav>
+
+<body>
+
+  <div style="background-color: dimgray;">
+    <div class="card text-white form-center bg-dark mb-3"
+      style="width: 1000px; height: 550px; margin-left: auto; margin-right: auto;margin-top: 20px;">
+      <div class="card-header"><b>Arbitrage Calculator</b></div>
+      <div class="card-body text-center" style="margin: auto;">
+
+
+        <form class="form-row" action="/action_page.php" #userform="ngForm" novalidate (ngSubmit)="onSubmit()">
+
+         
+
+          <div class="form-group row col-md-6" style="margin-left: auto;">
+            <label class="control-label col-sm-4" for="interest_rate1_bid">Interest Rate 6M Bid</label>
+            <div class="col-sm-6" novalidate>
+              <input type="number" class="form-control" id="interest_rate1_bid" placeholder="Enter Interest Rate 6M Bid"
+                name="interest_rate1_bid" [(ngModel)]="formDataModel.interest_rate1_bid" #name="ngModel" ngModel required>
+                <div *ngIf="formDataModel.int1_b()" class="alert alert-danger">Please enter a positive interest rate.</div>
+                <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+
+                  <div *ngIf="name.errors.required">
+                    Interest Rate 6M bid is required.
+                  </div>
+  
+  
+                </div>
+              </div>
+          </div>
+          <div class="form-group row col-md-6" style="margin-left: auto;">
+            <label class="control-label col-sm-4" for="interest_rate1_ask">Interest Rate 6M Ask</label>
+            <div class="col-sm-6" novalidate>
+              <input type="number" class="form-control" id="interest_rate1_ask" [(ngModel)]="formDataModel.interest_rate1_ask"
+                placeholder="Enter Interest Rate 6M Ask" name="interest_rate1_ask" #ask="ngModel" ngModel required>
+                <div *ngIf="formDataModel.int1_a()" class="alert alert-danger">Ask Interest Rate shoud be greater than Bid Interest Rate.</div>
+                <div *ngIf="ask.invalid && (ask.dirty || ask.touched)" class="alert alert-danger">
+                  <div *ngIf="ask.errors.required">
+                    Interest Rate 6M Ask is required.
+                  </div>  
+                  
+                </div>
+              </div>
+          </div>
+
+          <div class="form-group row col-md-6" style="margin-left: auto;">
+            <label class="control-label col-sm-4" for="interest_rate2_bid">Interest rate 12M Bid</label>
+            <div class="col-sm-6" novalidate>
+              <input type="number" class="form-control" id="interest_rate2_bid" [(ngModel)]="formDataModel.interest_rate2_bid"
+                placeholder="Enter Interest rate 12M Bid" name="interest_rate2_bid" #forB="ngModel" ngModel required min=0>
+                <div *ngIf="formDataModel.int2_b()" class="alert alert-danger">Please enter a positive interest rate.</div>
+                <div *ngIf="forB.invalid && (forB.dirty || forB.touched)" class="alert alert-danger">
+                  <div *ngIf="forB.errors.required">
+                    Interest rate 12M Bid is required.
+                  </div>  
+                </div>
+              </div>
+          </div>
+          <div class="form-group row col-md-6" style="margin-left: auto;">
+            <label class="control-label col-sm-4" for="interest_rate2_ask">Interest rate 12M Ask</label>
+            <div class="col-sm-6" novalidate>
+              <input type="number" class="form-control" id="interest_rate2_ask" [(ngModel)]="formDataModel.interest_rate2_ask"
+                placeholder="Enter Interest rate 12M Ask" name="interest_rate2_ask" #forA="ngModel" ngModel required min=0>
+                <div *ngIf="formDataModel.int2_a()" class="alert alert-danger">Ask Interest Rate shoud be greater than Bid Interest Rate.</div>
+                <div *ngIf="forA.invalid && (forA.dirty || forA.touched)" class="alert alert-danger">
+                  <div *ngIf="forA.errors.required">
+                    Interest rate 12M Ask is required.
+                  </div>  
+                </div>            
+              </div>
+          </div>
+
+
+          <div class="form-group row col-md-6" style="margin-left: auto;">
+            <label class="control-label col-sm-4" for="fra_rate_bid">FRA Rate Bid</label>
+            <div class="col-sm-6" novalidate>
+              <input type="number" class="form-control" id="fra_rate_bid"
+                [(ngModel)]="formDataModel.fra_rate_bid" placeholder="Enter FRA Rate Bid"
+                name="fra_rate_bid" #irfb="ngModel" ngModel required min=0>
+                <div *ngIf="formDataModel.fra_b()" class="alert alert-danger">Please enter a positive FRA bid.</div>
+                <div *ngIf="irfb.invalid && (irfb.dirty || irfb.touched)" class="alert alert-danger">
+                  <div *ngIf="irfb.errors.required">
+                    FRA Rate Bid is required.
+                  </div>  
+                </div>
+              </div>
+          </div>
+          <div class="form-group row col-md-6" style="margin-left: auto;">
+            <label class="control-label col-sm-4" for="fra_rate_ask">FRA Rate Ask</label>
+            <div class="col-sm-6" novalidate>
+              <input type="number" class="form-control" id="fra_rate_ask"
+                [(ngModel)]="formDataModel.fra_rate_ask" placeholder="Enter FRA Rate Ask"
+                name="fra_rate_ask" #irfa="ngModel" ngModel required min=0>
+                <div *ngIf="formDataModel.fra_a()" class="alert alert-danger">Ask FRA Rate shoud be greater than Bid FRA Rate.</div>
+                <div *ngIf="irfa.invalid && (irfa.dirty || irfa.touched)" class="alert alert-danger">
+                  <div *ngIf="irfa.errors.required">
+                    FRA Rate Ask is required.
+                  </div>  
+                </div>
+              </div>
+          </div>
+
+          <div class="form-group row col-md-6" style="margin-left: auto;">
+            <label class="control-label col-sm-4" for="transaction-cost">Transaction Cost</label>
+            <div class="col-sm-6" novalidate>
+              <input type="number" class="form-control" id="transaction-cost" placeholder="Enter Transaction Cost"
+                [(ngModel)]="formDataModel.transaction_cost" name="transaction-cost" #tc="ngModel" ngModel required min=0>
+                <div *ngIf="formDataModel.tc()" class="alert alert-danger">Please enter a positive Transaction Cost.</div>
+                <div *ngIf="tc.invalid && (tc.dirty || tc.touched)" class="alert alert-danger">
+                  <div *ngIf="tc.errors.required">
+                    Transaction Cost is required.
+                  </div>  
+                </div>
+              </div>
+          </div>
+
+          <div class="form-group row col-md-6" style="margin-left: auto;">
+            <label class="control-label col-sm-4" for="notional_amount">Notional Amount</label>
+            <div class="col-sm-6" novalidate>
+              <input type="number" class="form-control" id="notional_amount" placeholder="Enter Notional Amount"
+                [(ngModel)]="formDataModel.notional_amount" name="notional_amount" #quantity="ngModel" ngModel required min=0>
+                <div *ngIf="formDataModel.notion()" class="alert alert-danger">Please enter a positive Notional Amount.</div>
+                <div *ngIf="quantity.invalid && (quantity.dirty || quantity.touched)" class="alert alert-danger">
+                  <div *ngIf="quantity.errors.required">
+                    Notional Amount is required.
+                  </div>  
+                </div>
+              </div>
+          </div>
+
+          <div class="form-group  col-md-10 " data-toggle="modal" data-target="#arbModal" style="margin-left: auto; margin-right: auto; margin-top:30px;">
+            <div class="col-sm-offset-6 col-md-14">
+              <button type="submit" [disabled]="!userform.form.valid" class="btn btn-light">Check Arbitrage</button>
+            </div>
+          </div>
+
+
+
+      
+
+
+        </form>
+
+    </div>
+
+
+</div>
+
+<div *ngIf="outputobj?.fwdArbitrage" class="modal fade" id="arbModal" tabindex="-1" role="dialog" 
+aria-labelledby="arbModalLabel" aria-hidden="true" style="margin-top: 100px;">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #17fc6f;">
+        <h5 class="modal-title" id="arbModalLabel">Arbitrage Sucess</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <br>
+       Forward Arbitrage opportunity found! Profit is {{outputobj.profit_loss_fwd |  number:'1.2-2'}}
+        <br>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div *ngIf="outputobj?.fwdArbitrage==false" class="modal fade" id="arbModal" 
+tabindex="-1" role="dialog" aria-labelledby="arbModalLabel" aria-hidden="true"  >
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #f82056;">
+        <h5 class="modal-title" id="arbModalLabel">Arbitrage Failure</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <br>
+        
+        Arbitrage opportunity not found! Loss is {{outputobj.profit_loss_fwd |  number:'1.2-2'}}
+        
+        <br>
+        <br>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="outputobj?.revArbitrage" class="modal fade" id="arbModal" tabindex="-1" role="dialog" aria-labelledby="arbModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="arbModalLabel">Arbitrage Sucess</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       Reverse Arbitrage opportunity found! Profit is {{outputobj.profit_loss_rev |  number:'1.2-2'}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="outputobj?.revArbitrage==false" class="modal fade" id="arbModal" tabindex="-1" role="dialog" aria-labelledby="arbModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="arbModalLabel">Arbitrage Sucess</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Arbitrage opportunity not found! Loss is {{outputobj.profit_loss_rev |  number:'1.2-2'}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+
+
+
+</body>
+
+</html>

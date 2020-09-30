@@ -2,12 +2,13 @@ import { Component } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
-    selector : 'home',
-    templateUrl: './homepage.component.html',
-    styleUrls: ['../app.component.css']
+    selector : 'firstpage',
+    templateUrl: './firstpage.component.html',
+    styleUrls: ['./firstpage.component.scss']
 
 })
-export class HomeComponent{
+export class FirstComponent{ 
+
     public activatedRoute: ActivatedRoute;
     public router: Router;
 
@@ -16,25 +17,34 @@ export class HomeComponent{
         this.router = router;
     }
 
-    checkArb() {
+    toFX() {
+        
+        // let navigationExtras: NavigationExtras = {
+        //     queryParams: editprod
+        // };
+        this.router.navigate(["home"]);
+    }
+    
+    toCac() {
+        
+        // let navigationExtras: NavigationExtras = {
+        //     queryParams: editprod
+        // };
+        this.router.navigate(["homeCac"]);
+    }
+
+    
+
+    toFRA() {
         
         // let navigationExtras: NavigationExtras = {
         //     queryParams: editprod
         // };
 
-        console.log("Checking checkArb");
-        this.router.navigate(["userInput"]);
-
-    }
-
-    randomArb() {
         
-        // let navigationExtras: NavigationExtras = {
-        //     queryParams: editprod
-        // };
-
-        console.log("Checking randomArb");
-        this.router.navigate(["random"]);
+        this.router.navigate(["homeFra"]);
 
     }
+
+
 }

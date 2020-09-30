@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import {Observable} from 'rxjs';
 
-import {formData} from '../components/formData';
-import {outputData} from '../components/outputData';
+import {formData} from '../components/FXArbitrage/formData';
 
 @Injectable({
     providedIn: 'root',
@@ -24,27 +23,38 @@ export class UserService {
 
     sendInput(inputobj : any): Observable<Object> {
         console.log('sendInput called');
-        return this.httpClient.post(this.baseurl+'/userArbitrage', inputobj,{headers: 
+        return this.httpClient.post(this.baseurl+'/userFxArbitrage', inputobj,{headers: 
             {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } });
     }
 
     getRandom(): Observable<any> {
         console.log("Get Random called");
-        return this.httpClient.get(`${this.baseurl}` + '/randomArbitrage', {headers: 
+        return this.httpClient.get(`${this.baseurl}` + '/randomFxArbitrage', {headers: 
             {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }});
     }
 
-    // updateProduct(id:number,value:any): Observable<Object> {
-    //     console.log('!!!!!' + id);
-    //     console.log(this.baseurl+'/product/'+id);
-    //     return this.httpClient.put(this.baseurl+'/product/' + id,value);
 
-    // }
+    sendInputCac(inputobj : any): Observable<Object> {
+        console.log('sendInputCac called');
+        return this.httpClient.post(this.baseurl+'/userCashArbitrage', inputobj,{headers: 
+            {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } });
+    }
 
-    // deleteProduct(id:number): Observable<any> {
-    //     console.log('$$$' + id);
-    //     console.log(this.baseurl+'/product/'+id);
-    //     return this.httpClient.delete(this.baseurl+'/product/' + id, {responseType:'text'});
-    //     window.history.go(0);
-    // }
+    getRandomCac(): Observable<any> {
+        console.log("Get Random called");
+        return this.httpClient.get(`${this.baseurl}` + '/randomCashArbitrage', {headers: 
+            {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }});
+    }
+
+    sendInputFra(inputobj : any): Observable<Object> {
+        console.log('sendInputCac called');
+        return this.httpClient.post(this.baseurl+'/userFRAArbitrage', inputobj,{headers: 
+            {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } });
+    }
+
+    getRandomFra(): Observable<any> {
+        console.log("Get Random called");
+        return this.httpClient.get(`${this.baseurl}` + '/randomFRAArbitrage', {headers: 
+            {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }});
+    }
 }
