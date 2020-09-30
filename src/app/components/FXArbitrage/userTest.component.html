@@ -247,94 +247,112 @@
 
     </div>
 
-    <div *ngIf="outputobj.fwdArbitrage" class="modal fade" id="arbModal" tabindex="-1" role="dialog"
-      aria-labelledby="arbModalLabel" aria-hidden="true" style="margin-top: 100px;">
-      <div class="modal-dialog modal-dialog-centered" role="document">
+    <div *ngIf="outputobj?.fwdArbitrage && outputobj?.revArbitrage==false" class="modal fade" id="arbModal" tabindex="-1" role="dialog"
+    aria-labelledby="arbModalLabel" aria-hidden="true" style="margin-top: 100px;">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-          <div class="modal-header" style="background-color: #17fc6f;">
-            <h5 class="modal-title" id="arbModalLabel">Arbitrage Sucess</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <br>
-           Forward Arbitrage opportunity found! Profit is {{outputobj.profit_loss_fwd |  number:'1.2-2'}}
-            <br>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
+            <div class="modal-header" style="background-color: #17fc6f;">
+                <h5 class="modal-title" id="arbModalLabel">Arbitrage Sucess</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <br>
+                Forward Arbitrage opportunity found! Profit is {{outputobj.profit_loss_fwd}}
+                <br>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
-    <div *ngIf="outputobj?.fwdArbitrage==false" class="modal fade" id="arbModal" 
-    tabindex="-1" role="dialog" aria-labelledby="arbModalLabel" aria-hidden="true"  >
-      <div class="modal-dialog modal-dialog-centered" role="document">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div *ngIf="outputobj?.fwdArbitrage==false && outputobj?.revArbitrage==false" class="modal fade" id="arbModal" tabindex="-1" role="dialog"
+    aria-labelledby="arbModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-          <div class="modal-header" style="background-color: #f82056;">
-            <h5 class="modal-title" id="arbModalLabel">Arbitrage Failure</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <br>
-            Arbitrage opportunity not found! Loss is {{outputobj.profit_loss_fwd |  number:'1.2-2'}}
-            
-            <br>
-            <br>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <div class="modal-header" style="background-color: #f82056;">
+                <h5 class="modal-title" id="arbModalLabel">Arbitrage Failure</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div *ngIf="outputobj?.profit_loss_fwd >= outputobj?.profit_loss_rev" class="modal-body">
+                <br>
+                Arbitrage opportunity not found! Loss is {{outputobj.profit_loss_fwd}}
+                <br>
+                <br>
+            </div>
+            <div *ngIf="outputobj?.profit_loss_fwd < outputobj?.profit_loss_rev" class="modal-body">
+                <br>
+                Arbitrage opportunity not found! Loss is {{outputobj.profit_loss_rev}}
+                <br>
+                <br>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
-          </div>
+            </div>
         </div>
-      </div>
     </div>
+</div>
 
-    <div *ngIf="outputobj?.revArbitrage" class="modal fade" id="arbModal" tabindex="-1" role="dialog" aria-labelledby="arbModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
+<div *ngIf="outputobj?.revArbitrage && outputobj?.fwdArbitrage==false" class="modal fade" id="arbModal" tabindex="-1" role="dialog"
+    aria-labelledby="arbModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="arbModalLabel">Arbitrage Sucess</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-           Reverse Arbitrage opportunity found! Profit is {{outputobj.profit_loss_rev |  number:'1.2-2'}}
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <div class="modal-header" style="background-color: #17fc6f;">
+                <h5 class="modal-title" id="arbModalLabel">Arbitrage Sucess</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Reverse Arbitrage opportunity found! Profit is {{outputobj.profit_loss_rev}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
-          </div>
+            </div>
         </div>
-      </div>
     </div>
+</div>
 
-    <div *ngIf="outputobj?.revArbitrage==false" class="modal fade" id="arbModal" tabindex="-1" role="dialog" aria-labelledby="arbModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
+<div *ngIf="outputobj?.fwdArbitrage && outputobj?.revArbitrage" class="modal fade" id="arbModal" tabindex="-1" role="dialog"
+    aria-labelledby="arbModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="arbModalLabel">Arbitrage Sucess</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            Arbitrage opportunity not found! Loss is {{outputobj.profit_loss_rev |  number:'1.2-2'}}
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <div class="modal-header" style="background-color: #17fc6f;">
+                <h5 class="modal-title" id="arbModalLabel">Arbitrage Sucess</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div *ngIf="outputobj?.profit_loss_fwd >= outputobj?.profit_loss_rev" class="modal-body">
+                <br>
+                Forward Arbitrage opportunity found! Profit is {{outputobj.profit_loss_fwd}}
+                <br>
+                <br>
+            </div>
+            <div *ngIf="outputobj?.profit_loss_fwd < outputobj?.profit_loss_rev" class="modal-body">
+                <br>
+                Reverse Arbitrage opportunity found! Profit is {{outputobj.profit_loss_rev}}
+                <br>
+                <br>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
-          </div>
+            </div>
         </div>
-      </div>
     </div>
+</div>
 
-  </div>
+</div>
 </body>
 
 </html>
