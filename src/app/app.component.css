@@ -7,6 +7,11 @@ body {
     color:  #080333;
   }
   
+  a:visited{
+    color: brown;
+    text-decoration:none;
+    background-color: crimson;
+  }
   a:hover {
     color: #171e27;
     background-color: #d0dae27c;
