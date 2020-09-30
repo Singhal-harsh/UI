@@ -9,7 +9,7 @@ import {Observable} from 'rxjs';
   })
 export class UserService {
 
-    public baseurl : string = "http://localhost:8084";
+    public baseurl : string = "http://localhost:8084/api";
 
     public httpClient :  HttpClient;
     constructor (httpClient : HttpClient)
@@ -20,38 +20,38 @@ export class UserService {
 
     sendInput(inputobj : any): Observable<Object> {
         
-        return this.httpClient.post(this.baseurl+'/userFxArbitrage', inputobj,{headers: 
+        return this.httpClient.post(this.baseurl+'/user/fx', inputobj,{headers: 
             {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } });
     }
 
     getRandom(): Observable<any> {
         
-        return this.httpClient.get(`${this.baseurl}` + '/randomFxArbitrage', {headers: 
+        return this.httpClient.get(`${this.baseurl}` + '/random/fx', {headers: 
             {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }});
     }
 
 
     sendInputCac(inputobj : any): Observable<Object> {
         
-        return this.httpClient.post(this.baseurl+'/userCashArbitrage', inputobj,{headers: 
+        return this.httpClient.post(this.baseurl+'/user/cash&carry', inputobj,{headers: 
             {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } });
     }
 
     getRandomCac(): Observable<any> {
         
-        return this.httpClient.get(`${this.baseurl}` + '/randomCashArbitrage', {headers: 
+        return this.httpClient.get(`${this.baseurl}` + '/random/cash&carry', {headers: 
             {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }});
     }
 
     sendInputFra(inputobj : any): Observable<Object> {
        
-        return this.httpClient.post(this.baseurl+'/userFRAArbitrage', inputobj,{headers: 
+        return this.httpClient.post(this.baseurl+'/user/fra', inputobj,{headers: 
             {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } });
     }
 
     getRandomFra(): Observable<any> {
        
-        return this.httpClient.get(`${this.baseurl}` + '/randomFRAArbitrage', {headers: 
+        return this.httpClient.get(`${this.baseurl}` + '/random/fra', {headers: 
             {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }});
     }
 }
