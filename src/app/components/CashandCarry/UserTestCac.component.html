@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Arb User Test</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+
+<nav class="navbar navbar-dark bg-primary nav justify-content-center">
+    <a class="navbar-brand" routerLink="/usertestcac" routerLinkActive="active">Check for Arbitrage</a>&nbsp;&nbsp;&nbsp;
+    <a class="navbar-brand" routerLink="/randomcac" routerLinkActive="active">Random Arbitrage Opportunities</a>
+</nav>
+
+<body>
+
+    <div style="background-color: dimgray;">
+        <div class="card text-white form-center bg-dark mb-3"
+            style="width: 1000px; height: 550px; margin-left: auto; margin-right: auto;margin-top: 20px;">
+            <div class="card-header"><b>Arbitrage Calculator</b></div>
+            <div class="card-body text-center" style="margin: auto;">
+
+
+                <form class="form-row" action="/action_page.php" #userform="ngForm" novalidate (ngSubmit)="onSubmit()">
+
+                    <div class="form-group row col-sm-6 " style="margin-left: auto;">
+                        <label class="control-label col-sm-4" for="stock-name">Stock Name</label>
+                        <div class="col-sm-6">
+                            <select #stock class="form-control" id="stock-name">
+                                <option *ngFor="let stock of stocks"> {{stock}} </option>
+
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="form-group row col-md-6" style="margin-left: auto;">
+                        <label class="control-label col-sm-4" for="time_months">Time (in Months)</label>
+                        <div class="col-sm-6" novalidate>
+                            <input #time= "ngModel" ngModel type="number" class="form-control" id="quantity" placeholder="Enter Quantity"
+                                [(ngModel)]="formDataModel.time_months" name="time_months" 
+                                required min=0 max=12>
+                            <div *ngIf="time.invalid && (time.dirty || time.touched)"
+                                class="alert alert-danger">
+                                <div *ngIf="time.errors.required">
+                                    Time (in months) is required.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                    <div class="form-group row col-md-6" style="margin-left: auto;">
+                        <label class="control-label col-sm-4" for="spot-bid">{{stock.value}} Spot Bid</label>
+                        <div class="col-sm-6" novalidate>
+                            <input type="number" class="form-control" id="spot-bid" placeholder="Enter {{stock.value}} Spot Bid"
+                                name="spot_bid" [(ngModel)]="formDataModel.spot_bid" #name="ngModel" ngModel required
+                                min="5" max="20">
+                            <!-- <div *ngIf="name.errors.min">
+                                Please enter a number in correct range.
+                            </div> -->
+                            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+
+                                <div *ngIf="name.errors.required">
+                                    {{stock.value}} Spot bid is required.
+                                </div>
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row col-md-6" style="margin-left: auto;">
+                        <label class="control-label col-sm-4" for="spot-ask"> {{stock.value}} Spot Ask</label>
+                        <div class="col-sm-6" novalidate>
+                            <input type="number" class="form-control" id="spot-ask" [(ngModel)]="formDataModel.spot_ask"
+                                placeholder="Enter {{stock.value}} Spot Ask" name="spot-ask" #ask="ngModel" ngModel required>
+                            <div *ngIf="ask.invalid && (ask.dirty || ask.touched)" class="alert alert-danger">
+                                <div *ngIf="ask.errors.required">
+                                    {{stock.value}} Spot Ask is required.
+                                </div>
+                            </div>
+                            <div *ngIf="formDataModel.askbid()">
+                                Spot Ask should be greater than Spot Ask.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row col-md-6" style="margin-left: auto;">
+                        <label class="control-label col-sm-4" for="forward-bid"> {{stock.value}} Fututres Bid {{time.value}} months
+                            Bid</label>
+                        <div class="col-sm-6" novalidate>
+                            <input type="number" class="form-control" id="forward-bid"
+                                [(ngModel)]="formDataModel.future_bid" placeholder="Enter {{stock.value}} Futures Bid {{time.value}} months"
+                                name="forward-bid" #forB="ngModel" ngModel required min=0>
+                            <div *ngIf="forB.invalid && (forB.dirty || forB.touched)" class="alert alert-danger">
+                                <div *ngIf="forB.errors.required">
+                                    {{stock.value}} Futures Bid {{time.value}} months is required.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row col-md-6" style="margin-left: auto;">
+                        <label class="control-label col-sm-4" for="forward-ask"> {{stock.value}} Futures Ask {{time.value}} months
+                            Ask</label>
+                        <div class="col-sm-6" novalidate>
+                            <input type="number" class="form-control" id="forward-ask"
+                                [(ngModel)]="formDataModel.future_ask" placeholder="Enter {{stock.value}} Futures Ask {{time.value}} months" name="forward-ask"
+                                #forA="ngModel" ngModel required min=0>
+                            <div *ngIf="forA.invalid && (forA.dirty || forA.touched)" class="alert alert-danger">
+                                <div *ngIf="forA.errors.required">
+                                    {{stock.value}} Futures Ask {{time.value}} months is required.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row col-md-6" style="margin-left: auto;">
+                        <label class="control-label col-sm-4" for="interest-rate-bid1">{{stock.value}} Interest Rate Bid</label>
+                        <div class="col-sm-6" novalidate>
+                            <input type="number" class="form-control" id="interest-rate-bid1"
+                                [(ngModel)]="formDataModel.interest_rate_bid"
+                                placeholder="Enter {{stock.value}} Interest Rate  Bid" name="interest-rate-bid1" #irfb="ngModel" ngModel
+                                required min=0>
+                            <div *ngIf="irfb.invalid && (irfb.dirty || irfb.touched)" class="alert alert-danger">
+                                <div *ngIf="irfb.errors.required">
+                                    {{stock.value}} Interest Rate Bid is required.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row col-md-6" style="margin-left: auto;">
+                        <label class="control-label col-sm-4" for="interest-rate-ask1">{{stock.value}} Interest Rate {{time.value}}
+                            Ask</label>
+                        <div class="col-sm-6" novalidate>
+                            <input type="number" class="form-control" id="interest-rate-ask1"
+                                [(ngModel)]="formDataModel.interest_rate_ask"
+                                placeholder="Enter {{stock.value}} Interest Rate {{time.value}} Ask" name="interest-rate-ask1"
+                                #irfa="ngModel" ngModel required min=0>
+                            <div *ngIf="irfa.invalid && (irfa.dirty || irfa.touched) " class="alert alert-danger">
+                                <div *ngIf="irfa.errors.required">
+                                    {{stock.value}} Interest Rate Ask is required.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row col-md-6" style="margin-left: auto;">
+                        <label class="control-label col-sm-4" for="quantity">Quantity</label>
+                        <div class="col-sm-6" novalidate>
+                          <input type="number" class="form-control" id="quantity" placeholder="Enter Quantity"
+                            [(ngModel)]="formDataModel.quantity" name="quantity" #quantity="ngModel" ngModel required min=0>
+                          <div *ngIf="quantity.invalid && (quantity.dirty || quantity.touched)" class="alert alert-danger">
+                            <div *ngIf="quantity.errors.required">
+                              Quantity is required.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    
+
+                    <div class="form-group row col-md-6" style="margin-left: auto;">
+                        <label class="control-label col-sm-4" for="transaction-cost">Transaction Cost</label>
+                        <div class="col-sm-6" novalidate>
+                            <input type="number" class="form-control" id="transaction-cost"
+                                placeholder="Enter Transaction Cost" [(ngModel)]="formDataModel.transaction_cost"
+                                name="transaction-cost" #tc="ngModel" ngModel required min=0>
+                            <div *ngIf="tc.invalid && (tc.dirty || tc.touched)" class="alert alert-danger">
+                                <div *ngIf="tc.errors.required">
+                                    Transaction Cost is required.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group  col-md-10 " data-toggle="modal" data-target="#arbModal"
+                        style="margin-left: auto; margin-right: auto; margin-top:30px;">
+                        <div class="col-sm-offset-6 col-md-14">
+                            <button type="submit" [disabled]="!userform.form.valid" class="btn btn-light">Check
+                                Arbitrage</button>
+                        </div>
+                    </div>
+
+
+
+
+
+
+                </form>
+
+
+
+
+
+
+
+            </div>
+
+
+        </div>
+
+        <div *ngIf="outputobj?.fwdArbitrage" class="modal fade" id="arbModal" tabindex="-1" role="dialog"
+            aria-labelledby="arbModalLabel" aria-hidden="true" style="margin-top: 100px;">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: #17fc6f;">
+                        <h5 class="modal-title" id="arbModalLabel">Arbitrage Sucess</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <br>
+                        Forward Arbitrage opportunity found! Profit is {{outputobj.profit_loss_fwd}}
+                        <br>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div *ngIf="outputobj?.fwdArbitrage==false" class="modal fade" id="arbModal" tabindex="-1" role="dialog"
+            aria-labelledby="arbModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: #f82056;">
+                        <h5 class="modal-title" id="arbModalLabel">Arbitrage Failure</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <br>
+                        Arbitrage opportunity not found! Loss is {{outputobj.profit_loss_fwd}}
+
+                        <br>
+                        <br>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="outputobj?.revArbitrage" class="modal fade" id="arbModal" tabindex="-1" role="dialog"
+            aria-labelledby="arbModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="arbModalLabel">Arbitrage Sucess</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Reverse Arbitrage opportunity found! Profit is {{outputobj.profit_loss_rev}}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="outputobj?.revArbitrage==false" class="modal fade" id="arbModal" tabindex="-1" role="dialog"
+            aria-labelledby="arbModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="arbModalLabel">Arbitrage Sucess</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Arbitrage opportunity not found! Loss is {{outputobj.profit_loss_rev}}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+</body>
+
+</html>

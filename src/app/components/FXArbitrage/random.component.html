@@ -17,8 +17,9 @@
 </head>
 
 <nav class="navbar navbar-dark bg-primary nav justify-content-center">
-  <a class="navbar-brand" routerLink="/userInput" routerLinkActive="active" >Check for Arbitrage</a>&nbsp;&nbsp;&nbsp;
-  <a class="navbar-brand" routerLink="/random" routerLinkActive="active" >Random Arbitrage Opportunities</a>
+  <a class="navbar-brand" routerLink="/usertestfx" routerLinkActive="active" >Check for Arbitrage</a>&nbsp;&nbsp;&nbsp;
+  <a class="navbar-brand" routerLink="/randomfx" routerLinkActive="active" >Random Arbitrage Opportunities</a>
+  <button type="button" class="btn btn-dark" (click)="getValues()">Start Random Generator</button>
 </nav>
 
 <table class="table table-hover table-dark">
@@ -70,7 +71,6 @@
   </tbody>
 </table>
 
-<!-- <button (click)="showAlert()">show alert</button> -->
 
 <div *ngIf="randomobj.fwdArbitrage || randomobj.revArbitrage" class="alert alert-success text-center" role="alert">
   <h4 class="alert-heading">Arbitrage opportunity found!</h4>
@@ -86,7 +86,8 @@
     color:black; 
     background-color: lightcyan ; 
     width: 50%; height:1000px;
-    border: solid black; ">
+    border: solid black; 
+    overflow: scroll;">
         <h3>Successful Arbitrage trades </h3>
     <table class="table table-hover table-dark">
       <thead>
@@ -94,7 +95,6 @@
           <th scope="col">Trade Id</th>
           <th scope="col">Quantity</th>
           <th scope="col">Profit Earned</th>
-          <th scope="col">Profit Earned Reverse</th>
           <th scope="col">Time of the trade</th>
           <th scope="col">Action</th>
         </tr>
@@ -110,12 +110,13 @@
         <tr *ngFor = "let robj of randoms">
           <th scope="row">{{id}}</th>
           <td>{{robj.arbitrage.fwd_arb_quantity}}</td>
-          <td>{{robj.profit_loss_fwd | number:'1.2-2'}}</td>
-          <td>{{robj.profit_loss_rev | number:'1.2-2'}}</td>
-          <td>{{dateTime}}</td>
+          <td *ngIf = "robj.profit_loss_fwd >= robj.profit_loss_rev">{{robj.profit_loss_fwd | number:'1.2-2'}}</td>
+          <td *ngIf = "robj.profit_loss_fwd < robj.profit_loss_rev">{{robj.profit_loss_rev | number:'1.2-2'}}</td>
+          <td>{{dates}}</td>
           <td><button type="button" class="btn btn-success" (click)="display(robj)">More Info</button></td>
       </tbody>
     </table>
+    <p class="font-weight-light" *ngIf = "index==0">No Successful Arbitrage Trades yet.</p>
 </div>
 
 <div class="rightdiv" >
