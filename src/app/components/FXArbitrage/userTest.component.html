@@ -178,7 +178,7 @@
                 [(ngModel)]="formDataModel.interest_rate_curr2_ask"
                 placeholder="Enter Interest Rate {{second.value}} Ask" name="interest-rate-ask2" #irsa="ngModel" ngModel
                 required min=0>
-                <div *ngIf="formDataModel.int1_a()" class="alert alert-danger">
+                <div *ngIf="formDataModel.int2_a()" class="alert alert-danger">
                   Ask interest rate should be greater than Bid interest rate.
                 </div>
                 <div *ngIf="irsa.invalid && (irsa.dirty || irsa.touched)" class="alert alert-danger">
