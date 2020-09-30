@@ -16,12 +16,6 @@
   </style>
 </head>
 
-<!-- <nav class="navbar navbar-dark bg-primary nav justify-content-center">
-  <a class="navbar-brand" routerLink="/usertestfra" routerLinkActive="active" >Check for Arbitrage</a>&nbsp;&nbsp;&nbsp;
-  <a class="navbar-brand" routerLink="/randomfra" routerLinkActive="active" >Random Arbitrage Opportunities</a>
-  <button type="button" class="btn btn-dark" (click)="getValues()">Start Random Generator</button>
-</nav> -->
-
 <table class="table table-hover table-dark">
   <thead>
     <tr>
@@ -38,7 +32,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngIf="!randomobj?.fwdArbitrage && !randomobj?.revArbitrage" style="background-color: red;">
+    <tr *ngIf="!randomobj.fwdArbitrage && !randomobj.revArbitrage" style="background-color: red;">
       <th scope="row">{{randomobj.id}}</th>
       <td>{{randomobj.arbitrage.interest_rate1_bid|number:'1.2-2'}}</td>
       <td>{{randomobj.arbitrage.interest_rate1_ask|number:'1.2-2'}}</td>
@@ -100,7 +94,7 @@
           <td>{{robj.arbitrage.notional_amount}}</td>
           <td *ngIf = "robj.profit_loss_fwd >= robj.profit_loss_rev">{{robj.profit_loss_fwd | number:'1.2-2'}}</td>
           <td *ngIf = "robj.profit_loss_fwd < robj.profit_loss_rev">{{robj.profit_loss_rev | number:'1.2-2'}}</td>
-          <td>{{dates}}</td>
+          <td>{{robj.date}}</td>
           <td><button type="button" class="btn btn-success" (click)="display(robj)">More Info</button></td>
       </tbody>
     </table>
