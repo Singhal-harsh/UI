@@ -34,42 +34,46 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngIf="!randomobj.fwdArbitrage && !randomobj.revArbitrage" style="background-color: #e06252; font-weight: 500;">
-      <th scope="row">{{randomobj.id}}</th>
-      <td>{{randomobj.arbitrage.interest_rate1_bid|number:'1.2-2'}}</td>
-      <td>{{randomobj.arbitrage.interest_rate1_ask|number:'1.2-2'}}</td>
-      <td>{{randomobj.arbitrage.interest_rate2_bid| number:'1.2-2'}}</td>
-      <td>{{randomobj.arbitrage.interest_rate2_ask| number:'1.2-2'}}</td>
-      <td>{{randomobj.arbitrage.fra_rate_bid|number:'1.2-2'}}</td>
-      <td>{{randomobj.arbitrage.fra_rate_ask|number:'1.2-2'}}</td>
-      <td>{{randomobj.arbitrage.transaction_cost}}</td>
-      <td>{{randomobj.fwdArbitrage}}</td>
-      <td>{{randomobj.revArbitrage}}</td>
+    <tr *ngIf="!controlf && !controlr" style="background-color: #e06252; font-weight: 500;">
+      <th scope="row">{{randomobj?.id}}</th>
+      <td>{{randomobj?.arbitrage.interest_rate1_bid|number:'1.2-2'}}</td>
+      <td>{{randomobj?.arbitrage.interest_rate1_ask|number:'1.2-2'}}</td>
+      <td>{{randomobj?.arbitrage.interest_rate2_bid| number:'1.2-2'}}</td>
+      <td>{{randomobj?.arbitrage.interest_rate2_ask| number:'1.2-2'}}</td>
+      <td>{{randomobj?.arbitrage.fra_rate_bid|number:'1.2-2'}}</td>
+      <td>{{randomobj?.arbitrage.fra_rate_ask|number:'1.2-2'}}</td>
+      <td>{{randomobj?.arbitrage.transaction_cost}}</td>
+      <td *ngIf="controlf">Yes</td>
+      <td *ngIf="!controlf">No</td>
+      <td *ngIf="controlr">Yes</td>
+      <td *ngIf="!controlr">No</td>
     </tr>
 
-    <tr *ngIf="randomobj?.fwdArbitrage || randomobj?.revArbitrage" style="background-color:rgb(57, 221, 57); font-weight: 500;">
-      <th scope="row">{{randomobj.id}}</th>
-      <td>{{randomobj.arbitrage.interest_rate1_bid|number:'1.2-2'}}</td>
-      <td>{{randomobj.arbitrage.interest_rate1_ask|number:'1.2-2'}}</td>
-      <td>{{randomobj.arbitrage.interest_rate2_bid| number:'1.2-2'}}</td>
-      <td>{{randomobj.arbitrage.interest_rate2_ask| number:'1.2-2'}}</td>
-      <td>{{randomobj.arbitrage.fra_rate_bid| number:'1.2-2'}}</td>
-      <td>{{randomobj.arbitrage.fra_rate_ask| number:'1.2-2'}}</td>
-      <td>{{randomobj.arbitrage.transaction_cost}}</td>
-      <td>{{randomobj.fwdArbitrage}}</td>
-      <td>{{randomobj.revArbitrage}}</td>
+    <tr *ngIf="controlf || controlr" style="background-color:rgb(57, 221, 57); font-weight: 500;">
+      <th scope="row">{{randomobj?.id}}</th>
+      <td>{{randomobj?.arbitrage.interest_rate1_bid|number:'1.2-2'}}</td>
+      <td>{{randomobj?.arbitrage.interest_rate1_ask|number:'1.2-2'}}</td>
+      <td>{{randomobj?.arbitrage.interest_rate2_bid| number:'1.2-2'}}</td>
+      <td>{{randomobj?.arbitrage.interest_rate2_ask| number:'1.2-2'}}</td>
+      <td>{{randomobj?.arbitrage.fra_rate_bid| number:'1.2-2'}}</td>
+      <td>{{randomobj?.arbitrage.fra_rate_ask| number:'1.2-2'}}</td>
+      <td>{{randomobj?.arbitrage.transaction_cost}}</td>
+      <td *ngIf="controlf">Yes</td>
+      <td *ngIf="!controlf">No</td>
+      <td *ngIf="controlr">Yes</td>
+      <td *ngIf="!controlr">No</td>
     </tr>
   </tbody>
 </table>
 
 
-<div *ngIf="randomobj?.fwdArbitrage || randomobj?.revArbitrage" class="alert alert-success text-center" role="alert">
-  <h4 class="alert-heading">Arbitrage opportunity found!</h4>
+<div *ngIf="controlf || controlr" class="alert alert-success text-center" role="alert">
+  <h4 class="alert-heading">Arbitrage opportunity was found!</h4>
   <h5>Executing the beneficial trade...</h5>
 </div>
 
-<div *ngIf="!randomobj?.fwdArbitrage && !randomobj?.revArbitrage" class="alert alert-danger text-center" role="alert">
-  <h4 class="alert-heading">Arbitrage opportunity not found!</h4>
+<div *ngIf="!controlf && !controlr" class="alert alert-danger text-center" role="alert">
+  <h4 class="alert-heading">Arbitrage opportunity was not found!</h4>
 </div>
 
 
@@ -94,8 +98,8 @@
         <tr *ngFor = "let robj of randoms">
           <th scope="row">{{robj.id}}</th>
           <td>{{robj.arbitrage.notional_amount}}</td>
-          <td *ngIf = "robj.profit_loss_fwd >= robj.profit_loss_rev">{{robj.profit_loss_fwd | number:'1.2-2'}}</td>
-          <td *ngIf = "robj.profit_loss_fwd < robj.profit_loss_rev">{{robj.profit_loss_rev | number:'1.2-2'}}</td>
+          <td *ngIf = "robj.profit_loss_fwd >= robj.profit_loss_rev && robj.profit_loss_fwd > 0 " >{{robj.profit_loss_fwd | number:'1.2-2'}}</td>
+          <td *ngIf = "robj.profit_loss_rev > robj.profit_loss_fwd && robj.profit_loss_rev > 0">{{robj.profit_loss_rev | number:'1.2-2'}}</td>
           <td>{{robj.date}}</td>
           <td><button type="button" class="btn btn-success" (click)="display(robj)">More Info</button></td>
       </tbody>
