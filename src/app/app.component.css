@@ -7,6 +7,12 @@ body {
     color:  #080333;
   }
   
+  a:visited {
+    color: #171e27;
+    background-color: #a7a6ac;
+    text-decoration: none;
+  }
+
   a:hover {
     color: #171e27;
     background-color: #d0dae27c;
