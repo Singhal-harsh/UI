@@ -18,12 +18,10 @@ export class FraRandomComponent {
   public activatedRoute: ActivatedRoute;
   public router: Router;
 
-  public dateTime:String;
-  public dates = []; 
-  public index : number = 0;
+ 
+  public displayDetails: boolean=false;
 
-public displayDetails: boolean=false;
-
+  public index: number = 0;
   public randomobj: any;
   public randoms = [];
 
@@ -47,8 +45,6 @@ public displayDetails: boolean=false;
       this.randomobj = data;  
       if(this.randomobj.fwdArbitrage || this.randomobj.revArbitrage){
         this.randoms.push(this.randomobj);
-        this.dateTime = this.datepipe.transform(new Date().toString(),'MMM d, y, h:mm:ss a');
-        this.dates.push(this.dateTime);
         this.index = this.index + 1;
       }
     

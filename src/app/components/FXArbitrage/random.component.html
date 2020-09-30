@@ -100,7 +100,7 @@
           <td>{{robj.arbitrage.fwd_arb_quantity}}</td>
           <td *ngIf = "robj.profit_loss_fwd >= robj.profit_loss_rev">{{robj.profit_loss_fwd | number:'1.2-2'}}</td>
           <td *ngIf = "robj.profit_loss_fwd < robj.profit_loss_rev">{{robj.profit_loss_rev | number:'1.2-2'}}</td>
-          <td>{{dates}}</td>
+          <td>{{robj.date}}</td>
           <td><button type="button" class="btn btn-success" (click)="display(robj)">More Info</button></td>
       </tbody>
     </table>
