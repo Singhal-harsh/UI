@@ -35,7 +35,6 @@ export class userTestComponentCac{
         this.userService.sendInputCac(this.formDataModel).subscribe(data => {  
             this.outputobj=data;
         });
-
     }
 
  }
