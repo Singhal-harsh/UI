@@ -27,7 +27,10 @@ export class userTestComponent{
 
     public flag : boolean = true;
     public flag1 : boolean = false;
-
+    public controlf:boolean = false;
+    public controlr:boolean = false;
+    public prof:number = 10;
+    public pror:number = 10;
 
     constructor(userService : UserService, activatedRoute: ActivatedRoute , router: Router) {
         this.activatedRoute = activatedRoute;
@@ -39,6 +42,10 @@ export class userTestComponent{
 
         this.userService.sendInput(this.formDataModel).subscribe(data => { 
             this.outputobj=data;
+            this.controlf = this.outputobj?.fwdArbitrage;
+            this.controlr = this.outputobj?.revArbitrage;
+            this.prof = this.outputobj?.profit_loss_fwd;
+            this.pror = this.outputobj?.profit_loss_rev;
         });
         
         

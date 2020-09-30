@@ -31,6 +31,7 @@ export class RandomComponentCac {
   }
 
   ngOnInit(){
+      this.getValues();
       const source = interval(10000);
       this.subscription = source.subscribe(val => this.getValues());
     }
