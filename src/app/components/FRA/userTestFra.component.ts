@@ -24,10 +24,10 @@ export class userTestComponentFra{
     public formDataModel = new FormDataFra();
     public outputobj: any;
 
-    public controlf:boolean = false;
-    public controlr:boolean = false;
-    public prof:number = 10;
-    public pror:number = 10;
+    public controlf:boolean;
+    public controlr:boolean;
+    public prof:number;
+    public pror:number;
 
     constructor(userService : UserService, activatedRoute: ActivatedRoute , router: Router) {
         this.activatedRoute = activatedRoute;

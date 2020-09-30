@@ -25,12 +25,11 @@ export class userTestComponent{
     public formDataModel = new formData();
     public outputobj: any;
 
-    public flag : boolean = true;
-    public flag1 : boolean = false;
-    public controlf:boolean = false;
-    public controlr:boolean = false;
-    public prof:number = 10;
-    public pror:number = 10;
+
+    public controlf:boolean;
+    public controlr:boolean;
+    public prof:number;
+    public pror:number;
 
     constructor(userService : UserService, activatedRoute: ActivatedRoute , router: Router) {
         this.activatedRoute = activatedRoute;
