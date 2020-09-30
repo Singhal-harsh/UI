@@ -41,7 +41,7 @@ export class userTestComponent{
             this.outputobj=data;
         });
         
-
+        
 
     }
 

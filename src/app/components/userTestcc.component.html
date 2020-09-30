@@ -10,12 +10,16 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 
+<nav class="navbar navbar-dark bg-primary nav justify-content-center">
+    <a class="navbar-brand" routerLink="/userInput" routerLinkActive="active">Check for Arbitrage</a>&nbsp;&nbsp;&nbsp;
+    <a class="navbar-brand" routerLink="/random" routerLinkActive="active">Random Arbitrage Opportunities</a>
+</nav>
+
 <body>
 
-    <div style="background-color: #494e52;">
-        <div class="card text-white form-center  mb-3"
-            style="width: 1000px; height: 550px; margin-left: auto; margin-right: auto;
-            margin-top: 20px; background-color:#171e27;">
+    <div style="background-color: dimgray;">
+        <div class="card text-white form-center bg-dark mb-3"
+            style="width: 1000px; height: 550px; margin-left: auto; margin-right: auto;margin-top: 20px;">
             <div class="card-header"><b>Arbitrage Calculator</b></div>
             <div class="card-body text-center" style="margin: auto;">
 
@@ -26,7 +30,7 @@
                         <label class="control-label col-sm-4" for="stock-name">Stock Name</label>
                         <div class="col-sm-6">
                             <select #stock class="form-control" id="stock-name">
-                                <option *ngFor="let stock of stocks"> {{stock}} </option>
+                                <option *ngFor="let stock of stocks"> {{currency}} </option>
 
                             </select>
                         </div>
@@ -35,15 +39,11 @@
                     <div class="form-group row col-md-6" style="margin-left: auto;">
                         <label class="control-label col-sm-4" for="time_months">Time (in Months)</label>
                         <div class="col-sm-6" novalidate>
-                            <input #time= "ngModel" ngModel type="number" class="form-control" id="quantity" placeholder="Enter Time (in Months)"
-                                [(ngModel)]="formDataModel.time_months" name="time_months" 
+                            <input #time= "ngModel" ngModel type="number" class="form-control" id="quantity" placeholder="Enter Quantity"
+                                [(ngModel)]="formDataModel.fwd_arb_quantity" name="time_months" 
                                 required min=0 max=12>
-                                <div *ngIf="formDataModel.timecheck()" class="alert alert-danger">
-                                    Please enter a number between 0-12. 
-                                </div> 
-                                <div *ngIf="time.invalid && (time.dirty || time.touched)"
+                            <div *ngIf="time.invalid && (time.dirty || time.touched)"
                                 class="alert alert-danger">
-                                
                                 <div *ngIf="time.errors.required">
                                     Time (in months) is required.
                                 </div>
@@ -57,10 +57,10 @@
                         <div class="col-sm-6" novalidate>
                             <input type="number" class="form-control" id="spot-bid" placeholder="Enter {{stock.value}} Spot Bid"
                                 name="spot_bid" [(ngModel)]="formDataModel.spot_bid" #name="ngModel" ngModel required
-                                >
-                            <div *ngIf="formDataModel.spot_b()" class="alert alert-danger">
-                                Please enter a positive Spot bid. 
-                            </div> 
+                                min="5" max="20">
+                            <div *ngIf="name.errors.min">
+                                Please enter a number in correct range.
+                            </div>
                             <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
 
                                 <div *ngIf="name.errors.required">
@@ -78,13 +78,11 @@
                         <div class="col-sm-6" novalidate>
                             <input type="number" class="form-control" id="spot-ask" [(ngModel)]="formDataModel.spot_ask"
                                 placeholder="Enter {{stock.value}} Spot Ask" name="spot-ask" #ask="ngModel" ngModel required>
-                                <div *ngIf="formDataModel.spot_a()" class="alert alert-danger">
-                                    Ask price should be greater than bid price. 
-                                </div> 
-                                <div *ngIf="ask.invalid && (ask.dirty || ask.touched)" class="alert alert-danger">
+                            <div *ngIf="ask.invalid && (ask.dirty || ask.touched)" class="alert alert-danger">
                                 <div *ngIf="ask.errors.required">
                                     {{stock.value}} Spot Ask is required.
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -94,12 +92,9 @@
                             Bid</label>
                         <div class="col-sm-6" novalidate>
                             <input type="number" class="form-control" id="forward-bid"
-                                [(ngModel)]="formDataModel.future_bid" placeholder="Enter {{stock.value}} Futures Bid {{time.value}} months"
+                                [(ngModel)]="formDataModel.forward_bid" placeholder="Enter {{stock.value}} Futures Bid {{time.value}} months"
                                 name="forward-bid" #forB="ngModel" ngModel required min=0>
-                                <div *ngIf="formDataModel.future_b()" class="alert alert-danger">
-                                    Please enter a positive Futures Bid. 
-                                </div> 
-                                <div *ngIf="forB.invalid && (forB.dirty || forB.touched)" class="alert alert-danger">
+                            <div *ngIf="forB.invalid && (forB.dirty || forB.touched)" class="alert alert-danger">
                                 <div *ngIf="forB.errors.required">
                                     {{stock.value}} Futures Bid {{time.value}} months is required.
                                 </div>
@@ -111,12 +106,9 @@
                             Ask</label>
                         <div class="col-sm-6" novalidate>
                             <input type="number" class="form-control" id="forward-ask"
-                                [(ngModel)]="formDataModel.future_ask" placeholder="Enter {{stock.value}} Futures Ask {{time.value}} months" name="forward-ask"
+                                [(ngModel)]="formDataModel.forward_ask" placeholder="Enter {{stock.value}} Futures Ask {{time.value}} months" name="forward-ask"
                                 #forA="ngModel" ngModel required min=0>
-                                <div *ngIf="formDataModel.future_a()" class="alert alert-danger">
-                                    Ask price should be greater than bid price. 
-                                </div>
-                                <div *ngIf="forA.invalid && (forA.dirty || forA.touched)" class="alert alert-danger">
+                            <div *ngIf="forA.invalid && (forA.dirty || forA.touched)" class="alert alert-danger">
                                 <div *ngIf="forA.errors.required">
                                     {{stock.value}} Futures Ask {{time.value}} months is required.
                                 </div>
@@ -126,36 +118,30 @@
 
 
                     <div class="form-group row col-md-6" style="margin-left: auto;">
-                        <label class="control-label col-sm-4" for="interest-rate-bid1"> Interest Rate Bid</label>
+                        <label class="control-label col-sm-4" for="interest-rate-bid1">{{stock.value}} Interest Rate Bid</label>
                         <div class="col-sm-6" novalidate>
                             <input type="number" class="form-control" id="interest-rate-bid1"
-                                [(ngModel)]="formDataModel.interest_rate_bid"
-                                placeholder="Enter  Interest Rate  Bid" name="interest-rate-bid1" #irfb="ngModel" ngModel
+                                [(ngModel)]="formDataModel.interest_rate_curr1_bid"
+                                placeholder="Enter {{stock.value}} Interest Rate  Bid" name="interest-rate-bid1" #irfb="ngModel" ngModel
                                 required min=0>
-                                <div *ngIf="formDataModel.int_b()" class="alert alert-danger">
-                                    Please enter a positive Interest Rate. 
-                                </div> 
-                                <div *ngIf="irfb.invalid && (irfb.dirty || irfb.touched)" class="alert alert-danger">
+                            <div *ngIf="irfb.invalid && (irfb.dirty || irfb.touched)" class="alert alert-danger">
                                 <div *ngIf="irfb.errors.required">
-                                     Interest Rate Bid is required.
+                                    {{stock.value}} Interest Rate Bid is required.
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="form-group row col-md-6" style="margin-left: auto;">
-                        <label class="control-label col-sm-4" for="interest-rate-ask1"> Interest Rate {{time.value}}
+                        <label class="control-label col-sm-4" for="interest-rate-ask1">{{stock.value}} Interest Rate {{first.value}}
                             Ask</label>
                         <div class="col-sm-6" novalidate>
                             <input type="number" class="form-control" id="interest-rate-ask1"
-                                [(ngModel)]="formDataModel.interest_rate_ask"
-                                placeholder="Enter {{stock.value}} Interest Rate {{time.value}} Ask" name="interest-rate-ask1"
+                                [(ngModel)]="formDataModel.interest_rate_curr1_ask"
+                                placeholder="Enter {{stock.value}} Interest Rate {{first.value}} Ask" name="interest-rate-ask1"
                                 #irfa="ngModel" ngModel required min=0>
-                                <div *ngIf="formDataModel.int_a()" class="alert alert-danger">
-                                    Ask Interest Rate should be greater than bid Interest Rate. 
-                                </div>
-                                <div *ngIf="irfa.invalid && (irfa.dirty || irfa.touched)" class="alert alert-danger">
+                            <div *ngIf="irfa.invalid && (irfa.dirty || irfa.touched)" class="alert alert-danger">
                                 <div *ngIf="irfa.errors.required">
-                                     Interest Rate Ask is required.
+                                    {{stock.value}} Interest Rate Ask is required.
                                 </div>
                             </div>
                         </div>
@@ -164,11 +150,8 @@
                         <label class="control-label col-sm-4" for="quantity">Quantity</label>
                         <div class="col-sm-6" novalidate>
                           <input type="number" class="form-control" id="quantity" placeholder="Enter Quantity"
-                            [(ngModel)]="formDataModel.quantity" name="quantity" #quantity="ngModel" ngModel required min=0>
-                            <div *ngIf="formDataModel.q()" class="alert alert-danger">
-                                Please enter a positive quantity. 
-                            </div> 
-                            <div *ngIf="quantity.invalid && (quantity.dirty || quantity.touched)" class="alert alert-danger">
+                            [(ngModel)]="formDataModel.fwd_arb_quantity" name="quantity" #quantity="ngModel" ngModel required min=0>
+                          <div *ngIf="quantity.invalid && (quantity.dirty || quantity.touched)" class="alert alert-danger">
                             <div *ngIf="quantity.errors.required">
                               Quantity is required.
                             </div>
@@ -184,10 +167,7 @@
                             <input type="number" class="form-control" id="transaction-cost"
                                 placeholder="Enter Transaction Cost" [(ngModel)]="formDataModel.transaction_cost"
                                 name="transaction-cost" #tc="ngModel" ngModel required min=0>
-                                <div *ngIf="formDataModel.tc()" class="alert alert-danger">
-                                    Please enter a positive Transaction Cost. 
-                                </div> 
-                                <div *ngIf="tc.invalid && (tc.dirty || tc.touched)" class="alert alert-danger">
+                            <div *ngIf="tc.invalid && (tc.dirty || tc.touched)" class="alert alert-danger">
                                 <div *ngIf="tc.errors.required">
                                     Transaction Cost is required.
                                 </div>
@@ -221,7 +201,7 @@
 
         </div>
 
-        <div *ngIf="outputobj?.fwdArbitrage && outputobj?.revArbitrage==false" class="modal fade" id="arbModal" tabindex="-1" role="dialog"
+        <div *ngIf="outputobj.fwdArbitrage" class="modal fade" id="arbModal" tabindex="-1" role="dialog"
             aria-labelledby="arbModalLabel" aria-hidden="true" style="margin-top: 100px;">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -245,7 +225,7 @@
         </div>
 
 
-        <div *ngIf="outputobj?.fwdArbitrage==false && outputobj?.revArbitrage==false" class="modal fade" id="arbModal" tabindex="-1" role="dialog"
+        <div *ngIf="outputobj.fwdArbitrage==false" class="modal fade" id="arbModal" tabindex="-1" role="dialog"
             aria-labelledby="arbModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -255,15 +235,10 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div *ngIf="outputobj?.profit_loss_fwd >= outputobj?.profit_loss_rev" class="modal-body">
+                    <div class="modal-body">
                         <br>
                         Arbitrage opportunity not found! Loss is {{outputobj.profit_loss_fwd}}
-                        <br>
-                        <br>
-                    </div>
-                    <div *ngIf="outputobj?.profit_loss_fwd < outputobj?.profit_loss_rev" class="modal-body">
-                        <br>
-                        Arbitrage opportunity not found! Loss is {{outputobj.profit_loss_rev}}
+
                         <br>
                         <br>
                     </div>
@@ -275,11 +250,11 @@
             </div>
         </div>
 
-        <div *ngIf="outputobj?.revArbitrage && outputobj?.fwdArbitrage==false" class="modal fade" id="arbModal" tabindex="-1" role="dialog"
+        <div *ngIf="outputobj.revArbitrage" class="modal fade" id="arbModal" tabindex="-1" role="dialog"
             aria-labelledby="arbModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <div class="modal-header" style="background-color: #17fc6f;">
+                    <div class="modal-header">
                         <h5 class="modal-title" id="arbModalLabel">Arbitrage Sucess</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -296,27 +271,18 @@
             </div>
         </div>
 
-        <div *ngIf="outputobj?.fwdArbitrage && outputobj?.revArbitrage" class="modal fade" id="arbModal" tabindex="-1" role="dialog"
+        <div *ngIf="outputobj.revArbitrage==false" class="modal fade" id="arbModal" tabindex="-1" role="dialog"
             aria-labelledby="arbModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <div class="modal-header" style="background-color: #17fc6f;">
+                    <div class="modal-header">
                         <h5 class="modal-title" id="arbModalLabel">Arbitrage Sucess</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div *ngIf="outputobj?.profit_loss_fwd >= outputobj?.profit_loss_rev" class="modal-body">
-                        <br>
-                        Forward Arbitrage opportunity found! Profit is {{outputobj.profit_loss_fwd}}
-                        <br>
-                        <br>
-                    </div>
-                    <div *ngIf="outputobj?.profit_loss_fwd < outputobj?.profit_loss_rev" class="modal-body">
-                        <br>
-                        Reverse Arbitrage opportunity found! Profit is {{outputobj.profit_loss_rev}}
-                        <br>
-                        <br>
+                    <div class="modal-body">
+                        Arbitrage opportunity not found! Loss is {{outputobj.profit_loss_rev}}
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
