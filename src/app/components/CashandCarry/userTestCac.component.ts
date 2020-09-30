@@ -42,7 +42,6 @@ export class userTestComponentCac{
             this.controlr = this.outputobj?.revArbitrage;
             this.prof = this.outputobj?.profit_loss_fwd;
             this.pror = this.outputobj?.profit_loss_rev;
-            console.log(this.outputobj);
         });
         
 
