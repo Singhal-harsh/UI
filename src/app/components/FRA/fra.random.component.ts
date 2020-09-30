@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { interval, Subscription } from 'rxjs';
-//import { UserServiceFra } from '../../services/user.service.fra';
+
 @Component({
   selector: 'randomfra',
   templateUrl: './fra.random.component.html',

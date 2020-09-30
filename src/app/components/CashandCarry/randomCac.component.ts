@@ -49,7 +49,6 @@ public displayDetails: boolean=false;
     console.log("Get Values called")
     this.id = this.id + 1;
     this.userService.getRandomCac().subscribe(data =>{  
-      //console.log(data);
       this.randomobj = data;  
       console.log(this.randomobj.arbitrage.quantity);
       if(this.randomobj.fwdArbitrage || this.randomobj.revArbitrage){

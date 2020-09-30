@@ -37,28 +37,6 @@ export class userTestComponentFra{
             this.outputobj=data;
             console.log(this.outputobj.fwdArbitrage);
         });
-        
-        // this.flag1 = this.flag;
-        // this.flag = false;
-
-
+     
     }
-
-    // showPop(){
-    //     // setTimeout(() => {
-    //     this.flag = true;
-    //     //   }, 3000);
-    // }
-        //  let observable:Observable<Object> = this.userService.getOutput();
-        //  observable.subscribe((response:any)=>this.outputobj= response);
-        //  console.log(this.outputobj);
-    
-
-    // handleClickTrial(){
-
-    //     this.dataTrial = this.formDataModel.interest_rate_curr1_ask;
-
-    // }
-
-
  }

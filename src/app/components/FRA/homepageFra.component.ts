@@ -17,24 +17,10 @@ export class HomeComponentFra{
     }
 
     checkArb() {
-        
-        // let navigationExtras: NavigationExtras = {
-        //     queryParams: editprod
-        // };
-
-        console.log("Checking checkArb");
         this.router.navigate(["usertestfra"]);
-
     }
 
     randomArb() {
-        
-        // let navigationExtras: NavigationExtras = {
-        //     queryParams: editprod
-        // };
-
-        console.log("Checking randomArb");
         this.router.navigate(["randomfra"]);
-
     }
 }

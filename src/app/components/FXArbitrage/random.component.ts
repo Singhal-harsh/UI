@@ -52,7 +52,6 @@ export class RandomComponent {
     this.dateTime=this.datepipe.transform(new Date().toString(),'MMM d, y, h:mm:ss a');
 
     this.userService.getRandom().subscribe(data =>{  
-      //console.log(data);
       this.randomobj = data;  
       console.log(this.randomobj.arbitrage.fwd_arb_quantity);
       if(this.randomobj.fwdArbitrage || this.randomobj.revArbitrage){
