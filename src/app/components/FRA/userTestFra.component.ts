@@ -5,7 +5,7 @@ import { FormDataFra } from './formDataFra';
 
 
 @Component({
-    selector : 'userTestFra',
+    selector : 'usertestfra',
     templateUrl: './userTestFra.component.html',
     providers: [ UserService ],
     styleUrls: ['./userTestFra.component.css']

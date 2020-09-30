@@ -5,7 +5,7 @@ import { UserService } from '../../services/user.service';
 import { interval, Subscription } from 'rxjs';
 //import { UserServiceFra } from '../../services/user.service.fra';
 @Component({
-  selector: 'fra-random',
+  selector: 'randomfra',
   templateUrl: './fra.random.component.html',
   providers: [DatePipe]
 })

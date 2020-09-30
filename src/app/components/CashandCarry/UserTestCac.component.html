@@ -11,8 +11,8 @@
 </head>
 
 <nav class="navbar navbar-dark bg-primary nav justify-content-center">
-    <a class="navbar-brand" routerLink="/userInputCac" routerLinkActive="active">Check for Arbitrage</a>&nbsp;&nbsp;&nbsp;
-    <a class="navbar-brand" routerLink="/randomCac" routerLinkActive="active">Random Arbitrage Opportunities</a>
+    <a class="navbar-brand" routerLink="/usertestcac" routerLinkActive="active">Check for Arbitrage</a>&nbsp;&nbsp;&nbsp;
+    <a class="navbar-brand" routerLink="/randomcac" routerLinkActive="active">Random Arbitrage Opportunities</a>
 </nav>
 
 <body>
@@ -82,7 +82,9 @@
                                 <div *ngIf="ask.errors.required">
                                     {{stock.value}} Spot Ask is required.
                                 </div>
-
+                            </div>
+                            <div *ngIf="formDataModel.askbid()">
+                                Spot Ask should be greater than Spot Ask.
                             </div>
                         </div>
                     </div>
@@ -139,7 +141,7 @@
                                 [(ngModel)]="formDataModel.interest_rate_ask"
                                 placeholder="Enter {{stock.value}} Interest Rate {{time.value}} Ask" name="interest-rate-ask1"
                                 #irfa="ngModel" ngModel required min=0>
-                            <div *ngIf="irfa.invalid && (irfa.dirty || irfa.touched)" class="alert alert-danger">
+                            <div *ngIf="irfa.invalid && (irfa.dirty || irfa.touched) " class="alert alert-danger">
                                 <div *ngIf="irfa.errors.required">
                                     {{stock.value}} Interest Rate Ask is required.
                                 </div>

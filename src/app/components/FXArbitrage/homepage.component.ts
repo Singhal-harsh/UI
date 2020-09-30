@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
-    selector : 'home',
+    selector : 'homefx',
     templateUrl: './homepage.component.html',
     styleUrls: ['./homepage.component.css']
 
@@ -23,7 +23,7 @@ export class HomeComponent{
         // };
 
         console.log("Checking checkArb");
-        this.router.navigate(["userInput"]);
+        this.router.navigate(["usertestfx"]);
 
     }
 
@@ -34,7 +34,7 @@ export class HomeComponent{
         // };
 
         console.log("Checking randomArb");
-        this.router.navigate(["random"]);
+        this.router.navigate(["randomfx"]);
 
     }
 }

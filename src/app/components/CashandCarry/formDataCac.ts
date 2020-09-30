@@ -11,6 +11,12 @@ export class formDataCac{
 	public transaction_cost : number;
 	public quantity : number;
 	public time_months : number;
-    public mapping: boolean;
+	public mapping: boolean;
+	
+	public askbid(): boolean{
+		if(this.spot_ask < this.spot_bid){
+			return true;
+		}
+	}
     
 }

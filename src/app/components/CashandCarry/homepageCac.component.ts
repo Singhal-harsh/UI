@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
-    selector : 'homeCac',
+    selector : 'homecac',
     templateUrl: './homepageCac.component.html',
     styleUrls: ['./homepageCac.component.css']
 
@@ -23,7 +23,7 @@ export class HomeComponentCac{
         // };
 
         console.log("Checking checkArb");
-        this.router.navigate(["userTestCac"]);
+        this.router.navigate(["usertestcac"]);
 
     }
 
@@ -34,7 +34,7 @@ export class HomeComponentCac{
         // };
 
         console.log("Checking randomArb");
-        this.router.navigate(["randomCac"]);
+        this.router.navigate(["randomcac"]);
 
     }
 }

@@ -5,7 +5,7 @@ import {ActivatedRoute , Router} from '@angular/router';
 
 
 @Component({
-    selector : 'userTest',
+    selector : 'usertestfx',
     templateUrl: './userTest.component.html',
     providers: [ UserService ],
     styleUrls: ['./userTest.component.css']

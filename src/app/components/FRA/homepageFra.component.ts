@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
-    selector : 'homeFra',
+    selector : 'homefra',
     templateUrl: './homepageFra.component.html',
     styleUrls: ['./homepageFra.component.css']
 
@@ -23,7 +23,7 @@ export class HomeComponentFra{
         // };
 
         console.log("Checking checkArb");
-        this.router.navigate(["userTestFra"]);
+        this.router.navigate(["usertestfra"]);
 
     }
 
@@ -34,7 +34,7 @@ export class HomeComponentFra{
         // };
 
         console.log("Checking randomArb");
-        this.router.navigate(["fra-random"]);
+        this.router.navigate(["randomfra"]);
 
     }
 }

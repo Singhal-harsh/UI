@@ -5,7 +5,7 @@ import { formDataCac } from './formDataCac';
 
 
 @Component({
-    selector : 'userTestCac',
+    selector : 'usertestcac',
     templateUrl: './userTestCac.component.html',
     providers: [ UserService ],
     styleUrls: ['./userTestCac.component.css']

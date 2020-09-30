@@ -22,7 +22,7 @@ export class FirstComponent{
         // let navigationExtras: NavigationExtras = {
         //     queryParams: editprod
         // };
-        this.router.navigate(["home"]);
+        this.router.navigate(["homefx"]);
     }
     
     toCac() {
@@ -30,7 +30,7 @@ export class FirstComponent{
         // let navigationExtras: NavigationExtras = {
         //     queryParams: editprod
         // };
-        this.router.navigate(["homeCac"]);
+        this.router.navigate(["homecac"]);
     }
 
     
@@ -42,7 +42,7 @@ export class FirstComponent{
         // };
 
         
-        this.router.navigate(["homeFra"]);
+        this.router.navigate(["homefra"]);
 
     }
 
