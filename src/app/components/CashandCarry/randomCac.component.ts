@@ -5,7 +5,7 @@ import { UserService } from '../../services/user.service';
 import { interval, Subscription } from 'rxjs';
 
 @Component({
-  selector: 'randomCac',
+  selector: 'randomcac',
   templateUrl: './randomCac.component.html',
   providers: [DatePipe]
 })
