@@ -17,24 +17,11 @@ export class HomeComponent{
     }
 
     checkArb() {
-        
-        // let navigationExtras: NavigationExtras = {
-        //     queryParams: editprod
-        // };
-
-        console.log("Checking checkArb");
         this.router.navigate(["usertestfx"]);
 
     }
 
     randomArb() {
-        
-        // let navigationExtras: NavigationExtras = {
-        //     queryParams: editprod
-        // };
-
-        console.log("Checking randomArb");
         this.router.navigate(["randomfx"]);
-
     }
 }

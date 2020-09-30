@@ -17,24 +17,10 @@ export class HomeComponentCac{
     }
 
     checkArb() {
-        
-        // let navigationExtras: NavigationExtras = {
-        //     queryParams: editprod
-        // };
-
-        console.log("Checking checkArb");
         this.router.navigate(["usertestcac"]);
-
     }
 
     randomArb() {
-        
-        // let navigationExtras: NavigationExtras = {
-        //     queryParams: editprod
-        // };
-
-        console.log("Checking randomArb");
         this.router.navigate(["randomcac"]);
-
     }
 }

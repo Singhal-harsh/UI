@@ -16,11 +16,11 @@
   </style>
 </head>
 
-<nav class="navbar navbar-dark bg-primary nav justify-content-center">
+<!-- <nav class="navbar navbar-dark bg-primary nav justify-content-center">
   <a class="navbar-brand" routerLink="/usertestfra" routerLinkActive="active" >Check for Arbitrage</a>&nbsp;&nbsp;&nbsp;
   <a class="navbar-brand" routerLink="/randomfra" routerLinkActive="active" >Random Arbitrage Opportunities</a>
   <button type="button" class="btn btn-dark" (click)="getValues()">Start Random Generator</button>
-</nav>
+</nav> -->
 
 <table class="table table-hover table-dark">
   <thead>
@@ -38,8 +38,8 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngIf="!randomobj.fwdArbitrage && !randomobj.revArbitrage" style="background-color: red;">
-      <th scope="row">{{id}}</th>
+    <tr *ngIf="!randomobj?.fwdArbitrage && !randomobj?.revArbitrage" style="background-color: red;">
+      <th scope="row">{{randomobj.id}}</th>
       <td>{{randomobj.arbitrage.interest_rate1_bid|number:'1.2-2'}}</td>
       <td>{{randomobj.arbitrage.interest_rate1_ask|number:'1.2-2'}}</td>
       <td>{{randomobj.arbitrage.interest_rate2_bid| number:'1.2-2'}}</td>
@@ -51,8 +51,8 @@
       <td>{{randomobj.revArbitrage}}</td>
     </tr>
 
-    <tr *ngIf="randomobj.fwdArbitrage || randomobj.revArbitrage" style="background-color:rgb(57, 221, 57);">
-      <th scope="row">{{id}}</th>
+    <tr *ngIf="randomobj?.fwdArbitrage || randomobj?.revArbitrage" style="background-color:rgb(57, 221, 57);">
+      <th scope="row">{{randomobj.id}}</th>
       <td>{{randomobj.arbitrage.interest_rate1_bid|number:'1.2-2'}}</td>
       <td>{{randomobj.arbitrage.interest_rate1_ask|number:'1.2-2'}}</td>
       <td>{{randomobj.arbitrage.interest_rate2_bid| number:'1.2-2'}}</td>
@@ -67,12 +67,12 @@
 </table>
 
 
-<div *ngIf="randomobj.fwdArbitrage || randomobj.revArbitrage" class="alert alert-success text-center" role="alert">
+<div *ngIf="randomobj?.fwdArbitrage || randomobj?.revArbitrage" class="alert alert-success text-center" role="alert">
   <h4 class="alert-heading">Arbitrage opportunity found!</h4>
   <h5>Executing the beneficial trade...</h5>
 </div>
 
-<div *ngIf="!randomobj.fwdArbitrage && !randomobj.revArbitrage" class="alert alert-danger text-center" role="alert">
+<div *ngIf="!randomobj?.fwdArbitrage && !randomobj?.revArbitrage" class="alert alert-danger text-center" role="alert">
   <h4 class="alert-heading">Arbitrage opportunity not found!</h4>
 </div>
 
@@ -95,15 +95,8 @@
         </tr>
       </thead>
       <tbody>
-        <!-- <tr *ngFor = "let product of products">
-          <td>{{product.id}}</td>
-          <td>{{product.name}}</td>
-          <td>{{product.quantity}}</td>
-          <td>{{product.price}}</td>
-          <td><button type="button" (click) = onEdit(product)>EDIT</button>&nbsp;&nbsp;<button type="button" (click) = onDelete(product.id)>DELETE</button>
-      </tr> -->
         <tr *ngFor = "let robj of randoms">
-          <th scope="row">{{id}}</th>
+          <th scope="row">{{robj.id}}</th>
           <td>{{robj.arbitrage.notional_amount}}</td>
           <td *ngIf = "robj.profit_loss_fwd >= robj.profit_loss_rev">{{robj.profit_loss_fwd | number:'1.2-2'}}</td>
           <td *ngIf = "robj.profit_loss_fwd < robj.profit_loss_rev">{{robj.profit_loss_rev | number:'1.2-2'}}</td>
