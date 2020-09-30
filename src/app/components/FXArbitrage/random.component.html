@@ -5,7 +5,8 @@
   <meta charset="utf-8">
   <style>
   .rightdiv{
-   float: right;  padding : 1%; 
+   float: right;  
+   padding : 1%; 
     color:white; 
     background-color:#494e52; 
     width: 50%; height:1000px;  
@@ -17,8 +18,8 @@
 
 <body style="background-color: #494e52;">
 
-<table class="table table-hover" >
-  <thead style="background-color:#171e27; color: #ffffff;">
+<table class="table table-hover" style="margin-bottom: 0px; border: hidden;" >
+  <thead style="background-color:#171e27; color: #ffffff; ">
     <tr>
       <th scope="col">TRADE ID</th>
       <th scope="col">USD/JPY Spot Bid</th>
@@ -35,7 +36,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngIf="!randomobj.fwdArbitrage && !randomobj.revArbitrage" style="background-color: red;">
+    <tr *ngIf="!randomobj.fwdArbitrage && !randomobj.revArbitrage" style="background-color: #e06252; font-weight: 500;">
       <th scope="row">{{randomobj.id}}</th>
       <td>{{randomobj.arbitrage.spot_bid | number:'1.2-2'}}</td>
       <td>{{randomobj.arbitrage.spot_ask | number:'1.2-2'}}</td>
@@ -49,7 +50,7 @@
       <td>{{randomobj.fwdArbitrage}}</td>
       <td>{{randomobj.revArbitrage}}</td>
     </tr>
-    <tr *ngIf="randomobj.fwdArbitrage || randomobj.revArbitrage" style="background-color:rgb(57, 221, 57);">
+    <tr *ngIf="randomobj.fwdArbitrage || randomobj.revArbitrage" style="background-color:rgb(57, 221, 57); font-weight: 500;">
       <th scope="row">{{randomobj.id}}</th>
       <td>{{randomobj.arbitrage.spot_bid | number:'1.2-2'}}</td>
       <td>{{randomobj.arbitrage.spot_ask | number:'1.2-2'}}</td>
@@ -81,9 +82,10 @@
     color:white; 
     background-color: #494e52 ; 
     width: 50%; height:1000px;
-    overflow: scroll;">
-        <h3>Successful Arbitrage trades </h3>
-    <table class="table table-hover" style="background-color:#171e27; color: white;">
+    overflow-y: scroll;
+    ">
+    <h3 style="margin-left: 120px;">Successful Arbitrage trades </h3>
+    <table class="table " style="background-color:#171e27; color: white; border: hidden;">
       <thead >
         <tr>
           <th scope="col">Trade Id</th>
@@ -109,9 +111,9 @@
 
 <div class="rightdiv" >
     
-  <h3>Details of the trade</h3>
+  <h3 style="margin-left: 180px;">Details of the trade</h3>
   <div class="container" *ngIf="displayDetails">
-    <table class="responsive-table table table-hover table-bordered" style="background-color:#171e27; color: white;">
+    <table class="responsive-table table table-bordered" style="background-color:#171e27; color: white;">
       <caption>Arbitrage Details</caption>
       <thead>
         <tr>
