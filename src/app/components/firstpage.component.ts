@@ -18,30 +18,19 @@ export class FirstComponent{
     }
 
     toFX() {
-        
-        // let navigationExtras: NavigationExtras = {
-        //     queryParams: editprod
-        // };
+
         this.router.navigate(["homefx"]);
     }
     
     toCac() {
-        
-        // let navigationExtras: NavigationExtras = {
-        //     queryParams: editprod
-        // };
+    
         this.router.navigate(["homecac"]);
     }
 
     
 
     toFRA() {
-        
-        // let navigationExtras: NavigationExtras = {
-        //     queryParams: editprod
-        // };
-
-        
+       
         this.router.navigate(["homefra"]);
 
     }

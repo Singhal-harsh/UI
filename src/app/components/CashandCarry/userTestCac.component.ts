@@ -32,11 +32,8 @@ export class userTestComponentCac{
 
     onSubmit(){
 
-        console.log(this.formDataModel);
-        this.userService.sendInputCac(this.formDataModel).subscribe(data => { 
-            console.log(data);  
+        this.userService.sendInputCac(this.formDataModel).subscribe(data => {  
             this.outputobj=data;
-            console.log(this.outputobj.fwdArbitrage);
         });
 
     }
