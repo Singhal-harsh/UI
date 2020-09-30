@@ -16,12 +16,6 @@
   </style>
 </head>
 
-<!-- <nav class="navbar navbar-dark bg-primary nav justify-content-center">
-  <a class="navbar-brand" routerLink="/usertestCac" routerLinkActive="active" >Check for Arbitrage</a>&nbsp;&nbsp;&nbsp;
-  <a class="navbar-brand" routerLink="/randomcac" routerLinkActive="active" >Random Arbitrage Opportunities</a>
-  <button type="button" class="btn btn-dark" (click)="getValues()">Start Random Generator</button>
-</nav> -->
-
 <table class="table table-hover table-dark">
   <thead>
     <tr>
@@ -133,11 +127,6 @@
           <td>{{displayObj.future_arb_amount |  number:'1.2-2'}}</td>
           <td>{{displayObj.rev_arb_amount |  number:'1.2-2'}}</td>
         </tr>
-        <!-- <tr>
-          <th>Amount Invested</th>
-          <td>{{displayObj.fwd_arb_invest_amount |  number:'1.2-2'}}</td>
-          <td>{{displayObj.rev_arb_invest_amount |  number:'1.2-2'}}</td>
-        </tr> -->
         <tr>
           <th scope="row">Trade Verdict</th>
           <td *ngIf="displayObj.profit_loss_fwd >= 0">Profit = {{displayObj.profit_loss_fwd|number:'1.2-2'}}</td>

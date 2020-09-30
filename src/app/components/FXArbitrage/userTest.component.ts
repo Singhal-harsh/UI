@@ -37,11 +37,8 @@ export class userTestComponent{
 
     onSubmit(){
 
-        console.log(this.formDataModel);
         this.userService.sendInput(this.formDataModel).subscribe(data => { 
-            console.log(data);  
             this.outputobj=data;
-            console.log(this.outputobj.fwdArbitrage);
         });
         
 
