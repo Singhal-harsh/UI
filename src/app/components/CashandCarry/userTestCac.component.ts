@@ -23,6 +23,7 @@ export class userTestComponentCac{
     
     public formDataModel = new formDataCac();
     public outputobj: any;
+    public control:boolean = false;
 
     constructor(userService : UserService, activatedRoute: ActivatedRoute , router: Router) {
         this.activatedRoute = activatedRoute;
@@ -35,7 +36,7 @@ export class userTestComponentCac{
         this.userService.sendInputCac(this.formDataModel).subscribe(data => {  
             this.outputobj=data;
         });
-
+        this.control = this.outputobj.fwdArbitrage;
     }
 
  }

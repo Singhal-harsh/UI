@@ -18,13 +18,13 @@ import { DatePipe } from '@angular/common';
 
 import { HttpClientModule} from '@angular/common/http';
 import { FirstComponent} from './components/firstpage.component';
-import { HomeComponentFra} from './components/FRA/homepageFra.component'
-
+import { HomeComponentFra} from './components/FRA/homepageFra.component';
+import { HomeComponentMain} from './components/homepageMain.component';
 
 @NgModule({
   declarations: [
     AppComponent, RandomComponent, userTestComponent, HomeComponent, userTestComponentCac, RandomComponentCac,
-     HomeComponentCac, FraRandomComponent, userTestComponentFra, HomeComponentFra, FirstComponent
+     HomeComponentCac, FraRandomComponent, userTestComponentFra, HomeComponentFra, FirstComponent, HomeComponentMain
   ],
   imports: [
     BrowserModule,
@@ -32,6 +32,7 @@ import { HomeComponentFra} from './components/FRA/homepageFra.component'
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot([
+      { path: '', redirectTo: 'home', pathMatch: 'full'}, 
       { path: 'usertestfx', component : userTestComponent},
       { path: 'randomfx', component : RandomComponent},
       { path: 'homefx', component : HomeComponent},
@@ -41,11 +42,11 @@ import { HomeComponentFra} from './components/FRA/homepageFra.component'
       { path:'usertestfra',component: userTestComponentFra},
       { path:'randomfra',component:FraRandomComponent},
       { path:'homefra',component: HomeComponentFra}, 
-      { path:'', component: FirstComponent},
+      { path:'home', component: HomeComponentMain},
       { path:'firstpage', component:FirstComponent}
   ])
   ],
   providers: [DatePipe],
-  bootstrap: [AppComponent, RandomComponent, userTestComponent, HomeComponent, userTestComponentCac, RandomComponentCac, HomeComponentCac, FraRandomComponent]
+  bootstrap: [AppComponent, RandomComponent, userTestComponent, HomeComponent, userTestComponentCac, RandomComponentCac, HomeComponentCac, FraRandomComponent, HomeComponentMain]
 })
 export class AppModule { }
