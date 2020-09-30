@@ -38,7 +38,7 @@ export class userTestComponentCac{
             this.outputobj=data;
             console.log(this.outputobj.fwdArbitrage);
         });
-        
+    
         // this.flag1 = this.flag;
         // this.flag = false;
 

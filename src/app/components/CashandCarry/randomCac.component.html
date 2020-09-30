@@ -17,8 +17,8 @@
 </head>
 
 <nav class="navbar navbar-dark bg-primary nav justify-content-center">
-  <a class="navbar-brand" routerLink="/userInputCac" routerLinkActive="active" >Check for Arbitrage</a>&nbsp;&nbsp;&nbsp;
-  <a class="navbar-brand" routerLink="/randomCac" routerLinkActive="active" >Random Arbitrage Opportunities</a>
+  <a class="navbar-brand" routerLink="/usertestCac" routerLinkActive="active" >Check for Arbitrage</a>&nbsp;&nbsp;&nbsp;
+  <a class="navbar-brand" routerLink="/randomcac" routerLinkActive="active" >Random Arbitrage Opportunities</a>
   <button type="button" class="btn btn-dark" (click)="getValues()">Start Random Generator</button>
 </nav>
 
@@ -52,7 +52,7 @@
       <td>{{randomobj.fwdArbitrage}}</td>
       <td>{{randomobj.revArbitrage}}</td>
     </tr>
-    <tr *ngIf="randomobj.fwdArbitrage || randomobj.revArbitrage" style="background-color:rgb(57, 221, 57);">
+    <tr *ngIf="randomobj?.fwdArbitrage || randomobj?.revArbitrage" style="background-color:rgb(57, 221, 57);">
         <th scope="row">{{randomobj.id}}</th>
         <td>{{randomobj.arbitrage.time_months}}</td>
         <td>{{randomobj.arbitrage.spot_bid | number:'1.2-2'}}</td>
@@ -69,12 +69,12 @@
 </table>
 
 
-<div *ngIf="randomobj.fwdArbitrage || randomobj.revArbitrage" class="alert alert-success text-center" role="alert">
+<div *ngIf="randomobj?.fwdArbitrage || randomobj?.revArbitrage" class="alert alert-success text-center" role="alert">
   <h4 class="alert-heading">Arbitrage opportunity found!</h4>
   <h5>Executing the beneficial trade...</h5>
 </div>
 
-<div *ngIf="!randomobj.fwdArbitrage && !randomobj.revArbitrage" class="alert alert-danger text-center" role="alert">
+<div *ngIf="!randomobj?.fwdArbitrage && !randomobj?.revArbitrage" class="alert alert-danger text-center" role="alert">
   <h4 class="alert-heading">Arbitrage opportunity not found!</h4>
 </div>
 
