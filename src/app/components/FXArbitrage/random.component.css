@@ -1,0 +1,38 @@
+.data{
+    background:url("../../assets/img/sl-genone-finance-as-a-service-hero.jpg");  
+    position: relative;
+    background-size: cover;
+    border: 2px solid black;
+    }
+.leftdiv{
+   float: left;  
+   padding : 1%; 
+    color:black; 
+    /* background-color:#494e52; */
+    background-color: red; 
+    width:fit-content; height:1000px;  
+    opacity: 0.3;
+    /* background-size: cover; */
+    position: relative;
+     }  
+.rightdiv{
+        float: right;  
+        padding : 1%; 
+        color:black;
+        width: fit-content;
+        height: fit-content;
+        /* background-color: red; */
+          }  
+    
+.rightdiv h3{
+margin-left: 120px;
+}
+.leftdiv h3{
+    margin-left: 120px;
+}
+.table_class{
+background: yellow;
+ color: black; 
+ border: hidden;
+  height:fit-content; width:fit-content;
+}
