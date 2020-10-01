@@ -19,7 +19,6 @@
       <div class="card-header"><b>Arbitrage Calculator</b></div>
       <div class="card-body text-center" style="margin: auto;">
 
-
         <form class="form-row" action="/action_page.php" #userform="ngForm" novalidate (ngSubmit)="onSubmit()">
 
          
@@ -140,15 +139,42 @@
               </div>
           </div>
 
-          <div class="form-group  col-md-10 " data-toggle="modal" data-target="#arbModal" style="margin-left: auto; margin-right: auto; margin-top:30px;">
+          <div class="form-group  col-md-10 " style="margin-left: auto; margin-right: auto; margin-top:30px;">
             <div class="col-sm-offset-6 col-md-14">
               <button type="submit" [disabled]="!userform.form.valid" class="btn btn-light">Check Arbitrage</button>
             </div>
           </div>
 
 
-
-      
+          <div style = "margin-left: auto; margin-right: auto;">
+          <div *ngIf="flag && controlf && controlr" class="alert alert-success text-center" role="alert">
+            Forward Arbitrage opportunity was found! Profit is {{prof | number:'1.2-2'}}
+            <br>
+            and also Reverse Arbitrage opportunity was found! Profit is {{pror | number:'1.2-2'}}
+            <br>
+          </div>
+        
+          <div *ngIf="flag && controlf && !controlr" class="alert alert-success text-center" role="alert">
+            Forward Arbitrage opportunity found! Profit is {{prof | number:'1.2-2'}}
+            <br>
+            Although, No Reverse Arbitrage opportunity was found! Loss is {{pror | number:'1.2-2'}}
+            <br>
+          </div>
+        
+          <div *ngIf="flag && !controlf && controlr" class="alert alert-success text-center" role="alert">
+            Reverse Arbitrage opportunity found! Profit is {{pror | number:'1.2-2'}}
+            <br>
+            Although, No Forward Arbitrage opportunity was found! Loss is {{prof | number:'1.2-2'}}
+            <br>
+          </div>
+          
+          <div *ngIf="flag && !controlf && !controlr" class="alert alert-danger text-center" role="alert">
+            No Arbitrage opportunity was found! Loss in Forward is {{prof | number:'1.2-2'}} 
+            <br>
+            and Loss in Reverse Arbitrage is {{pror | number:'1.2-2'}}
+            <br>
+          </div>
+        </div>
 
 
         </form>
@@ -157,7 +183,10 @@
   </div>
 
   
-<div *ngIf="controlf && controlr==false" class="modal fade" id="arbModal" tabindex="-1" role="dialog"
+
+
+
+<!-- <div *ngIf="controlf && controlr==false" class="modal fade" id="arbModal" tabindex="-1" role="dialog"
             aria-labelledby="arbModalLabel" aria-hidden="true" style="margin-top: 100px;">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -176,13 +205,14 @@
                         <br>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" >Close</button>
 
                     </div>
                 </div>
             </div>
         </div>
 
+        
 
         <div *ngIf="controlr==false && controlf==false" class="modal fade" id="arbModal" tabindex="-1" role="dialog"
             aria-labelledby="arbModalLabel" aria-hidden="true">
@@ -190,7 +220,7 @@
                 <div class="modal-content">
                     <div class="modal-header" style="background-color: #f82056;">
                         <h5 class="modal-title" id="arbModalLabel">Arbitrage Failure</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -229,7 +259,7 @@
                         <br>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" >Close</button>
 
                     </div>
                 </div>
@@ -242,7 +272,7 @@
                 <div class="modal-content">
                     <div class="modal-header" style="background-color: #17fc6f;">
                         <h5 class="modal-title" id="arbModalLabel">Arbitrage Sucess</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -255,13 +285,13 @@
                         <br>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" >Close</button>
 
                     </div>
                 </div>
             </div>
         </div>
-
+ -->
 </div>
 
 

@@ -202,15 +202,38 @@
                         </div>
                     </div>
 
-
-
-
+                    <div style = "margin-left: auto; margin-right: auto;">
+                        <div *ngIf="flag && controlf && controlr" class="alert alert-success text-center" role="alert">
+                          Forward Arbitrage opportunity was found! Profit is {{prof | number:'1.2-2'}}
+                          <br>
+                          and also Reverse Arbitrage opportunity was found! Profit is {{pror | number:'1.2-2'}}
+                          <br>
+                        </div>
+                      
+                        <div *ngIf="flag && controlf && !controlr" class="alert alert-success text-center" role="alert">
+                          Forward Arbitrage opportunity found! Profit is {{prof | number:'1.2-2'}}
+                          <br>
+                          Although, No Reverse Arbitrage opportunity was found! Loss is {{pror | number:'1.2-2'}}
+                          <br>
+                        </div>
+                      
+                        <div *ngIf="flag && !controlf && controlr" class="alert alert-success text-center" role="alert">
+                          Reverse Arbitrage opportunity found! Profit is {{pror | number:'1.2-2'}}
+                          <br>
+                          Although, No Forward Arbitrage opportunity was found! Loss is {{prof | number:'1.2-2'}}
+                          <br>
+                        </div>
+                        
+                        <div *ngIf="flag && !controlf && !controlr" class="alert alert-danger text-center" role="alert">
+                          No Arbitrage opportunity was found! Loss in Forward is {{prof | number:'1.2-2'}} 
+                          <br>
+                          and Loss in Reverse Arbitrage is {{pror | number:'1.2-2'}}
+                          <br>
+                        </div>
+                      </div>
 
 
                 </form>
-
-
-
 
 
 
@@ -220,7 +243,7 @@
 
         </div>
 
-        <div *ngIf="controlf && controlr==false" class="modal fade" id="arbModal" tabindex="-1" role="dialog"
+        <!-- <div *ngIf="controlf && controlr==false" class="modal fade" id="arbModal" tabindex="-1" role="dialog"
             aria-labelledby="arbModalLabel" aria-hidden="true" style="margin-top: 100px;">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -323,7 +346,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
     </div>
 

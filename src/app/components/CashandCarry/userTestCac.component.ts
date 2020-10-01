@@ -27,7 +27,7 @@ export class userTestComponentCac{
     public controlr:boolean;
     public prof:number;
     public pror:number;
-
+    public flag:boolean = false;
     constructor(userService : UserService, activatedRoute: ActivatedRoute , router: Router) {
         this.activatedRoute = activatedRoute;
         this.userService = userService;
@@ -38,15 +38,20 @@ export class userTestComponentCac{
 
         this.userService.sendInputCac(this.formDataModel).subscribe(data => {  
             this.outputobj=data;
-            this.controlf = this.outputobj?.fwdArbitrage;
-            this.controlr = this.outputobj?.revArbitrage;
-            this.prof = this.outputobj?.profit_loss_fwd;
-            this.pror = this.outputobj?.profit_loss_rev;
-            console.log(this.outputobj);
+            this.setValues();
         });
         
 
         
+    }
+
+    setValues(){
+        this.controlf = this.outputobj?.fwdArbitrage;
+        this.controlr = this.outputobj?.revArbitrage;
+        this.prof = this.outputobj?.profit_loss_fwd;
+        this.pror = this.outputobj?.profit_loss_rev;
+        this.flag = true;
+        console.log(this.outputobj);
     }
 
  }
