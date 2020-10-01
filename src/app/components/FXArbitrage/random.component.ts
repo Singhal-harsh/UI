@@ -37,7 +37,7 @@ export class RandomComponent {
 
   ngOnInit(){
       this.getValues();
-      const source = interval(6000);
+      const source = interval(3500);
       this.subscription = source.subscribe(val => this.getValues());
     }
 
@@ -45,14 +45,15 @@ export class RandomComponent {
 
     
     this.userService.getRandom().subscribe(data =>{  
+      this.randomobj = data;  
       this.controlf = this.randomobj?.fwdArbitrage;
       this.controlr = this.randomobj?.revArbitrage;
-      this.randomobj = data;  
       if(this.controlf|| this.controlr){
         this.randoms.push(this.randomobj);
         this.index = this.index + 1;
         
       }
+
       });
     }
 
