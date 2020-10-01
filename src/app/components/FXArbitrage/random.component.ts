@@ -37,7 +37,7 @@ export class RandomComponent {
 
   ngOnInit(){
       this.getValues();
-      const source = interval(3500);
+      const source = interval(1000);
       this.subscription = source.subscribe(val => this.getValues());
     }
 

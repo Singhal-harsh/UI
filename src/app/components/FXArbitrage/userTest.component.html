@@ -12,10 +12,10 @@
 
 <body>
 
-  <div style="background-color:#494e52; height: fit-content">
+  <div class = "back">
     <div class="card text-white form-center  mb-3"
       style="width:1000px; height:fit-content; margin-left: auto; margin-right: auto;margin-top: 20px;
-      background-color:#171e27;">
+      background-color:#171e27; opacity: 0.9;">
       <div class="card-header"><b>Arbitrage Calculator</b></div>
       <div class="card-body text-center" style="margin: auto;">
 
@@ -84,7 +84,7 @@
           </div>
 
           <div class="form-group row col-md-6" style="margin-left: auto;">
-            <label class="control-label col-sm-4" for="forward-bid">{{first.value}}/{{second.value}} Forward 6M
+            <label class="control-label col-sm-4" for="forward-bid">{{first.value}}/{{second.value}} Forward
               Bid</label>
             <div class="col-sm-6" novalidate>
               <input type="number" class="form-control" id="forward-bid" [(ngModel)]="formDataModel.forward_bid"
@@ -101,7 +101,7 @@
             </div>
           </div>
           <div class="form-group row col-md-6" style="margin-left: auto;">
-            <label class="control-label col-sm-4" for="forward-ask">{{first.value}}/{{second.value}} Forward 6M
+            <label class="control-label col-sm-4" for="forward-ask">{{first.value}}/{{second.value}} Forward
               Ask</label>
             <div class="col-sm-6" novalidate>
               <input type="number" class="form-control" id="forward-ask" [(ngModel)]="formDataModel.forward_ask"
