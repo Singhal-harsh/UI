@@ -24,6 +24,10 @@ export class RandomComponentCac {
   public displayDetails: boolean=false;
   public displayObj:any;
   
+  public controlf:boolean = false;
+  public controlr:boolean = false;
+  
+
   constructor(userService : UserService, activatedRoute: ActivatedRoute , router: Router, public datepipe: DatePipe) {
       this.activatedRoute = activatedRoute;
       this.userService = userService;
@@ -31,7 +35,8 @@ export class RandomComponentCac {
   }
 
   ngOnInit(){
-      const source = interval(10000);
+      this.getValues();
+      const source = interval(6000);
       this.subscription = source.subscribe(val => this.getValues());
     }
 
@@ -39,7 +44,9 @@ export class RandomComponentCac {
 
     this.userService.getRandomCac().subscribe(data =>{  
       this.randomobj = data;  
-      if(this.randomobj.fwdArbitrage || this.randomobj.revArbitrage){
+      this.controlf = this.randomobj?.fwdArbitrage;
+      this.controlr = this.randomobj?.revArbitrage;
+      if(this.controlf || this.controlr){
         this.randoms.push(this.randomobj);
         this.index = this.index + 1;
        

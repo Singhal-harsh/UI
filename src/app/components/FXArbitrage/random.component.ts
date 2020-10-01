@@ -18,6 +18,8 @@ export class RandomComponent {
   public activatedRoute: ActivatedRoute;
   public router: Router;
 
+  public controlf:boolean = false;
+  public controlr:boolean = false;
   
   public displayDetails: boolean=false;
 
@@ -34,7 +36,8 @@ export class RandomComponent {
   }
 
   ngOnInit(){
-      const source = interval(10000);
+      this.getValues();
+      const source = interval(6000);
       this.subscription = source.subscribe(val => this.getValues());
     }
 
@@ -42,8 +45,10 @@ export class RandomComponent {
 
     
     this.userService.getRandom().subscribe(data =>{  
+      this.controlf = this.randomobj?.fwdArbitrage;
+      this.controlr = this.randomobj?.revArbitrage;
       this.randomobj = data;  
-      if(this.randomobj.fwdArbitrage || this.randomobj.revArbitrage){
+      if(this.controlf|| this.controlr){
         this.randoms.push(this.randomobj);
         this.index = this.index + 1;
         

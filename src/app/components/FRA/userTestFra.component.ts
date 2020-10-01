@@ -24,6 +24,11 @@ export class userTestComponentFra{
     public formDataModel = new FormDataFra();
     public outputobj: any;
 
+    public controlf:boolean = false;
+    public controlr:boolean = false;
+    public prof:number = 10;
+    public pror:number = 10;
+
     constructor(userService : UserService, activatedRoute: ActivatedRoute , router: Router) {
         this.activatedRoute = activatedRoute;
         this.userService = userService;
@@ -34,7 +39,10 @@ export class userTestComponentFra{
 
         this.userService.sendInputFra(this.formDataModel).subscribe(data => {  
             this.outputobj=data;
+            this.controlf = this.outputobj?.fwdArbitrage;
+            this.controlr = this.outputobj?.revArbitrage;
+            this.prof = this.outputobj?.profit_loss_fwd;
+            this.pror = this.outputobj?.profit_loss_rev;
         });
-        this.control = this.outputobj.fwdArbitrage;
     }
  }
