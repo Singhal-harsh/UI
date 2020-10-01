@@ -20,11 +20,21 @@ body {
     color: white;
   /* font: 1em sans-serif; */
   text-align: justify;
-  background: rgb(0, 0, 0,0.4);
+  margin-top: 140px;
+  margin-bottom: 60px;
+  /* background: rgb(0, 0, 0,0.4); */
+  /* font-family: 'Times New Roman', Times, serif; */
+  font-family: "Raleway", sans-serif;
+  width: 100vh;
+  height: 70px;
+  }
+  .info h4{
+    font-weight: lighter;
   }
   
   .heading{
     padding-bottom: 5rem;
+   
   }
   
   #hero {
@@ -46,8 +56,7 @@ body {
   }
   
   #hero .container {
-    position: relative;
-    padding-top: 74px;
+    position: absolute;
     text-align: center;
   }
   
