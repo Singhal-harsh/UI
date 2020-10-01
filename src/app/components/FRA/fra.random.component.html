@@ -22,12 +22,9 @@
     <thead style="background-color:#171e27; color: #ffffff; ">
     <tr>
       <th scope="col">TRADE ID</th>
-      <th scope="col">Interest Rate Bid(6 Months)</th>
-      <th scope="col">Interest Rate Ask(6 Months)</th>
-      <th scope="col">Interest Rate Bid(12 Months)</th>
-      <th scope="col">Interest Rate Ask(12 Months)</th>
-      <th scope="col">FRA Rate Bid (6/12)</th>
-      <th scope="col">FRA Rate Ask (6/12)</th>
+      <th scope="col">Interest Rate (6 Months) Bid/Ask</th>
+      <th scope="col">Interest Rate (12 Months) Bid/Ask</th>
+      <th scope="col">FRA (6/12) Rate Bid/Ask</th>
       <th scope="col">Transaction Cost</th>
       <th scope="col">Forward Arbitrage Opportunity</th>
       <th scope="col">Reverse Arbitrage Opportunity</th>
@@ -36,12 +33,9 @@
   <tbody>
     <tr *ngIf="!controlf && !controlr" style="background-color: #e06252; font-weight: 500;">
       <th scope="row">{{randomobj?.id}}</th>
-      <td>{{randomobj?.arbitrage.interest_rate1_bid|number:'1.2-2'}}</td>
-      <td>{{randomobj?.arbitrage.interest_rate1_ask|number:'1.2-2'}}</td>
-      <td>{{randomobj?.arbitrage.interest_rate2_bid| number:'1.2-2'}}</td>
-      <td>{{randomobj?.arbitrage.interest_rate2_ask| number:'1.2-2'}}</td>
-      <td>{{randomobj?.arbitrage.fra_rate_bid|number:'1.2-2'}}</td>
-      <td>{{randomobj?.arbitrage.fra_rate_ask|number:'1.2-2'}}</td>
+      <td>{{randomobj?.arbitrage.interest_rate1_bid| number:'1.2-2'}} / {{randomobj?.arbitrage.interest_rate1_ask| number:'1.2-2'}}</td>
+      <td>{{randomobj?.arbitrage.interest_rate2_bid| number:'1.2-2'}} / {{randomobj?.arbitrage.interest_rate2_ask| number:'1.2-2'}} </td>
+      <td>{{randomobj?.arbitrage.fra_rate_bid| number:'1.2-2'}} / {{randomobj?.arbitrage.fra_rate_ask| number:'1.2-2'}}</td>
       <td>{{randomobj?.arbitrage.transaction_cost}}</td>
       <td *ngIf="controlf">Yes</td>
       <td *ngIf="!controlf">No</td>
@@ -51,12 +45,9 @@
 
     <tr *ngIf="controlf || controlr" style="background-color:rgb(57, 221, 57); font-weight: 500;">
       <th scope="row">{{randomobj?.id}}</th>
-      <td>{{randomobj?.arbitrage.interest_rate1_bid|number:'1.2-2'}}</td>
-      <td>{{randomobj?.arbitrage.interest_rate1_ask|number:'1.2-2'}}</td>
-      <td>{{randomobj?.arbitrage.interest_rate2_bid| number:'1.2-2'}}</td>
-      <td>{{randomobj?.arbitrage.interest_rate2_ask| number:'1.2-2'}}</td>
-      <td>{{randomobj?.arbitrage.fra_rate_bid| number:'1.2-2'}}</td>
-      <td>{{randomobj?.arbitrage.fra_rate_ask| number:'1.2-2'}}</td>
+      <td>{{randomobj?.arbitrage.interest_rate1_bid| number:'1.2-2'}} / {{randomobj?.arbitrage.interest_rate1_ask| number:'1.2-2'}}</td>
+      <td>{{randomobj?.arbitrage.interest_rate2_bid| number:'1.2-2'}} / {{randomobj?.arbitrage.interest_rate2_ask| number:'1.2-2'}} </td>
+      <td>{{randomobj?.arbitrage.fra_rate_bid| number:'1.2-2'}} / {{randomobj?.arbitrage.fra_rate_ask| number:'1.2-2'}}</td>
       <td>{{randomobj?.arbitrage.transaction_cost}}</td>
       <td *ngIf="controlf">Yes</td>
       <td *ngIf="!controlf">No</td>

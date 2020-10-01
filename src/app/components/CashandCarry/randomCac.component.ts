@@ -37,7 +37,7 @@ export class RandomComponentCac {
 
   ngOnInit(){
       this.getValues();
-      const source = interval(2000);
+      const source = interval(4000);
       this.subscription = source.subscribe(val => this.getValues());
     }
 
@@ -50,8 +50,10 @@ export class RandomComponentCac {
       if(this.controlf || this.controlr){
         this.randoms.push(this.randomobj);
         this.index = this.index + 1;
-       
       }
+
+      console.log(this.randomobj.id);
+      
       });
 
       
