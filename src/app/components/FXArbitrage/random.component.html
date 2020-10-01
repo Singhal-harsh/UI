@@ -13,21 +13,17 @@
         style="width: fit-content;  height:fit-content; margin-left: auto; margin-right: auto;
         margin-top: 20px; background-color:#171e27;">
 
-        <div class="card-header"><b>Arbitrage Calculator</b></div>
+        <div class="card-header"><b>Random Arbitrage Opportunities</b></div>
         <div class="card-body text-center" style="margin: auto;">
  
 <table class="table table-hover" style="margin-bottom: 0px; border: hidden;" >
   <thead style="background-color:#171e27; color: #ffffff; ">
     <tr>
       <th scope="col">TRADE ID</th>
-      <th scope="col">GBP/CAD Spot Bid</th>
-      <th scope="col">GBP/CAD Spot Ask</th>
-      <th scope="col">GBP/CAD Forward 6M Bid</th>
-      <th scope="col">GBP/CAD Forward 6M Ask</th>
-      <th scope="col">Interest Rate GBP Bid</th>
-      <th scope="col">Interest Rate GBP Ask</th>
-      <th scope="col">Interest Rate CAD Bid</th>
-      <th scope="col">Interest Rate CAD Ask</th>
+      <th scope="col">GBP/CAD Spot Bid/Ask</th>
+      <th scope="col">GBP/CAD Forward 6M Bid/Ask</th>
+      <th scope="col">Interest Rate GBP Bid/Ask</th>
+      <th scope="col">Interest Rate CAD Bid/Ask</th>
       <th scope="col">Transaction Cost</th>
       <th scope="col">Forward Arbitrage Opportunity</th>
       <th scope="col">Reverse Arbitrage Opportunity</th>
@@ -36,14 +32,10 @@
   <tbody>
     <tr *ngIf="!controlf && !controlr" style="background-color: #e06252; font-weight: 500;">
       <th scope="row">{{randomobj?.id}}</th>
-      <td>{{randomobj?.arbitrage.spot_bid | number:'1.2-2'}}</td>
-      <td>{{randomobj?.arbitrage.spot_ask | number:'1.2-2'}}</td>
-      <td>{{randomobj?.arbitrage.forward_bid | number:'1.2-2'}}</td>
-      <td>{{randomobj?.arbitrage.forward_ask | number:'1.2-2'}}</td>
-      <td>{{randomobj?.arbitrage.interest_rate_curr1_bid | number:'1.2-2'}}</td>
-      <td>{{randomobj?.arbitrage.interest_rate_curr1_ask | number:'1.2-2'}}</td>
-      <td>{{randomobj?.arbitrage.interest_rate_curr2_bid | number:'1.2-2'}}</td>
-      <td>{{randomobj?.arbitrage.interest_rate_curr2_ask | number:'1.2-2'}}</td>
+      <td>{{randomobj?.arbitrage.spot_bid | number:'1.2-2'}} / {{randomobj?.arbitrage.spot_ask | number:'1.2-2'}}</td>
+      <td>{{randomobj?.arbitrage.forward_bid | number:'1.2-2'}} / {{randomobj?.arbitrage.forward_ask | number:'1.2-2'}}</td>
+      <td>{{randomobj?.arbitrage.interest_rate_curr1_bid | number:'1.2-2'}} / {{randomobj?.arbitrage.interest_rate_curr1_ask | number:'1.2-2'}}</td>
+      <td>{{randomobj?.arbitrage.interest_rate_curr2_bid | number:'1.2-2'}} / {{randomobj?.arbitrage.interest_rate_curr2_ask | number:'1.2-2'}}</td>
       <td>{{randomobj?.arbitrage.transaction_cost | number:'1.2-2'}}</td>
       <td *ngIf="controlf">Yes</td>
       <td *ngIf="!controlf">No</td>
@@ -52,14 +44,10 @@
     </tr>
     <tr *ngIf="controlf || controlr" style="background-color:rgb(57, 221, 57); font-weight: 500;">
       <th scope="row">{{randomobj?.id}}</th>
-      <td>{{randomobj?.arbitrage.spot_bid | number:'1.2-2'}}</td>
-      <td>{{randomobj?.arbitrage.spot_ask | number:'1.2-2'}}</td>
-      <td>{{randomobj?.arbitrage.forward_bid | number:'1.2-2'}}</td>
-      <td>{{randomobj?.arbitrage.forward_ask | number:'1.2-2'}}</td>
-      <td>{{randomobj?.arbitrage.interest_rate_curr1_bid | number:'1.2-2'}}</td>
-      <td>{{randomobj?.arbitrage.interest_rate_curr1_ask | number:'1.2-2'}}</td>
-      <td>{{randomobj?.arbitrage.interest_rate_curr2_bid | number:'1.2-2'}}</td>
-      <td>{{randomobj?.arbitrage.interest_rate_curr2_ask | number:'1.2-2'}}</td>
+      <td>{{randomobj?.arbitrage.spot_bid | number:'1.2-2'}} / {{randomobj?.arbitrage.spot_ask | number:'1.2-2'}}</td>
+      <td>{{randomobj?.arbitrage.forward_bid | number:'1.2-2'}} / {{randomobj?.arbitrage.forward_ask | number:'1.2-2'}}</td>
+      <td>{{randomobj?.arbitrage.interest_rate_curr1_bid | number:'1.2-2'}} / {{randomobj?.arbitrage.interest_rate_curr1_ask | number:'1.2-2'}}</td>
+      <td>{{randomobj?.arbitrage.interest_rate_curr2_bid | number:'1.2-2'}} / {{randomobj?.arbitrage.interest_rate_curr2_ask | number:'1.2-2'}}</td>
       <td>{{randomobj?.arbitrage.transaction_cost | number:'1.2-2'}}</td>
       <td *ngIf="controlf">Yes</td>
       <td *ngIf="!controlf">No</td>
@@ -117,7 +105,7 @@
   <div *ngIf="displayDetails" class="card text-white form-left  mb-3" id="carddivright">
     <!-- <div class="card-header"><b>Arbitrage Calculator</b></div> -->
         <div class="card-body text-center" style="margin: auto;">
-          <h3>Arbitrage Calculator</h3>
+          <h3>Details of the Trade</h3>
         <table class="responsive-table table  table-bordered details_table">
          <thead>
         <tr>
