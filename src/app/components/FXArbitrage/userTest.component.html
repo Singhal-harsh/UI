@@ -25,10 +25,16 @@
           <div class="form-group row col-sm-6 " style="margin-left: auto;">
             <label class="control-label col-sm-4" for="first-currency">First currency</label>
             <div class="col-sm-6">
-              <select #first class="form-control" id="first-currency">
-                <option [value]="currency" *ngFor="let currency of currencies1">{{currency}}</option>
+              <input maxlength=3 type="text" class="form-control" id="first-currency"
+                placeholder="For Eg. USD" name="first-currency"
+                #first="ngModel" ngModel required>
+              <div *ngIf="first.invalid && (first.dirty || first.touched)" class="alert alert-danger">
 
-              </select>
+                  <div *ngIf="first.errors.required">
+                    1st currency is required.
+                  </div>
+  
+              </div>
             </div>
 
           </div>
@@ -36,10 +42,15 @@
           <div class="form-group row col-md-6" style="margin-left: auto;">
             <label class="control-label col-sm-4" for="second-currency">Second currency</label>
             <div class="col-sm-6">
-              <select #second class="form-control" id="second-currency">
-                <option [value]="currency" *ngFor="let currency of currencies2">{{currency}}</option>
+              <input maxlength=3 type="text" class="form-control" id="second-currency"
+                placeholder="For Eg. CAD" name="second-currency"
+                #second="ngModel" ngModel required>
+              <div *ngIf="second.invalid && (second.dirty || second.touched)" class="alert alert-danger">
 
-              </select>
+                  <div *ngIf="second.errors.required">
+                    2nd currency is required.
+                  </div>
+              </div>
             </div>
 
           </div>
@@ -48,7 +59,7 @@
             <label class="control-label col-sm-4" for="spot-bid">{{first.value}}/{{second.value}} Spot Bid</label>
             <div class="col-sm-6" novalidate>
               <input type="number" class="form-control" id="spot-bid"
-                placeholder="Enter {{first.value}}/{{second.value}} Spot Bid" name="spot_bid"
+                placeholder="Enter Spot Bid" name="spot_bid"
                 [(ngModel)]="formDataModel.spot_bid" #name="ngModel" ngModel required >
                 <div *ngIf="formDataModel.spot_b()" class="alert alert-danger">
                   Please enter a positive spot bid.
@@ -59,17 +70,16 @@
                   {{first.value}}/{{second.value}} bid is required.
                 </div>
 
-                
-
-
+              
               </div>
             </div>
           </div>
+
           <div class="form-group row col-md-6" style="margin-left: auto; margin-top: 10px;">
             <label class="control-label col-sm-4" for="spot-ask">{{first.value}}/{{second.value}} Spot Ask</label>
             <div class="col-sm-6" novalidate>
               <input type="number" class="form-control" id="spot-ask" [(ngModel)]="formDataModel.spot_ask"
-                placeholder="Enter {{first.value}}/{{second.value}} Spot Ask" name="spot-ask" #ask="ngModel" ngModel
+                placeholder="Enter Spot Ask" name="spot-ask" #ask="ngModel" ngModel
                 required>
                 <div *ngIf="formDataModel.spot_a()" class="alert alert-danger">
                   Ask price should be greater than Bid price.
@@ -88,14 +98,14 @@
               Bid</label>
             <div class="col-sm-6" novalidate>
               <input type="number" class="form-control" id="forward-bid" [(ngModel)]="formDataModel.forward_bid"
-                placeholder="Enter {{first.value}}/{{second.value}} Forward 6M Bid" name="forward-bid" #forB="ngModel"
+                placeholder="Enter Forward Bid" name="forward-bid" #forB="ngModel"
                 ngModel required min=0>
                 <div *ngIf="formDataModel.for_b()" class="alert alert-danger">
                   Please enter a positive spot bid.
                 </div>
                 <div *ngIf="forB.invalid && (forB.dirty || forB.touched)" class="alert alert-danger">
                 <div *ngIf="forB.errors.required">
-                  {{first.value}}/{{second.value}} Forward 6M Bid is required.
+                  {{first.value}}/{{second.value}} Forward Bid is required.
                 </div>
               </div>
             </div>
@@ -105,14 +115,14 @@
               Ask</label>
             <div class="col-sm-6" novalidate>
               <input type="number" class="form-control" id="forward-ask" [(ngModel)]="formDataModel.forward_ask"
-                placeholder="Enter {{first.value}}/{{second.value}} Forward 6M Ask" name="forward-ask" #forA="ngModel"
+                placeholder="Enter Forward Ask" name="forward-ask" #forA="ngModel"
                 ngModel required min=0>
                 <div *ngIf="formDataModel.for_a()" class="alert alert-danger">
                   Ask price should be greater than Bid price.
                 </div>
                 <div *ngIf="forA.invalid && (forA.dirty || forA.touched)" class="alert alert-danger">
                 <div *ngIf="forA.errors.required">
-                  {{first.value}}/{{second.value}} Forward 6M Ask is required.
+                  {{first.value}}/{{second.value}} Forward Ask is required.
                 </div>
               </div>
             </div>
@@ -124,11 +134,8 @@
             <div class="col-sm-6" novalidate>
               <input type="number" class="form-control" id="interest-rate-bid1"
                 [(ngModel)]="formDataModel.interest_rate_curr1_bid"
-                placeholder="Enter Interest Rate {{first.value}} Bid" name="interest-rate-bid1" #irfb="ngModel" ngModel
-                required min=0>
-                <div *ngIf="formDataModel.int1_b()" class="alert alert-danger">
-                  Please enter a positive interest rate.
-                </div>
+                placeholder="Enter Interest Rate Bid" name="interest-rate-bid1" #irfb="ngModel" ngModel
+                required>
                 <div *ngIf="irfb.invalid && (irfb.dirty || irfb.touched)" class="alert alert-danger">
                 <div *ngIf="irfb.errors.required">
                   Interest Rate {{first.value}} Bid is required.
@@ -141,8 +148,8 @@
             <div class="col-sm-6" novalidate>
               <input type="number" class="form-control" id="interest-rate-ask1"
                 [(ngModel)]="formDataModel.interest_rate_curr1_ask"
-                placeholder="Enter Interest Rate {{first.value}} Ask" name="interest-rate-ask1" #irfa="ngModel" ngModel
-                required min=0>
+                placeholder="Enter Interest Rate Ask" name="interest-rate-ask1" #irfa="ngModel" ngModel
+                required>
                 <div *ngIf="formDataModel.int1_a()" class="alert alert-danger">
                   Ask interest rate should be greater than Bid interest rate.
                 </div>
@@ -159,11 +166,8 @@
             <div class="col-sm-6" novalidate>
               <input type="number" class="form-control" id="interest-rate-bid2"
                 [(ngModel)]="formDataModel.interest_rate_curr2_bid"
-                placeholder="Enter Interest Rate {{second.value}} Bid" name="interest-rate-bid2" min=0 #irsb="ngModel"
-                ndModel required min=0>
-                <div *ngIf="formDataModel.int2_b()" class="alert alert-danger">
-                  Please enter a positive interest rate.
-                </div>
+                placeholder="Enter Interest Rate Bid" name="interest-rate-bid2" min=0 #irsb="ngModel"
+                ndModel required>
                 <div *ngIf="irsb.invalid && (irsb.dirty || irsb.touched)" class="alert alert-danger">
                 <div *ngIf="irsb.errors.required">
                   Interest Rate {{second.value}} Bid is required.
@@ -176,8 +180,8 @@
             <div class="col-sm-6" novalidate>
               <input type="number" class="form-control" id="interest-rate-ask2"
                 [(ngModel)]="formDataModel.interest_rate_curr2_ask"
-                placeholder="Enter Interest Rate {{second.value}} Ask" name="interest-rate-ask2" #irsa="ngModel" ngModel
-                required min=0>
+                placeholder="Enter Interest Rate Ask" name="interest-rate-ask2" #irsa="ngModel" ngModel
+                required>
                 <div *ngIf="formDataModel.int2_a()" class="alert alert-danger">
                   Ask interest rate should be greater than Bid interest rate.
                 </div>
@@ -206,13 +210,13 @@
           </div>
 
           <div class="form-group row col-md-6" style="margin-left: auto;">
-            <label class="control-label col-sm-4" for="transaction-cost">Transaction Cost</label>
+            <label class="control-label col-sm-4" for="transaction-cost">Transaction Cost (Actual)</label>
             <div class="col-sm-6" novalidate>
               <input type="number" class="form-control" id="transaction-cost" placeholder="Enter Transaction Cost"
                 [(ngModel)]="formDataModel.transaction_cost" name="transaction-cost" #tc="ngModel" ngModel required
                 min=0>
                 <div *ngIf="formDataModel.tc()" class="alert alert-danger">
-                  Please enter a positive transaction cosr.
+                  Please enter a positive transaction cost.
                 </div>
                 <div *ngIf="tc.invalid && (tc.dirty || tc.touched)" class="alert alert-danger">
                 <div *ngIf="tc.errors.required">

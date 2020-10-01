@@ -1,3 +1,9 @@
 *{
     overflow: hidden;
 }
+
+.back{
+    background: url("../../assets/img/sl-genone-finance-as-a-service-hero.jpg"); 
+    height: 700px;
+    background-size: cover;
+}
