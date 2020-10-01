@@ -12,7 +12,7 @@
 
 <body>
 
-    <div style="background-color: #494e52; height: 1000px;" >
+    <div class="cardsdiv" >
 
         <div class="card text-white form-center  mb-3"
             style="width: fit-content;  height:fit-content; margin-left: auto; margin-right: auto;
@@ -69,6 +69,7 @@
                     </tr>
                   </tbody>
                 </table>
+
                 <div *ngIf="controlf || controlr" class="alert alert-success text-center" role="alert">
                     <h4 class="alert-heading">Arbitrage opportunity was found!</h4>
                     <h5>Executing the beneficial trade...</h5>
@@ -77,16 +78,17 @@
                   <div *ngIf="!controlf && !controlr" class="alert alert-danger text-center" role="alert">
                     <h4 class="alert-heading">Arbitrage opportunity was not found!</h4>
                   </div>
+                  
             </div>
         </div>
 
         <br>
 
-        <div class="card text-white form-left  mb-3" id="carddiv">
+        <div class="card text-white form-left  mb-3" id="carddivleft">
                 <!-- <div class="card-header"><b>Arbitrage Calculator</b></div> -->
 
-          <div class="card-body text-center" style="margin: auto;">
-                <table class="table">
+          <div class="card-body text-center" style="margin: auto;overflow-y: scroll;">
+                <table class="table trade_table">
                     <thead>
                       <tr>
                         <th scope="col">Trade Id</th>
@@ -110,12 +112,12 @@
             </div>
         </div>
 
-        <div *ngIf="displayDetails" class="card text-white form-left  mb-3"
-            style="width: fit-content;  height:fit-content; float: right; margin-right: 50px;
-            margin-top: 20px; background-color:#171e27;">
+
+
+        <div *ngIf="displayDetails" class="card text-white form-left  mb-3" id="carddivright">
             <div class="card-header"><b>Arbitrage Calculator</b></div>
             <div class="card-body text-center" style="margin: auto;">
-                <table class="responsive-table table  table-bordered" style="background-color:#171e27; color: white;">
+                <table class="responsive-table table  table-bordered details_table">
                     <caption>Arbitrage Details</caption>
                     <thead>
                       <tr>

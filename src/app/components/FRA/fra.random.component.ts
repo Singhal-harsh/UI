@@ -7,6 +7,7 @@ import { interval, Subscription } from 'rxjs';
 @Component({
   selector: 'randomfra',
   templateUrl: './fra.random.component.html',
+  styleUrls:['./fra.random.component.css'],
   providers: [DatePipe]
 })
 
