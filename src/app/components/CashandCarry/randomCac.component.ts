@@ -7,6 +7,7 @@ import { interval, Subscription } from 'rxjs';
 @Component({
   selector: 'randomcac',
   templateUrl: './randomCacnew.component.html',
+  styleUrls:['./randomCac.component.css'],
   providers: [DatePipe]
 })
 

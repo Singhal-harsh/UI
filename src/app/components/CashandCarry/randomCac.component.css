@@ -1,0 +1,10 @@
+body{
+overflow:hidden;
+}
+#carddiv{
+    width: fit-content;  height:fit-content; float: left; margin-left: 50px;
+            margin-top: 20px; background-color:#171e27;
+}
+.table{
+    background-color:#171e27; color: white; border: hidden;
+}
