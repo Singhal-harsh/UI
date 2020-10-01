@@ -3,20 +3,19 @@
 <head>
   <title>Random Data Arbitrage</title>
   <meta charset="utf-8">
-  <style>
-  .rightdiv{
-   float: right;  
-   padding : 1%; 
-   color:white; 
-    background-color:#494e52;  
-    width: 50%; height:1000px; 
-    background-size: cover;
-    position: relative;
-    }
-  </style>
 </head>
 
-<body style="background-color: #494e52;">
+<body>
+
+  
+  <div class="cardsdiv" >
+
+    <div class="card text-white form-center  mb-3"
+        style="width: fit-content;  height:fit-content; margin-left: auto; margin-right: auto;
+        margin-top: 20px; background-color:#171e27;">
+
+        <div class="card-header"><b>Arbitrage Calculator</b></div>
+        <div class="card-body text-center" style="margin: auto;">
 
   <table class="table table-hover" style="margin-bottom: 0px; border: hidden;" >
     <thead style="background-color:#171e27; color: #ffffff; ">
@@ -66,16 +65,17 @@
 <div *ngIf="!controlf && !controlr" class="alert alert-danger text-center" role="alert">
   <h4 class="alert-heading">Arbitrage opportunity was not found!</h4>
 </div>
+        </div>
+    </div>
 
+    <br>
 
-<div class="leftdiv" style="float: left; padding : 1%; 
-    color:white; 
-    background-color: #494e52 ; 
-    width: 50%; height:1000px;
-    overflow-y: scroll;
-    ">
-    <h3 style="margin-left: 120px;">Successful Arbitrage trades </h3>
-    <table class="table  " style="background-color:#171e27; color: white; border: hidden;">
+    <div class="card text-white form-left  mb-3" id="carddivleft">
+      <!-- <div class="card-header"><b>Arbitrage Calculator</b></div> -->
+
+<div class="card-body text-center" style="margin: auto; overflow-y: scroll;">
+    <h3>Successful Arbitrage Trades </h3>
+    <table class="table trade_table" > 
       <thead>
         <tr>
           <th scope="col">Trade Id</th>
@@ -97,13 +97,13 @@
     </table>
     <p class="font-weight-light" *ngIf = "index==0">No Successful Arbitrage Trades yet.</p>
 </div>
+    </div>
 
-<div class="rightdiv" >
-    
-  <h3 style="margin-left: 180px;">Details of the trade</h3>
-  <div class="container" *ngIf="displayDetails">
-    <table class="responsive-table table   table-bordered" style="background-color:#171e27; color: white;">
-      <caption>Arbitrage Details</caption>
+    <div *ngIf="displayDetails" class="card text-white form-left  mb-3" id="carddivright">
+      <!-- <div class="card-header"><b>Arbitrage Calculator</b></div> -->
+          <div class="card-body text-center" style="margin: auto;">
+            <h3>Arbitrage Calculator</h3>
+          <table class="responsive-table table  table-bordered details_table">
       <thead>
         <tr>
           <th scope="col">Field</th>
@@ -112,7 +112,6 @@
         </tr>
       </thead>
           <tbody>
-
         <tr>
           <th scope="row">Amount</th>
           <td>{{displayObj.arbitrage.notional_amount}}</td>
@@ -148,6 +147,6 @@
   </div>
 </div>
 
-
+  </div>
 
 </body></html>
