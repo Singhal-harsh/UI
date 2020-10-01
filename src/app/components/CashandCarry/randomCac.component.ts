@@ -6,7 +6,8 @@ import { interval, Subscription } from 'rxjs';
 
 @Component({
   selector: 'randomcac',
-  templateUrl: './randomCac.component.html',
+  templateUrl: './randomCacnew.component.html',
+  styleUrls:['./randomCac.component.css'],
   providers: [DatePipe]
 })
 
@@ -36,7 +37,7 @@ export class RandomComponentCac {
 
   ngOnInit(){
       this.getValues();
-      const source = interval(6000);
+      const source = interval(2000);
       this.subscription = source.subscribe(val => this.getValues());
     }
 

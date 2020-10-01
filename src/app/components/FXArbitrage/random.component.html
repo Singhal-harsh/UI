@@ -11,14 +11,14 @@
   <thead style="background-color:#171e27; color: #ffffff; ">
     <tr>
       <th scope="col">TRADE ID</th>
-      <th scope="col">USD/JPY Spot Bid</th>
-      <th scope="col">USD/JPY Spot Ask</th>
-      <th scope="col">USD/JPY Forward 6M Bid</th>
-      <th scope="col">USD/JPY Forward 6M Ask</th>
-      <th scope="col">Interest Rate USD Bid</th>
-      <th scope="col">Interest Rate USD Ask</th>
-      <th scope="col">Interest Rate JPY Bid</th>
-      <th scope="col">Interest Rate JPY Ask</th>
+      <th scope="col">GBP/CAD Spot Bid</th>
+      <th scope="col">GBP/CAD Spot Ask</th>
+      <th scope="col">GBP/CAD Forward 6M Bid</th>
+      <th scope="col">GBP/CAD Forward 6M Ask</th>
+      <th scope="col">Interest Rate GBP Bid</th>
+      <th scope="col">Interest Rate GBP Ask</th>
+      <th scope="col">Interest Rate CAD Bid</th>
+      <th scope="col">Interest Rate CAD Ask</th>
       <th scope="col">Transaction Cost</th>
       <th scope="col">Forward Arbitrage Opportunity</th>
       <th scope="col">Reverse Arbitrage Opportunity</th>
@@ -133,11 +133,11 @@
         </tr>
         <tr>
           <th scope="row">Trade Verdict</th>
-          <td *ngIf="displayObj.profit_loss_fwd >= 0">Profit = {{displayObj.profit_loss_fwd|number:'1.2-2'}}</td>
-          <td *ngIf="displayObj.profit_loss_fwd < 0">Loss = {{displayObj.profit_loss_fwd| number:'1.2-2'}}</td>
+          <td *ngIf="displayObj.fwdArbitrage">Profit = {{displayObj.profit_loss_fwd|number:'1.2-2'}}</td>
+          <td *ngIf="!displayObj.fwdArbitrage">Loss = {{displayObj.profit_loss_fwd| number:'1.2-2'}}</td>
           
-          <td *ngIf="displayObj.profit_loss_rev >= 0">Profit = {{displayObj.profit_loss_rev| number:'1.2-2'}}</td>
-          <td *ngIf="displayObj.profit_loss_rev < 0">Loss = {{displayObj.profit_loss_rev|number:'1.2-2'}}</td>
+          <td *ngIf="displayObj.revArbitrage">Profit = {{displayObj.profit_loss_rev| number:'1.2-2'}}</td>
+          <td *ngIf="!displayObj.revArbitrage">Loss = {{displayObj.profit_loss_rev|number:'1.2-2'}}</td>
                 </tr>
              </tbody>
     </table>

@@ -14,8 +14,8 @@ import {ActivatedRoute , Router} from '@angular/router';
 })
 export class userTestComponent{
 
-    public currencies1= ['USD','GBP','AUD','EUR','JPY','CHF'];
-    public currencies2= ['EUR','GBP','AUD','USD','JPY','CHF'];
+    public currencies1= ['USD','GBP','CAD','AUD','EUR','JPY','CHF'];
+    public currencies2= ['EUR','CAD','GBP','AUD','USD','JPY','CHF'];
     public dataTrial = 0;
     public userService : UserService;
     public activatedRoute: ActivatedRoute;

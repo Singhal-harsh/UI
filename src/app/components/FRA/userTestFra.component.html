@@ -12,9 +12,9 @@
 
 <body>
 
-  <div style="background-color: #494e52;">
+  <div style="background-color: #494e52; height: 1000px;">
     <div class="card text-white form-center mb-3"
-      style="width: 1000px; height: 550px; margin-left: auto; margin-right: auto;
+      style="width: 1000px; height: fit-content; margin-left: auto; margin-right: auto;
       margin-top: 20px; background-color:#171e27;">
       <div class="card-header"><b>Arbitrage Calculator</b></div>
       <div class="card-body text-center" style="margin: auto;">
@@ -83,7 +83,7 @@
 
 
           <div class="form-group row col-md-6" style="margin-left: auto;">
-            <label class="control-label col-sm-4" for="fra_rate_bid">FRA Rate Bid</label>
+            <label class="control-label col-sm-4" for="fra_rate_bid">FRA 6/12 Rate Bid</label>
             <div class="col-sm-6" novalidate>
               <input type="number" class="form-control" id="fra_rate_bid"
                 [(ngModel)]="formDataModel.fra_rate_bid" placeholder="Enter FRA Rate Bid"
@@ -97,7 +97,7 @@
               </div>
           </div>
           <div class="form-group row col-md-6" style="margin-left: auto;">
-            <label class="control-label col-sm-4" for="fra_rate_ask">FRA Rate Ask</label>
+            <label class="control-label col-sm-4" for="fra_rate_ask">FRA 6/12 Rate Ask</label>
             <div class="col-sm-6" novalidate>
               <input type="number" class="form-control" id="fra_rate_ask"
                 [(ngModel)]="formDataModel.fra_rate_ask" placeholder="Enter FRA Rate Ask"
