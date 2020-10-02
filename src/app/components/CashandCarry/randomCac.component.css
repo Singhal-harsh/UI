@@ -24,3 +24,19 @@
     height: fit-content; 
     margin-top: -20px;
     }
+
+    * {
+        scrollbar-width: thin;
+        scrollbar-color: rgb(193, 193, 236)#171e27;
+      }
+      *::-webkit-scrollbar {
+        width: 12px;
+      }
+      *::-webkit-scrollbar-track {
+        background:  #171e27;
+      }
+      *::-webkit-scrollbar-thumb {
+        background-color: rgb(193, 193, 236);
+        border-radius: 20px;
+        border: 3px solid #171e27;
+      }
