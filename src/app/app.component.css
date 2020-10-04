@@ -2,7 +2,9 @@ body {
     font-family: "Open Sans", sans-serif;
     color: #444444;
   }
-  
+  img{
+    object-fit: contain;
+  }
   a {
     color:  #080333;
   }
