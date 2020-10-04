@@ -56,8 +56,7 @@ export class RandomComponent {
       }
 
       });
-
-      console.log(this.randomobj);
+      
     }
 
 

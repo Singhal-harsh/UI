@@ -64,7 +64,7 @@ export class formData{
 		
 	};
 	public timecheck():boolean{
-		if(this.time_months>12||this.time_months<0){return true;}
+		if(this.time_months<=0){return true;}
 		
 		else {return false;}
 	};

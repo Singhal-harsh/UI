@@ -124,10 +124,13 @@
                         <tbody>
                       <tr>
                         <th scope="row">Quantity</th>
-                        <td>{{displayObj.arbitrage.quantity}}</td>
-                        <td>{{displayObj.arbitrage.quantity}}</td>
+                        <td colspan="2">{{displayObj.arbitrage.quantity}}</td>
                       </tr>
-                       <tr>
+                      <tr>
+                        <th scope="row">Time (in months)</th>
+                        <td colspan="2">{{displayObj.arbitrage.time_months}}</td>
+                      </tr>
+                      <tr>
                         <th scope="row">Amount borrowed (Interest rate ask)</th>
                         <td>{{displayObj.future_arb_amount |  number:'1.2-2'}}</td>
                         <td>-</td>

@@ -39,9 +39,9 @@
                         <div class="col-sm-6" novalidate>
                             <input #time="ngModel" ngModel type="number" class="form-control" id="quantity"
                                 placeholder="Enter Time (in Months)" [(ngModel)]="formDataModel.time_months"
-                                name="time_months" required min=0 max=12>
+                                name="time_months" required min=0>
                             <div *ngIf="formDataModel.timecheck()" class="alert alert-danger">
-                                Please enter a number between 0-12.
+                                Please enter a positive value.
                             </div>
                             <div *ngIf="time.invalid && (time.dirty || time.touched)" class="alert alert-danger">
 
