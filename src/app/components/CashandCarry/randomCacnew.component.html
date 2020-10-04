@@ -113,7 +113,7 @@
                 <h3>Details of the Trade</h3>
                 <table class="responsive-table table  table-bordered details_table">
                     
-                    <caption>Arbitrage Details</caption>
+                    
                     <thead>
                       <tr>
                         <th scope="col">Field</th>
@@ -128,10 +128,26 @@
                         <td>{{displayObj.arbitrage.quantity}}</td>
                       </tr>
                        <tr>
-                        <th scope="row">Arbitrage Amount</th>
+                        <th scope="row">Amount borrowed (Interest rate ask)</th>
                         <td>{{displayObj.future_arb_amount |  number:'1.2-2'}}</td>
+                        <td>-</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Amount received (Future bid)</th>
+                        <td>{{displayObj.arbitrage.future_bid |  number:'1.2-2'}}</td>
+                        <td>-</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Amount lend (Interest rate bid)</th>
+                        <td>-</td>
                         <td>{{displayObj.rev_arb_amount |  number:'1.2-2'}}</td>
                       </tr>
+                      <tr>
+                        <th scope="row">Amount payable (Future ask)</th>
+                        <td>-</td>
+                        <td>{{displayObj.arbitrage.future_ask |  number:'1.2-2'}}</td>
+                      </tr>
+                      
                       <tr>
                         <th scope="row">Trade Verdict</th>
                         <td *ngIf="displayObj.profit_loss_fwd >= 0">Profit = {{displayObj.profit_loss_fwd|number:'1.2-2'}}</td>

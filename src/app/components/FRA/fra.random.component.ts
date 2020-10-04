@@ -56,6 +56,8 @@ export class FraRandomComponent {
     
       });
 
+      console.log(this.randomobj);
+
     }
 
 

@@ -204,14 +204,14 @@
 
                     <div style="margin-left: auto; margin-right: auto;">
                         <div *ngIf="flag && controlf && controlr" class="alert alert-success text-center" role="alert">
-                            Forward Arbitrage opportunity was found! Profit is {{prof | number:'1.2-2'}}
+                            Cash and Carry Arbitrage opportunity was found! Profit is {{prof | number:'1.2-2'}}
                             <br>
                             and also Reverse Arbitrage opportunity was found! Profit is {{pror | number:'1.2-2'}}
                             <br>
                         </div>
 
                         <div *ngIf="flag && controlf && !controlr" class="alert alert-success text-center" role="alert">
-                            Forward Arbitrage opportunity found! Profit is {{prof | number:'1.2-2'}}
+                            Cash and Carry Arbitrage opportunity found! Profit is {{prof | number:'1.2-2'}}
                             <br>
                             Although, No Reverse Arbitrage opportunity was found! Loss is {{pror | number:'1.2-2'}}
                             <br>
@@ -220,7 +220,7 @@
                         <div *ngIf="flag && !controlf && controlr" class="alert alert-success text-center" role="alert">
                             Reverse Arbitrage opportunity found! Profit is {{pror | number:'1.2-2'}}
                             <br>
-                            Although, No Forward Arbitrage opportunity was found! Loss is {{prof | number:'1.2-2'}}
+                            Although, No Normal Arbitrage opportunity was found! Loss is {{prof | number:'1.2-2'}}
                             <br>
                         </div>
 

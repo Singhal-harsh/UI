@@ -1,6 +1,6 @@
 
       #carddivleft{
-        width: fit-content; max-height:600px; float: left; margin-left: 50px;
+        width: fit-content; max-height:600px; float: left; margin-left: 10px;
                 margin-top: 20px; background-color:#171e27;
                 opacity: 0.9;overflow: hidden;min-height: fit-content;
     }
@@ -17,7 +17,7 @@
         background-color:#171e27; color: white;
     }
     #carddivright{
-    width: fit-content;  height:fit-content; float: right; margin-right: 50px;
+    width: fit-content;  height:fit-content; float: right; margin-right: 10px;
     margin-top: 20px; background-color:#171e27; opacity: 0.9;
     }
     body{
