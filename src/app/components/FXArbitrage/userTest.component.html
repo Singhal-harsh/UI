@@ -234,6 +234,9 @@
               </div>
               <input type="number" class="form-control" id="time" placeholder="Enter Time"
                 [(ngModel)]="formDataModel.time_months" name="time" #time="ngModel" ngModel required min=0>
+              <div *ngIf="formDataModel.timecheck()" class="alert alert-danger">
+                  Please enter a positive value.
+              </div>
               <div *ngIf="time.invalid && (time.dirty || time.touched)" class="alert alert-danger">
                 <div *ngIf="time.errors.required">
                   Time is required.

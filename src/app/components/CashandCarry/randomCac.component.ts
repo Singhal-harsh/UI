@@ -51,8 +51,6 @@ export class RandomComponentCac {
         this.randoms.push(this.randomobj);
         this.index = this.index + 1;
       }
-
-      console.log(this.randomobj.id);
       
       });
 
